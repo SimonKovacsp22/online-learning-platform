@@ -1,0 +1,25 @@
+
+.home-header-video {
+    mix-blend-mode: normal;
+    object-fit: cover;
+    z-index: 2;
+}
+
+.teal-left-position {
+    z-index: 1;
+    top: -3.4rem ;
+    bottom:auto;
+    left: -2.8rem;
+    right:auto;
+}
+.red-left-position {
+    z-index: 1;
+    bottom: -3rem;
+    left:44%;
+}
+.orange-left-position {
+    z-index: 1;
+    width: 182px;
+    top:-3.4rem;
+    right: -6.2rem;
+}

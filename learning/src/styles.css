@@ -1,0 +1,93 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+:root {
+    --gray-400:#222 ;
+    --color-primary: #4970ff;
+    --color-secondary: #283050;
+    --bs-spacer: 2rem;
+  }
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.text-nav {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: var(--gray-400);
+}
+
+.text-button-lg {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.text-hero {
+    font-size: 67px;
+    font-weight: 600;
+    line-height: 74px;
+    color: var(--color-secondary);
+}
+
+.text-subtitle {
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--color-secondary);
+    /* line-height: 28px; */
+}
+
+.text-title {
+}
+
+.p-12 {
+    padding: 12px;
+}
+
+.p-48 {
+    padding: 48px;
+}
+
+.mb-32 {
+    margin-bottom: 32px;
+}
+
+.column-gap-3 {
+    column-gap: 1rem;
+}
+.padding-section-large {
+    padding-block: 7rem;
+}
+
+button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+
+.button-nav {
+    padding: 12px 18px;
+    line-height: 15px;
+}
+
+.button-large {
+    padding: 20px 32px;
+}
+
+.color-gray-400 {
+    color: var(--gray-400);
+}
+.color-primary {
+    color: var(--color-primary);
+}
+.border-primary {
+    border-color: var(--color-primary);
+}
+
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
