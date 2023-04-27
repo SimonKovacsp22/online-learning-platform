@@ -3,6 +3,43 @@
 
 .nav {
     box-shadow: 3px 3px 32px rgba(0,0,0,.1);
-    height: 77px;
-    
+}
+
+.cart-hover-modal-container {
+    top: 100%;
+    right: -8px;
+}
+
+.cart-hover-modal {
+    margin-top: 4px;
+    min-width: 300px;
+    opacity: 0;
+    animation: fadeAndScaleAnimation 200ms cubic-bezier(.2,0,.38,.9) forwards
+
+}
+.nav-input-container input {
+    border:none;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    padding: 12px;
+}
+
+.nav-input-container input:focus-visible {
+    outline:none;
+    border-bottom: 2px solid var(--color-primary);
+    border-radius: 3px;
+    padding-bottom: 11px;
+}
+
+
+@keyframes fadeAndScaleAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(.9);
+
+  }  
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
