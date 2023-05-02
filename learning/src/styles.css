@@ -5,16 +5,23 @@
 :root {
     --gray-400:#222 ;
     --color-primary: #4970ff;
+    --color-primary-dark: #3059f0;
     --color-secondary: #283050;
     --color-logo: #272F4D;
+    --color-gray-100: #fcf3f3;
     --gray-300: rgb(40,48,80);
     --bs-spacer: 2rem;
+
   }
 
 body {
     font-family: 'Noto Sans', sans-serif;
     box-sizing: border-box;
     margin: 0;
+}
+
+.box-shadow {
+   box-shadow: 3px 3px 32px rgba(0,0,0,.1)
 }
 
 .text-caption {
@@ -67,6 +74,12 @@ body {
     line-height: 52.8px;
 }
 
+.text-title-secondary {
+    font-size: 22.4px;
+    font-weight: 500;
+    line-height: 26.88px;
+}
+
 .p-12 {
     padding: 12px;
 }
@@ -84,6 +97,14 @@ body {
 .mb-32 {
     margin-bottom: 32px;
 }
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+
+.my-12 {
+    margin-block: 12px;
+}
 
 
 .column-gap-3 {
@@ -94,6 +115,11 @@ body {
 }
 .padding-section-large {
     padding-block: 7rem;
+}
+
+
+.mt-large {
+    margin-top: 7rem
 }
 
 button {
@@ -107,8 +133,21 @@ button {
     line-height: 15px;
 }
 
+.button-regular {
+    padding: 15px 18px;
+    line-height: 15px;
+}
+
+.shadow-button {
+    box-shadow: 0px 0px 4px 2px rgba(51, 51, 51, 0.1);
+}
+
 .button-large {
     padding: 20px 32px;
+}
+
+.button-hover-primary-dark:hover {
+background-color: var(--color-primary-dark) !important;
 }
 
 .border-gray-200 {
@@ -116,6 +155,9 @@ button {
 }
 .border-gray-300 {
     border: 1px solid rgba(40,48,80,.13);
+}
+.color-gray-100 {
+    color: var(--color-gray-100);
 }
 
 .color-gray-200 {
@@ -141,14 +183,35 @@ button {
 .bg-primary {
     background-color: var(--color-primary) !important;
 }
+.bg-gray-200 {
+    background-color: #f8f9fa;
+}
 
 .icon-nav-size svg{
     width: 20px;
     height: 20px;
 }
+.otter-icon {
+    left: -25px;
+    bottom: 50px;
+    transform: rotateY(180deg);
+  }
+.otter-icon svg {
+    width: 80px;
+    height: 80px;
+}
+
+.icon-input-size svg {
+    width: 16px;
+    height: 16px;
+}
 
 .icon-gray-400 svg path {
     fill: var(--gray-400);
+}
+
+.icon-primary svg path {
+    fill: var(--color-primary);
 }
 
 .icon-button svg {

@@ -1,0 +1,54 @@
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 12.5px 18px;
+    line-height: 15px;
+  }
+  
+  .btn-google:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .btn-google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .login-container {
+    padding: 5rem 6rem;
+  }
+
+  .design-container {
+    overflow: hidden;
+    padding-left: 9rem;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
+
+
+
+
+  .input-no-focus:focus-visible {
+      outline: none;
+  }
+
+.teal-left-position {
+  left: 280px;
+  bottom: 30px;
+  }
+.red-left-position {
+  transform: rotateY(180deg);
+  left: 150px;
+  bottom: 80px;
+
+}
+.orange-left-position {
+  width: 200px;
+    top: -34px;
+    right: -30px;
+  }
