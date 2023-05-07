@@ -1,0 +1,7 @@
+<ul class=" list-unstyled mb-0 text-nav">
+    <li class="py-2 px-3 d-flex justify-content-between" *ngFor="let cat of categories">
+        <a [routerLink]="['/','categories', cat.id]"
+            class="cursor-pointer color-gray-400 d-inline text-decoration-none">{{cat.name}}</a>
+        <fa-icon style="font-size: 12px;" [icon]="faAngleRight" />
+    </li>
+</ul>

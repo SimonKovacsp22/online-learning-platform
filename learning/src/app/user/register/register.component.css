@@ -1,0 +1,47 @@
+.register-container-left {
+    padding: 2rem 3rem 5rem 6rem;
+  }
+  .register-container-right {
+    padding: 2rem 6rem 5rem 3rem;
+  }
+
+  .register-header {
+    border: 8px solid white;
+    border-bottom: none;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding-top:48px;
+  }
+
+  .mb-55 {
+    margin-bottom:55px;
+  }
+
+  .teal-leaf {
+    right: 12px;
+    top: 8px;
+      width: 50px;
+      transform: rotateX(180deg);
+  }
+
+  
+  .orange-leaf {
+    z-index:1 ;
+    right: 38px;
+    top: 40px;
+    width: 40px;
+  }
+  
+  .red-leaf {
+    z-index: 5;
+    transform: rotateY(180deg);
+    right: 65px;
+    width: 28px;
+    bottom:8px;
+  }
+
+  .otter-icon {
+    left: calc( 50% - 30px) ;
+    bottom: -64px;
+    transform: rotateZ(270deg);
+  }

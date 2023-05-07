@@ -29,14 +29,6 @@
     border-bottom-right-radius: 0 !important;
   }
 
-
-
-
-
-  .input-no-focus:focus-visible {
-      outline: none;
-  }
-
 .teal-left-position {
   left: 280px;
   bottom: 30px;
@@ -51,4 +43,10 @@
   width: 200px;
     top: -34px;
     right: -30px;
+  }
+
+  .otter-icon {
+    left: -25px;
+    bottom: 50px;
+    transform: rotateY(180deg);
   }

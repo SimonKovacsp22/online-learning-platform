@@ -9,6 +9,7 @@
     --color-secondary: #283050;
     --color-logo: #272F4D;
     --color-gray-100: #fcf3f3;
+    --bs-link-hover-color: #4970ff;
     --gray-300: rgb(40,48,80);
     --bs-spacer: 2rem;
 
@@ -94,6 +95,10 @@ body {
     padding: 48px;
 }
 
+.pb-64 {
+    padding-bottom:64px !important;
+}
+
 .mb-32 {
     margin-bottom: 32px;
 }
@@ -176,6 +181,7 @@ background-color: var(--color-primary-dark) !important;
 .color-primary {
     color: var(--color-primary);
 }
+
 .border-primary {
     border-color: var(--color-primary);
 }
@@ -191,11 +197,12 @@ background-color: var(--color-primary-dark) !important;
     width: 20px;
     height: 20px;
 }
-.otter-icon {
-    left: -25px;
-    bottom: 50px;
-    transform: rotateY(180deg);
-  }
+
+.icon-reg-size svg{
+    width: 30px;
+    height: 30px;
+}
+
 .otter-icon svg {
     width: 80px;
     height: 80px;
@@ -217,5 +224,17 @@ background-color: var(--color-primary-dark) !important;
 .icon-button svg {
     margin-bottom: -3px
 }
+
+.input-no-focus:focus-visible {
+    outline: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+  }
+
+  .z-1 {
+  z-index: 1;
+  }
 
 

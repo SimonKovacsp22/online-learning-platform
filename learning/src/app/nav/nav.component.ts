@@ -14,10 +14,15 @@ export class NavComponent implements OnInit {
 
   faCartShopping = faCartShopping;
   faOtter = faOtter;
-  cartModalVisible = true;
-  onCartHover = () => (this.cartModalVisible = false);
+  cartModalVisible = false;
+  categoryModalVisible = false;
 
-  onCartLeave = () => (this.cartModalVisible = true);
+  onCategoriesHover = () => (this.categoryModalVisible = true);
+
+  onCategoriesLeave = () => (this.categoryModalVisible = false);
+  onCartHover = () => (this.cartModalVisible = true);
+
+  onCartLeave = () => (this.cartModalVisible = false);
 
   ngOnInit() {
     if (sessionStorage.getItem('userdetails')) {

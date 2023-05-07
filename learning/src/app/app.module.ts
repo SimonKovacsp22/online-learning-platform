@@ -13,9 +13,11 @@ import {
 } from '@angular/common/http';
 import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
+import { CategoriesComponent } from './categories/categories.component';
+import { CourseListComponent } from './course-list/course-list.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, HomeComponent],
+  declarations: [AppComponent, NavComponent, HomeComponent, CategoriesComponent, CourseListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

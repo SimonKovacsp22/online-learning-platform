@@ -2,14 +2,26 @@
     <div class="container-xxl">
         <div class="d-flex align-items-center justify-content-between w-100">
             <div class="d-flex align-items-center ">
-                <a href="#"
+                <a [routerLink]="['/']"
                     class="fs-2 text-logo text-decoration-none me-3 color-blue-900 position-relative">Lurnx<fa-icon
                         [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
                 <ul class="d-flex list-unstyled mb-0 text-nav">
-                    <li class="p-12 my-3">Categories</li>
-                    <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3">Teach On Lurnx</li>
-                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3">My Courses</li>
-                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3">Teach</li>
+                    <li class="p-12 my-3 position-relative" (mouseenter)="onCategoriesHover()"
+                        (mouseleave)="onCategoriesLeave()">
+                        <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Categories</a>
+                        <div [ngClass]="{ 'd-none': !categoryModalVisible}"
+                            class="hover-modal-container-left position-absolute">
+                            <div class="hover-modal bg-white border-gray-300 rounded-2 py-2 pb-64">
+                                <app-categories></app-categories>
+                            </div>
+                        </div>
+                    </li>
+                    <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3"><a
+                            class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a></li>
+                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3"><a
+                            class="cursor-pointer color-gray-400 d-inline text-decoration-none">My Courses</a></li>
+                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3"><a
+                            class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach</a></li>
 
 
                 </ul>
@@ -20,12 +32,12 @@
             </div>
             <div class="d-flex text-nav column-gap-3">
                 <div *ngIf="loginService.user.authStatus=='AUTH'" (mouseenter)="onCartHover()"
-                    (mouseleave)="onCartLeave()" class="position-relative d-flex align-items-center  py-3">
+                    (mouseleave)="onCartLeave()" class="position-relative d-flex align-items-center py-3">
                     <button class="icon-gray-400 p-12"><fa-icon [icon]="faCartShopping"
                             class="icon-nav-size icon-button"></fa-icon>
 
                     </button>
-                    <div [ngClass]="{ 'd-none': cartModalVisible}"
+                    <div [ngClass]="{ 'd-none': !cartModalVisible}"
                         class="cart-hover-modal-container position-absolute ">
                         <div class="bg-white border-gray-300 rounded-2 p-3 text-center cart-hover-modal">
                             <p class="text-secondary">Your cart is empty.</p>
