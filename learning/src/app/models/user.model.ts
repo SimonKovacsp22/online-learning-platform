@@ -6,7 +6,7 @@ export interface IUser {
   password?: string;
   role: string;
   createDt: string;
-  authStatus: string;
+  authStatus?: string;
 }
 
 export class User implements IUser {

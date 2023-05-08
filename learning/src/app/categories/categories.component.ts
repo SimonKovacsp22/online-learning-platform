@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styles: [],
+  styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
   categories = new Array();

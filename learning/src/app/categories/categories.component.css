@@ -1,0 +1,4 @@
+.category-hover:hover .category-icon  {
+    color: var(--color-primary);
+}
+

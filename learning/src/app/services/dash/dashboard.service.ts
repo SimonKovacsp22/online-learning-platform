@@ -13,4 +13,10 @@ export class DashboardService {
       observe: 'response',
     });
   }
+
+  getCoursesByCategory(categoryId: number) {
+    return this.http.get(environment.rooturl + '/categories/' + categoryId, {
+      observe: 'response',
+    });
+  }
 }

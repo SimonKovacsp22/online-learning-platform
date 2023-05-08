@@ -15,9 +15,17 @@ import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { CategoriesComponent } from './categories/categories.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { TeachComponent } from './teach/teach.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, HomeComponent, CategoriesComponent, CourseListComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    CategoriesComponent,
+    CourseListComponent,
+    TeachComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

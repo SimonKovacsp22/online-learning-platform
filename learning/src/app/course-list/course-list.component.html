@@ -1,1 +1,24 @@
-<p>course-list works!</p>
+<div class="row mt-large">
+    <header class="col-12 mb-24">
+        <h1 class="text-title-medium mb-0">{{categoryName}} Courses</h1>
+    </header>
+    <div class="col-12">
+        <ul class="d-flex  list-unstyled mb-0 ordering-options">
+            <li (click)="setSelected('popular')" class="me-4 text-secondary fw-700 py-12 cursor-pointer" [ngClass]="{
+                'order-selected': orderType == 'popular'
+            }">Most Popular</li>
+            <li (click)="setSelected('new')" class="me-4 text-secondary fw-700 py-12 cursor-pointer" [ngClass]="{
+                'order-selected': orderType == 'new'
+            }">Newest</li>
+        </ul>
+    </div>
+
+    <div class="col-12 mt-3">
+        <div *ngFor="let course of courses">
+            <img src="{{course.imageUrl}}" class="course-image-small mb-2" />
+            <h6 class="fw-700 mb-1">{{course.title}}</h6>
+            <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
+            <p class="mb-1 fw-700">&euro;19.19</p>
+        </div>
+    </div>
+</div>
