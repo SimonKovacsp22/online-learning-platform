@@ -4,8 +4,9 @@ export interface IUser {
   firstName: string;
   lastName: string;
   password?: string;
+  pwd?: string;
   role: string;
-  createDt: string;
+  createDt?: string;
   authStatus?: string;
 }
 
@@ -15,6 +16,7 @@ export class User implements IUser {
   firstName = '';
   lastName = '';
   password? = '';
+  pwd? = '';
   role = '';
   createDt = '';
   authStatus = '';
@@ -25,15 +27,15 @@ export class User implements IUser {
     email?: string,
     password?: string,
     role?: string,
-    statusCd?: string,
-    statusMsg?: string,
-    authStatus?: string
+    authStatus?: string,
+    pwd?: string
   ) {
     this.id = id || 0;
     this.firstName = firstName || '';
     this.lastName = lastName || '';
     this.email = email || '';
     this.password = password || '';
+    this.pwd = pwd || '';
     this.role = role || '';
     this.authStatus = authStatus || '';
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../services/dash/dashboard.service';
 import { ICourse } from '../models/course.model';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course-list',
@@ -9,6 +10,7 @@ import { ICourse } from '../models/course.model';
   styleUrls: ['./course-list.component.css'],
 })
 export class CourseListComponent {
+  faExclemation = faCircleExclamation;
   categoryId = 0;
   categoryName = '';
   courses: ICourse[] = [];

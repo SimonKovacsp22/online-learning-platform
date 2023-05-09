@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { IUser } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,12 @@ export class DashboardService {
 
   getCoursesByCategory(categoryId: number) {
     return this.http.get(environment.rooturl + '/categories/' + categoryId, {
+      observe: 'response',
+    });
+  }
+
+  saveUser(user: IUser) {
+    return this.http.post(environment.rooturl + '/register', user, {
       observe: 'response',
     });
   }

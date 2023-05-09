@@ -22,6 +22,7 @@ body {
     margin: 0;
 }
 
+
 .box-shadow {
    box-shadow: 3px 3px 32px rgba(0,0,0,.1)
 }
@@ -69,6 +70,11 @@ body {
     color: var(--color-secondary);
 }
 
+.text-subtitle-primary {
+    font-size: 18px;
+    color: var(--color-secondary);
+}
+
 .text-logo {
     font-weight: 600;
     font-family: 'Kanit', sans-serif;
@@ -102,6 +108,8 @@ body {
 .p-10 {
     padding: 10px;
 }
+
+
 .py-18 {
     padding-block: 18px;
 }
@@ -124,6 +132,9 @@ body {
 
 .my-12 {
     margin-block: 12px;
+}
+.py-10 {
+    padding-block: 10px !important;
 }
 
 .py-12 {
@@ -179,6 +190,14 @@ background-color: var(--color-primary-dark) !important;
 }
 .border-gray-300 {
     border: 1px solid rgba(40,48,80,.13);
+}
+
+.border-gray-400 {
+    border: 1px solid rgba(40,48,80,.20);
+}
+
+.border-bottom-gray-400 {
+    border-bottom: 1px solid rgba(40,48,80,.20);
 }
 .color-gray-100 {
     color: var(--color-gray-100);
