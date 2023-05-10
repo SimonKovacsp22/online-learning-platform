@@ -16,6 +16,7 @@ import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { CategoriesComponent } from './categories/categories.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { TeachComponent } from './teach/teach.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TeachComponent } from './teach/teach.component';
     CategoriesComponent,
     CourseListComponent,
     TeachComponent,
+    CourseDetailComponent,
   ],
   imports: [
     BrowserModule,

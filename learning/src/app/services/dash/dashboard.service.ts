@@ -21,6 +21,12 @@ export class DashboardService {
     });
   }
 
+  getCourseById(courseId: number) {
+    return this.http.get(environment.rooturl + '/courses/' + courseId, {
+      observe: 'response',
+    });
+  }
+
   saveUser(user: IUser) {
     return this.http.post(environment.rooturl + '/register', user, {
       observe: 'response',

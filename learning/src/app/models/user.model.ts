@@ -6,6 +6,7 @@ export interface IUser {
   password?: string;
   pwd?: string;
   role: string;
+  avatar: string;
   createDt?: string;
   authStatus?: string;
 }
@@ -18,6 +19,7 @@ export class User implements IUser {
   password? = '';
   pwd? = '';
   role = '';
+  avatar = '';
   createDt = '';
   authStatus = '';
   constructor(

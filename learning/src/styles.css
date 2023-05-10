@@ -8,11 +8,12 @@
     --color-primary-dark: #3059f0;
     --color-secondary: #283050;
     --color-logo: #272F4D;
-    --color-gray-100: #fcf3f3;
-    --color-gray-600: #6a6f73;
+    --gray-100: #fcf3f3;
+    --gray-600: #6a6f73;
     --bs-link-hover-color: #4970ff;
     --gray-300: rgb(40,48,80);
     --bs-spacer: 2rem;
+    --yellow-500: #e59819;
 
   }
 
@@ -33,7 +34,7 @@ body {
 
 .text-super-caption {
     font-size: 12px;
-    color: var(--color-gray-600);
+    color: var(--gray-600);
 }
 
 .text-nav {
@@ -199,8 +200,12 @@ background-color: var(--color-primary-dark) !important;
 .border-bottom-gray-400 {
     border-bottom: 1px solid rgba(40,48,80,.20);
 }
+
+.border-top-gray-400 {
+    border-top: 1px solid rgba(40,48,80,.20);
+}
 .color-gray-100 {
-    color: var(--color-gray-100);
+    color: var(--gray-100);
 }
 
 .color-gray-200 {
@@ -212,6 +217,14 @@ background-color: var(--color-primary-dark) !important;
 
 .color-gray-400 {
     color: var(--gray-400);
+}
+
+.color-gray-600 {
+    color: var(--gray-600)
+}
+
+.color-yellow-500 {
+    color: var(--yellow-500);
 }
 .color-blue-900 {
     color: var(--color-logo);
@@ -234,6 +247,10 @@ background-color: var(--color-primary-dark) !important;
 .icon-nav-size svg{
     width: 20px;
     height: 20px;
+}
+
+.icon-25-size {
+    font-size: 25px;
 }
 
 .icon-reg-size svg{
@@ -273,6 +290,17 @@ background-color: var(--color-primary-dark) !important;
 
   .z-1 {
   z-index: 1;
+  }
+
+  .user-badge {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
 

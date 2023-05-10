@@ -1,18 +1,23 @@
 import { ICategory } from './category.model';
 import { ILanguage } from './language.model';
-import { IUser } from './user.model';
+import { Rating } from './rating.model';
+import { IUser, User } from './user.model';
+import { IVideo } from './video.model';
 import { IWYWL } from './wywl.model';
 
 export interface ICourse {
-  id: string;
+  id: number;
   title: string;
   description: string;
   imageUrl: string;
   user: IUser;
+  subtitle: string;
   lastUpdated: Date;
   price: number;
+  ratings: Rating[];
   categories: ICategory[];
   students: IUser[];
   whatYouWillLearn: IWYWL[];
   languages: ILanguage[];
+  videos: IVideo[];
 }

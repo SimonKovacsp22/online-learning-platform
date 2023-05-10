@@ -13,8 +13,9 @@
             }">Newest</li>
         </ul>
     </div>
-    <div class="col-12 mt-3">
-        <div *ngFor="let course of courses">
+    <div class="col-12 mt-3 d-flex flex-row">
+        <div *ngFor="let course of courses" [routerLink]="['/courses/', course.id]"
+            class="cursor-pointer image-hover-dark me-3">
             <img src="{{course.imageUrl}}" class="course-image-small mb-2" />
             <h6 class="fw-700 mb-1">{{course.title}}</h6>
             <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
@@ -32,13 +33,13 @@
 
 
     <div class="col-12 mt-3">
-        <div *ngFor="let course of courses"
-            class="d-flex align-items-start justify-content-between pb-3 border-bottom-gray-400">
+        <div *ngFor="let course of courses" [routerLink]="['/courses/', course.id]"
+            class="d-flex align-items-start justify-content-between pb-3 border-bottom-gray-400 cursor-pointer image-hover-dark">
             <div class="d-flex align-items-start">
                 <img src="{{course.imageUrl}}" class="course-image-small me-3" />
                 <div>
                     <h6 class="fw-700 mb-1 text-subtitle-primary">{{course.title}}</h6>
-                    <p class="mb-1">{{course.description}}</p>
+                    <p class="mb-1">{{course.subtitle}}</p>
                     <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
                     <div class="d-flex mb-1">
                         <div class="me-1 text-white bg-primary text-caption px-1 rounded-1"
