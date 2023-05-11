@@ -4,4 +4,5 @@ export interface IVideo {
   duration: string;
   rank: number;
   sourceUrl: string;
+  durationInSeconds: number;
 }

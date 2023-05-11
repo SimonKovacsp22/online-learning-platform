@@ -1,6 +1,6 @@
 import { ICategory } from './category.model';
 import { ILanguage } from './language.model';
-import { Rating } from './rating.model';
+import { IRating } from './rating.model';
 import { IUser, User } from './user.model';
 import { IVideo } from './video.model';
 import { IWYWL } from './wywl.model';
@@ -14,7 +14,7 @@ export interface ICourse {
   subtitle: string;
   lastUpdated: Date;
   price: number;
-  ratings: Rating[];
+  ratings: IRating[];
   categories: ICategory[];
   students: IUser[];
   whatYouWillLearn: IWYWL[];

@@ -3,6 +3,7 @@ import { faCartShopping, faOtter } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login/login.service';
+import { DashboardService } from '../services/dash/dashboard.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,11 @@ import { LoginService } from '../services/login/login.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  constructor(private router: Router, public loginService: LoginService) {}
+  constructor(
+    private router: Router,
+    public loginService: LoginService,
+    private dashboardService: DashboardService
+  ) {}
 
   faCartShopping = faCartShopping;
   faOtter = faOtter;
@@ -24,12 +29,14 @@ export class NavComponent implements OnInit {
 
   onCartLeave = () => (this.cartModalVisible = false);
 
-  ngOnInit() {
-    if (sessionStorage.getItem('userdetails')) {
-      this.loginService.user = JSON.parse(
-        sessionStorage.getItem('userdetails')!
-      );
-    }
+  ngOnInit() {}
+
+  getCart() {
+    this.dashboardService
+      .getCartByUser(this.loginService.user)
+      .subscribe((responseData) => {
+        console.log(<any>responseData.body);
+      });
   }
 
   logOut(): void {

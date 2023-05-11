@@ -1,3 +1,22 @@
 .wywl-sentence {
     width: calc(50% - (2.4rem/2));
 }
+
+.course-modal {
+    max-width: 350px;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    
+}
+
+.course-modal-fixed {
+    position: fixed;
+    top: 86px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
+    min-width: 350px;
+}

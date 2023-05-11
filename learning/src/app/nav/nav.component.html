@@ -10,8 +10,8 @@
                         (mouseleave)="onCategoriesLeave()">
                         <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Categories</a>
                         <div [ngClass]="{ 'd-none': !categoryModalVisible}"
-                            class="hover-modal-container-left position-absolute">
-                            <div class="hover-modal bg-white border-gray-300 rounded-2 py-2 pb-64">
+                            class="hover-modal-container-left position-absolute ">
+                            <div class="hover-modal bg-white border-gray-300 rounded-2 py-2 pb-64 modal-shadow">
                                 <app-categories></app-categories>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                     </button>
                     <div [ngClass]="{ 'd-none': !cartModalVisible}"
                         class="cart-hover-modal-container position-absolute ">
-                        <div class="bg-white border-gray-300 rounded-2 p-3 text-center cart-hover-modal">
+                        <div class="bg-white border-gray-300 rounded-2 p-3 text-center cart-hover-modal modal-shadow">
                             <p class="text-secondary">Your cart is empty.</p>
                             <p class="m-0 text-primary text-caption fw-bold">Keep shopping</p>
                         </div>
@@ -51,11 +51,11 @@
                 <button *ngIf="loginService.user.authStatus!='AUTH'" class="button-nav button color-gray-400 p-12 my-3"
                     [routerLink]="['/','login']">Login</button>
                 <button *ngIf="loginService.user.authStatus!='AUTH'"
-                    class="button-nav button color-primary border border-1 border-primary rounded-1 my-3"
+                    class="button-nav button color-primary border border-1 border-primary rounded-1 my-3 button-hover-secondary-gray"
                     [routerLink]="['/','register']">Sign
                     up</button>
                 <button *ngIf="loginService.user.authStatus=='AUTH'"
-                    class="button-nav button color-primary border border-1 border-primary rounded-1 my-3"
+                    class="button-nav button color-primary border border-1 border-primary rounded-1 my-3 button-hover-secondary-gray"
                     (click)="logOut()">Log
                     out</button>
             </div>

@@ -1,6 +1,6 @@
 import { IUser } from './user.model';
 
-export interface Rating {
+export interface IRating {
   id: number;
   user: IUser;
   amount: number;

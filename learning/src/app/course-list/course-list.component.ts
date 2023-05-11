@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../services/dash/dashboard.service';
 import { ICourse } from '../models/course.model';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { CourseService } from '../services/course/course.service';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
   selector: 'app-course-list',
@@ -18,7 +20,9 @@ export class CourseListComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private loginService: LoginService,
+    public courseService: CourseService
   ) {
     this.route.params.subscribe((params) => {
       this.categoryId = parseInt(params['id']);

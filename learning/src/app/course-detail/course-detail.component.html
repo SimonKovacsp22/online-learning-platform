@@ -1,5 +1,5 @@
-<section class="row mt-large">
-    <div *ngIf="course !== null" class="col-7">
+<section class="row mt-large justify-content-center">
+    <div *ngIf="course !== null" class="col-6 me-4">
         <header class="mb-5">
             <a [routerLink]="['/categories/', course.categories[0].id]"
                 class="mb-3 d-block fw-bold color-primary text-decoration-none">{{course.categories[0].name}}</a>
@@ -12,7 +12,7 @@
                     course.user.lastName}}</span></p>
             <div class="d-flex">
                 <div class="d-flex me-4">
-                    <fa-icon class="me-2" [icon]="faCircleExclamation" />
+                    <fa-icon class="me-2" [icon]="faCircleExclamation" style="font-size: 17px;" />
                     <p>{{course.lastUpdated | date}}</p>
                 </div>
                 <div class="d-flex me-4">
@@ -20,7 +20,7 @@
                     <p class="me-1" *ngFor="let language of course.languages">{{language.name}}</p>
                 </div>
                 <div class="d-flex me-2">
-                    <fa-icon [icon]="faClosedCaptioning" />
+                    <fa-icon [icon]="faClosedCaptioning" style="font-size: 18px;" />
 
                 </div>
             </div>
@@ -39,7 +39,8 @@
         <div class="mb-5">
             <header>
                 <h2 class="text-title-secondary fw-bold mb-4">Course content</h2>
-                <p class="text-caption color-gray-600">{{course.videos.length}} &#x2022; lectures &#x2022; 3m total
+                <p class="text-caption color-gray-600">{{course.videos.length}} &#x2022; lectures &#x2022;
+                    {{courseService.getTotalLength(course.videos)}} total
                     length
                 </p>
             </header>
@@ -62,7 +63,7 @@
                 <h2 class="text-title-secondary fw-bold mb-4">Description</h2>
             </header>
             <div>
-                <p class="text-caption" [innerHTML]="course.description"></p>
+                <p class="text-caption mb-0" [innerHTML]="course.description"></p>
             </div>
         </div>
 
@@ -70,11 +71,12 @@
             <header class="d-flex align-items-center mb-4">
                 <fa-icon [icon]="faStar" class="text-button-lg me-1 color-yellow-500" />
                 <h2 class="text-title-secondary fw-bold mb-0">
-                    5 course rating &#x2022; {{course.ratings.length}} ratings
+                    {{courseService.getTotalRating(course.ratings)}} course rating &#x2022; {{course.ratings.length}}
+                    ratings
                 </h2>
             </header>
-            <div class="row">
-                <div *ngFor="let rating of course.ratings" class="col-6 ps-0 pe-4 me-3 py-4 border-top-gray-400">
+            <div class="row justify-content-between">
+                <div *ngFor="let rating of course.ratings" class="col-5 pe-4 pt-4 pb-32 border-top-gray-400">
                     <header class="d-flex justify-content-between mb-3">
                         <div class="d-flex">
                             <div *ngIf="!rating.user.avatar" class="user-badge me-3 text-subhero text-white fw-bold">
@@ -86,13 +88,13 @@
                                     {{rating.user.lastName.slice(0,1)}}.
                                 </h3>
                                 <div class="d-flex align-items-center">
-                                    <fa-icon *ngFor="let star of getRatingArray(rating.amount)" [icon]="faStar"
-                                        class="text-super-caption color-yellow-500" />
+                                    <fa-icon *ngFor="let star of courseService.getRatingArray(rating.amount)"
+                                        [icon]="faStar" class="text-super-caption color-yellow-500" />
                                     <p class="ms-2 text-super-caption fw-bold mb-0">{{rating.createdAt | date}}</p>
                                 </div>
                             </div>
                         </div>
-                        <fa-icon class="icon-25-size cursor-pointer" [icon]="faEllipsisVertical" />
+                        <fa-icon class="icon-22-size cursor-pointer" [icon]="faEllipsisVertical" />
                     </header>
                     <div class="text-nav">
                         <p class="mb-0">{{rating.message}}</p>
@@ -102,7 +104,48 @@
         </div>
     </div>
 
-    <div class="col-5">
-
+    <div class="col-4">
+        <div *ngIf="course !== null" class="course-modal border-gray-400 modal-shadow">
+            <img src="{{course.imageUrl}}" class="w-100" />
+            <div class="p-4" [ngClass]="{
+                'course-modal-fixed': isScrolled
+            }">
+                <header>
+                    <h1 class="text-title-medium fw-700 mb-3">&euro;{{course.price}}</h1>
+                    <button
+                        class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark mb-2">Add
+                        to cart</button>
+                    <button
+                        class="button-nav button color-primary border border-1 border-primary rounded-1 w-100 button-hover-secondary-gray mb-3">Buy
+                        now</button>
+                    <p class="text-caption text-center mb-4">30-Day Money-Back-Guarantee</p>
+                </header>
+                <div>
+                    <h5 class="text-button-lg fw-bold mb-3">This course includes:</h5>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="icon-wrapper me-3"><fa-icon [icon]="faClapperboard" style="font-size: 14px;" />
+                        </div>
+                        <p class="text-caption mb-0">{{courseService.getTotalLength(course.videos,true)}} on demand
+                            video</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="icon-wrapper me-3"> <fa-icon [icon]="faInfinity" style="font-size: 14px;" /></div>
+                        <p class="text-caption mb-0">Full lifetime access</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="icon-wrapper me-3"><fa-icon [icon]="faMobileScreen" /></div>
+                        <p class="text-caption mb-0">Access on Mobile</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="icon-wrapper me-3"><fa-icon [icon]="faTv" style="font-size: 12px;" /></div>
+                        <p class="text-caption mb-0">Access on Tv</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="icon-wrapper me-3"><fa-icon [icon]="faAward" /></div>
+                        <p class="text-caption mb-0">Certificate of Completion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
