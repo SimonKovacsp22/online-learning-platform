@@ -17,6 +17,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { TeachComponent } from './teach/teach.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { CartPrewComponent } from './cart-prew/cart-prew.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
     CourseListComponent,
     TeachComponent,
     CourseDetailComponent,
+    CartPrewComponent,
+    AvatarComponent,
   ],
   imports: [
     BrowserModule,

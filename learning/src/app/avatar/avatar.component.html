@@ -1,0 +1,39 @@
+<div (mouseenter)="onAvatarHover()" (mouseleave)="onAvatarLeave()" class="user-avatar-container position-relative px-3">
+    <div *ngIf="!loginService.user.avatar"
+        class="user-badge user-badge-sm text-caption text-white fw-bold cursor-pointer">
+        {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}
+
+    </div>
+    <img *ngIf="loginService.user.avatar" class="user-badge user-badge-sm" src="{{loginService.user.avatar}}">
+    <div [ngClass]="{ 'd-none': !userModalVisible}" class="cart-hover-modal-container position-absolute ">
+
+        <div class="bg-white border-gray-300 rounded-2  text-center cart-hover-modal modal-shadow mw-260">
+            <header class="d-flex align-items-center p-3 border-bottom-gray-400">
+                <div *ngIf="!loginService.user.avatar"
+                    class="user-badge user-badge-lg text-white fw-bold cursor-pointer me-3">
+                    {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}
+                </div>
+                <img *ngIf="loginService.user.avatar" class="user-badge user-badge-lg me-3"
+                    src="{{loginService.user.avatar}}">
+                <div>
+                    <h5 class="text-button-lg fw-bold mb-2">{{loginService.user.firstName + ' ' +
+                        loginService.user.lastName}}</h5>
+                    <p class="text-caption mb-0">{{loginService.user.email}}</p>
+                </div>
+            </header>
+            <ul class="p-3 list-unstyled text-start border-bottom-gray-400 mb-0">
+                <li class="mb-3 cursor-pointer hover-primary">My courses</li>
+                <li class="mb-3 cursor-pointer hover-primary">My cart</li>
+                <li class="mb-3 cursor-pointer hover-primary">Purchase history</li>
+                <li class="mb-3 cursor-pointer hover-primary">Teach dashboard</li>
+                <li class="mb-3 cursor-pointer hover-primary">Edit profile</li>
+            </ul>
+            <div class="p-3 d-flex">
+                <button
+                    class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray w-100"
+                    (click)="logOut()">Log out
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

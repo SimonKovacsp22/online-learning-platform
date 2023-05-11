@@ -16,4 +16,11 @@ export class LoginService {
       withCredentials: true,
     });
   }
+
+  logOut(): void {
+    window.sessionStorage.setItem('userdetails', '');
+    window.sessionStorage.setItem('XSRF-TOKEN', '');
+    window.sessionStorage.setItem('Authorization', '');
+    this.user = new User();
+  }
 }

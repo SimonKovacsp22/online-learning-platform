@@ -51,7 +51,6 @@ export class CourseDetailComponent {
         .getCourseById(this.courseId)
         .subscribe((responseData) => {
           this.course = <any>responseData.body;
-          console.log(this.course);
         });
     });
   }

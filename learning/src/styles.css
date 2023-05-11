@@ -305,8 +305,6 @@ background-color: var(--color-primary-dark) !important;
   }
 
   .user-badge {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
     background-color: var(--color-primary-dark);
     display: flex;
@@ -314,6 +312,63 @@ background-color: var(--color-primary-dark) !important;
     justify-content: center;
     text-align: center;
   }
+
+  .user-badge-md {
+    width: 50px;
+    height: 50px;
+  }
+
+  .user-badge-sm {
+    width: 32px;
+    height: 32px;
+  }
+
+  .user-badge-lg {
+    font-size: 24px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .hover-modal {
+    margin-top: 20px;
+      min-width: 300px;
+      opacity: 0;
+      animation: fadeAndScaleAnimation 200ms cubic-bezier(.2,0,.38,.9) forwards
+  }
+  .cart-hover-modal-container {
+    z-index: 100;
+      top: 100%;
+      right: -8px;
+  }
+  
+  .cart-hover-modal {
+      margin-top: 4px;
+      min-width: 300px;
+      opacity: 0;
+      animation: fadeAndScaleAnimation 200ms cubic-bezier(.2,0,.38,.9) forwards
+  }
+
+  .hover-primary:hover{
+    color: var(--color-primary)
+  }
+
+  .mw-260 {
+    min-width: 260px;
+  }
+  
+  @keyframes fadeAndScaleAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(.9);
+  
+    }  
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+
 
 
 

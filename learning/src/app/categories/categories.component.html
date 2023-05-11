@@ -1,7 +1,16 @@
-<ul class="list-unstyled mb-0 text-nav">
-    <li class="py-2 px-3 d-flex justify-content-between category-hover" *ngFor="let cat of categories">
-        <a [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
-            class="cursor-pointer color-gray-400 d-inline text-decoration-none">{{cat.name}}</a>
-        <fa-icon class="category-icon" style="font-size: 12px;" [icon]="faAngleRight" />
-    </li>
-</ul>
+<li class="p-12 my-3 position-relative" (mouseenter)="onCategoriesHover()" (mouseleave)="onCategoriesLeave()">
+    <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Categories</a>
+    <div [ngClass]="{ 'd-none': !categoryModalVisible}" class="hover-modal-container-left position-absolute ">
+        <div class="hover-modal bg-white border-gray-300 rounded-2 py-2 pb-64 modal-shadow">
+            <ul class="list-unstyled mb-0 text-nav">
+                <li [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
+                    class="py-2 px-3 d-flex justify-content-between category-hover cursor-pointer"
+                    *ngFor="let cat of categories">
+                    <a class=" color-gray-400 d-inline text-decoration-none hover-primary">{{cat.name}}</a>
+                    <fa-icon class="category-icon" style="font-size: 12px;" [icon]="faAngleRight" />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</li>

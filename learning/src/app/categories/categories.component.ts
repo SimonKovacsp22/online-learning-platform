@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
+  categoryModalVisible = false;
   categories = new Array();
   faAngleRight = faAngleRight;
   constructor(
@@ -21,4 +22,8 @@ export class CategoriesComponent implements OnInit {
       this.categories = <any>responseData.body;
     });
   }
+
+  onCategoriesHover = () => (this.categoryModalVisible = true);
+
+  onCategoriesLeave = () => (this.categoryModalVisible = false);
 }

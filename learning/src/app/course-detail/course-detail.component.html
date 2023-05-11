@@ -79,7 +79,8 @@
                 <div *ngFor="let rating of course.ratings" class="col-5 pe-4 pt-4 pb-32 border-top-gray-400">
                     <header class="d-flex justify-content-between mb-3">
                         <div class="d-flex">
-                            <div *ngIf="!rating.user.avatar" class="user-badge me-3 text-subhero text-white fw-bold">
+                            <div *ngIf="!rating.user.avatar"
+                                class="user-badge user-badge-md me-3 text-subhero text-white fw-bold">
                                 {{rating.user.firstName.slice(0,1)+rating.user.lastName.slice(0,1)}}
                             </div>
                             <img class="user-badge me-3" *ngIf="rating.user.avatar" src="{{rating.user.avatar}}">

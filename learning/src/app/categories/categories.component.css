@@ -2,3 +2,7 @@
     color: var(--color-primary);
 }
 
+.category-hover:hover .hover-primary{
+    color: var(--color-primary)
+}
+
