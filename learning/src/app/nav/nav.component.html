@@ -25,7 +25,7 @@
                     <input class="text-nav" type="text" placeholder="Search">
                 </div>
             </div>
-            <div class="d-flex text-nav align-items-center">
+            <div class="d-flex text-nav align-items-center col-gap-10 ">
                 <app-cart-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-cart-prew>
 
                 <button *ngIf="loginService.user.authStatus!='AUTH'" class="button-nav button color-gray-400 p-12 my-3"

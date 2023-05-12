@@ -3,10 +3,37 @@
 
     </button>
     <div [ngClass]="{ 'd-none': !cartModalVisible}" class="cart-hover-modal-container position-absolute ">
-        <div class="bg-white border-gray-300 rounded-2 p-3 text-center cart-hover-modal modal-shadow">
+        <div class="bg-white border-gray-300 rounded-2 text-center cart-hover-modal modal-shadow">
 
-            <p class="text-secondary">Your cart is empty.</p>
-            <p class="m-0 text-primary text-caption fw-bold">Keep shopping</p>
+            <div *ngIf="cartService.cart && cartService.cart.courses.length === 0" class="p-3">
+                <p class="text-secondary">Your cart is empty.</p>
+                <p class="m-0 text-primary text-caption fw-bold">Keep shopping</p>
+            </div>
+            <div *ngIf="cartService.cart && cartService.cart.courses.length > 0">
+                <div class="p-3">
+                    <div [routerLink]="['/courses/', course.id]" *ngFor="let course of cartService.cart.courses"
+                        class="d-flex cursor-pointer">
+                        <div class="course-image-xs me-2">
+                            <img src="{{course.imageUrl}}" class="w-100 h-100 object-fit-cover" />
+                        </div>
+                        <div class="text-start">
+                            <h5 class="text-caption mb-0 fw-bold">{{course.title}}</h5>
+                            <p class="text-super-caption mb-0">{{course.user.firstName + ' ' + course.user.lastName}}
+                            </p>
+                            <h5 class="text-caption fw-bold mb-2">&euro;{{course.price}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top-gray-400 p-3 text-start">
+                    <h1 class="text-subtitle-secondary fw-bold mb-2">Total:
+                        &euro;{{cartService.calculateTotal(cartService.cart.courses)}}</h1>
+                    <button [routerLink]="['/cart']"
+                        class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark">Go
+                        to cart
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

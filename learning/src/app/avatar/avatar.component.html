@@ -1,4 +1,4 @@
-<div (mouseenter)="onAvatarHover()" (mouseleave)="onAvatarLeave()" class="user-avatar-container position-relative px-3">
+<div (mouseenter)="onAvatarHover()" (mouseleave)="onAvatarLeave()" class="user-avatar-container position-relative px-6">
     <div *ngIf="!loginService.user.avatar"
         class="user-badge user-badge-sm text-caption text-white fw-bold cursor-pointer">
         {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}
@@ -23,7 +23,7 @@
             </header>
             <ul class="p-3 list-unstyled text-start border-bottom-gray-400 mb-0">
                 <li class="mb-3 cursor-pointer hover-primary">My courses</li>
-                <li class="mb-3 cursor-pointer hover-primary">My cart</li>
+                <li [routerLink]="['/cart']" class="mb-3 cursor-pointer hover-primary">My cart</li>
                 <li class="mb-3 cursor-pointer hover-primary">Purchase history</li>
                 <li class="mb-3 cursor-pointer hover-primary">Teach dashboard</li>
                 <li class="mb-3 cursor-pointer hover-primary">Edit profile</li>

@@ -3,6 +3,8 @@ import { DashboardService } from '../services/dash/dashboard.service';
 import { LoginService } from '../services/login/login.service';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { ICart } from '../models/cart.model';
+import { CartService } from '../services/cart/cart-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-prew',
@@ -12,10 +14,10 @@ import { ICart } from '../models/cart.model';
 export class CartPrewComponent implements OnInit {
   faCartShopping = faCartShopping;
   cartModalVisible = false;
-  cart: ICart | null = null;
 
   constructor(
-    private dashboardService: DashboardService,
+    private router: Router,
+    public cartService: CartService,
     public loginService: LoginService
   ) {}
 
@@ -29,10 +31,10 @@ export class CartPrewComponent implements OnInit {
   onCartLeave = () => (this.cartModalVisible = false);
 
   getCart() {
-    this.dashboardService
+    this.cartService
       .getCartByUser(this.loginService.user)
       .subscribe((responseData) => {
-        this.cart = <any>responseData.body;
+        this.cartService.cart = <any>responseData.body;
       });
   }
 }

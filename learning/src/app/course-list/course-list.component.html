@@ -3,7 +3,7 @@
         <h1 class="text-title-medium mb-0">{{categoryName}} Courses</h1>
     </header>
     <div class="col-12">
-        <h2 class="text-title-secondary fw-700 mb-4">Courses to get you started</h2>
+        <h2 class="text-title-tertiary fw-700 mb-4">Courses to get you started</h2>
         <ul class="d-flex  list-unstyled mb-0 ordering-options">
             <li (click)="setSelected('popular')" class="me-4 text-secondary fw-700 py-12 cursor-pointer" [ngClass]="{
                 'order-selected': orderType == 'popular'
@@ -16,7 +16,7 @@
     <div class="col-12 mt-3 d-flex flex-row">
         <div *ngFor="let course of courses" [routerLink]="['/courses/', course.id]"
             class="cursor-pointer image-hover-dark me-3">
-            <img src="{{course.imageUrl}}" class="course-image-small mb-2" />
+            <img src="{{course.imageUrl}}" class="course-image-md mb-2" />
             <h6 class="fw-700 mb-1">{{course.title}}</h6>
             <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
             <p class="mb-1 fw-700">&euro;{{course.price}}</p>
@@ -24,7 +24,7 @@
     </div>
 
     <header class="col-12 mt-large">
-        <h2 class="text-title-secondary fw-700 mb-3">All {{categoryName}} courses</h2>
+        <h2 class="text-title-tertiary fw-700 mb-3">All {{categoryName}} courses</h2>
         <div class="d-flex align-items-center py-3 px-4 border-gray-400 rounded-3">
             <fa-icon [icon]="faExclemation" class="me-4 icon-reg-size" />
             <p class="mb-0">Not sure? All courses have a 30-day money-back-guarantee</p>
@@ -36,9 +36,9 @@
         <div *ngFor="let course of courses" [routerLink]="['/courses/', course.id]"
             class="d-flex align-items-start justify-content-between pb-3 border-bottom-gray-400 cursor-pointer image-hover-dark">
             <div class="d-flex align-items-start">
-                <img src="{{course.imageUrl}}" class="course-image-small me-3" />
+                <img src="{{course.imageUrl}}" class="course-image-md me-3" />
                 <div>
-                    <h6 class="fw-700 mb-1 text-subtitle-primary">{{course.title}}</h6>
+                    <h6 class="fw-700 mb-1 text-subtitle-secondary">{{course.title}}</h6>
                     <p class="mb-1">{{course.subtitle}}</p>
                     <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
                     <div class="d-flex mb-1">

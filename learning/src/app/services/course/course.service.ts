@@ -13,15 +13,18 @@ export class CourseService {
     return new Array(ratingUp).fill(1);
   };
 
-  getTotalRating = (ratings: IRating[]) => {
+  getTotalRating = (ratings: IRating[], rounded?: boolean) => {
     const initialValue = 0;
     // @ts-ignore
     const sum = ratings.reduce(
       (acc, { amount }: IRating) => acc + amount,
       initialValue
     );
-    const average = Math.ceil(sum / ratings.length);
-    return average;
+    const average = sum / ratings.length;
+
+    const averageRounded = Math.ceil(average);
+
+    return rounded ? averageRounded : parseFloat(average.toFixed(1));
   };
 
   getTotalLength = (videos: IVideo[], hoursOnly?: boolean) => {

@@ -19,6 +19,7 @@ import { TeachComponent } from './teach/teach.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CartPrewComponent } from './cart-prew/cart-prew.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AvatarComponent } from './avatar/avatar.component';
     CourseDetailComponent,
     CartPrewComponent,
     AvatarComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

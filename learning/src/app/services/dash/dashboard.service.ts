@@ -32,11 +32,4 @@ export class DashboardService {
       observe: 'response',
     });
   }
-
-  getCartByUser(user: IUser) {
-    return this.http.get(environment.rooturl + '/cart/' + user.id, {
-      observe: 'response',
-      withCredentials: true,
-    });
-  }
 }
