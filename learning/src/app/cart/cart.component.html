@@ -34,8 +34,10 @@
                     </div>
                 </div>
                 <div class="text-end ps-4">
-                    <p class="text-caption mb-2 color-primary cursor-pointer">Remove</p>
-                    <p class="text-caption mb-2 color-primary cursor-pointer">Move to Whishlist</p>
+                    <button (click)="removeCourseFromCart(course)"
+                        class="d-block text-caption pb-2 color-primary cursor-pointer button-text py-0">Remove</button>
+                    <button class="d-block text-caption pb-2 color-primary cursor-pointer button-text py-0">Move to
+                        Whishlist</button>
                 </div>
             </div>
             <div class="text-end ps-5">
@@ -52,7 +54,8 @@
         </header>
         <div class="pb-3 border-bottom-gray-400">
             <button disabled="{{cartService.cart.courses.length === 0}}"
-                class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark" [ngClass]="{
+                class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark cursor-pointer"
+                [ngClass]="{
                     'button-disabled':cartService.cart.courses.length === 0
                 }">Checkout
             </button>

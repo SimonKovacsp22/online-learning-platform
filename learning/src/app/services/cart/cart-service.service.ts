@@ -19,6 +19,28 @@ export class CartService {
     });
   }
 
+  addCourseToCart(user: IUser, course: ICourse) {
+    const body = {
+      courseId: course.id,
+      userId: user.id,
+    };
+    return this.http.post(environment.rooturl + '/cart/add', body, {
+      observe: 'response',
+      withCredentials: true,
+    });
+  }
+
+  removeCourseFromCart(user: IUser, course: ICourse) {
+    const body = {
+      courseId: course.id,
+      userId: user.id,
+    };
+    return this.http.post(environment.rooturl + '/cart/remove', body, {
+      observe: 'response',
+      withCredentials: true,
+    });
+  }
+
   calculateTotal(courses: ICourse[]) {
     const initialValue = 0;
     const total = courses.reduce(
@@ -29,5 +51,9 @@ export class CartService {
       initialValue
     );
     return total;
+  }
+
+  isCourseInCart(course: ICourse) {
+    return this.cart?.courses.findIndex((c) => (c.id = course.id)) !== -1;
   }
 }

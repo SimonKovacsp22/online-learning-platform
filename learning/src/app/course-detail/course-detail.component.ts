@@ -18,6 +18,8 @@ import {
 import { IRating } from '../models/rating.model';
 import { IVideo } from '../models/video.model';
 import { CourseService } from '../services/course/course.service';
+import { CartService } from '../services/cart/cart-service.service';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -42,7 +44,9 @@ export class CourseDetailComponent {
   constructor(
     private dashboardService: DashboardService,
     private route: ActivatedRoute,
-    public courseService: CourseService
+    public courseService: CourseService,
+    public cartService: CartService,
+    public loginService: LoginService
   ) {
     this.route.params.subscribe((params) => {
       this.courseId = parseInt(params['id']);
@@ -64,4 +68,14 @@ export class CourseDetailComponent {
       0;
     this.isScrolled = scrollPosition > 300;
   };
+
+  addCourseToCart(course: ICourse) {
+    this.cartService
+      .addCourseToCart(this.loginService.user, course)
+      .subscribe((responseData) => {
+        if (<any>responseData.status === 200) {
+          this.cartService.cart?.courses.push(course);
+        }
+      });
+  }
 }

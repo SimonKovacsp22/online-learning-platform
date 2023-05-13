@@ -1,6 +1,10 @@
 <div (mouseenter)="onCartHover()" (mouseleave)="onCartLeave()" class="position-relative d-flex align-items-center py-3">
-    <button class="icon-gray-400 p-12"><fa-icon [icon]="faCartShopping" class="icon-nav-size icon-button"></fa-icon>
-
+    <button [routerLink]="['/cart']" class="icon-gray-400 p-12 position-relative"><fa-icon [icon]="faCartShopping"
+            class="icon-nav-size icon-button "></fa-icon>
+        <div *ngIf="cartService.cart && cartService.cart.courses.length > 0"
+            class="cart-indicator position-absolute d-flex align-items-center justify-content-center">
+            <p class="fw-bold text-white mb-0">{{cartService.cart.courses.length}}</p>
+        </div>
     </button>
     <div [ngClass]="{ 'd-none': !cartModalVisible}" class="cart-hover-modal-container position-absolute ">
         <div class="bg-white border-gray-300 rounded-2 text-center cart-hover-modal modal-shadow">
