@@ -27,7 +27,6 @@ export class CourseListComponent {
     this.route.params.subscribe((params) => {
       this.categoryId = parseInt(params['id']);
       this.categoryName = this.route.snapshot.queryParams['name'];
-      console.log(this.categoryName);
       this.dashboardService
         .getCoursesByCategory(this.categoryId)
         .subscribe((responseData) => {

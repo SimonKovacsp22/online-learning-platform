@@ -11,7 +11,8 @@
                     <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3" routerLinkActive="color-primary">
                         <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a>
                     </li>
-                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="color-primary">
+                    <li [routerLink]="['/learning']" *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3"
+                        routerLinkActive="color-primary">
                         <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">My Courses</a>
                     </li>
                     <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="color-primary">

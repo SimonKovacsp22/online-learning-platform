@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './services/login/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,10 @@ import { LoginService } from './services/login/login.service';
 export class AppComponent implements OnInit {
   title = 'learning';
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit() {
     if (sessionStorage.getItem('userdetails')) {
@@ -17,5 +21,10 @@ export class AppComponent implements OnInit {
         sessionStorage.getItem('userdetails')!
       );
     }
+  }
+
+  isContainerFluidRoute(): boolean {
+    // @ts-ignore
+    return this.route.snapshot['_routerState'].url === '/learning';
   }
 }

@@ -3,7 +3,7 @@ import { DashboardService } from '../services/dash/dashboard.service';
 import { LoginService } from '../services/login/login.service';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { ICart } from '../models/cart.model';
-import { CartService } from '../services/cart/cart-service.service';
+import { CartService } from '../services/cart/cart.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,7 +22,6 @@ export class CartPrewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('initing');
     this.getCart();
   }
 

@@ -20,6 +20,7 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CartPrewComponent } from './cart-prew/cart-prew.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { CartComponent } from './cart/cart.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CartComponent } from './cart/cart.component';
     CartPrewComponent,
     AvatarComponent,
     CartComponent,
+    MyCoursesComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,4 +57,6 @@ import { CartComponent } from './cart/cart.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {}
+}

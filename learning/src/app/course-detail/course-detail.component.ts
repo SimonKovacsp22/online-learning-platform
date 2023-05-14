@@ -18,7 +18,7 @@ import {
 import { IRating } from '../models/rating.model';
 import { IVideo } from '../models/video.model';
 import { CourseService } from '../services/course/course.service';
-import { CartService } from '../services/cart/cart-service.service';
+import { CartService } from '../services/cart/cart.service';
 import { LoginService } from '../services/login/login.service';
 
 @Component({

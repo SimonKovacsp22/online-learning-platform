@@ -26,7 +26,6 @@ export class LoginComponent {
     this.loginService
       .validateLoginDetails(this.loginService.user)
       .subscribe((responseData) => {
-        console.log(responseData);
         window.sessionStorage.setItem(
           'Authorization',
           responseData.headers.get('Authorization')!

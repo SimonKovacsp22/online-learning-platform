@@ -1,3 +1,7 @@
 <app-nav></app-nav>
 
-<section class="container-xxl"><router-outlet></router-outlet></section>
+<section class="container-fluid " [ngClass]="{
+    
+    'container-md': !isContainerFluidRoute(),
+    'px-0': isContainerFluidRoute()
+}"><router-outlet></router-outlet></section>

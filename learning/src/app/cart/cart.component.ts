@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CartService } from '../services/cart/cart-service.service';
+import { CartService } from '../services/cart/cart.service';
 import { LoginService } from '../services/login/login.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from '../services/course/course.service';

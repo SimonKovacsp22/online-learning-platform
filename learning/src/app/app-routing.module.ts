@@ -7,6 +7,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { TeachComponent } from './teach/teach.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'categories/:id', component: CourseListComponent },
+  { path: 'learning', component: MyCoursesComponent },
   { path: 'courses/:id', component: CourseDetailComponent },
   { path: 'teach', component: TeachComponent },
   { path: 'cart', component: CartComponent },

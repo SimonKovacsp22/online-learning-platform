@@ -17,6 +17,11 @@
     --yellow-500: #e59819;
     --yellow-600:#b4690e;
 
+
+  }
+
+  .progress {
+    --bs-progress-height: 5px;
   }
 
 body {
@@ -175,6 +180,10 @@ body {
 }
 .padding-section-large {
     padding-block: 7rem;
+}
+
+.mt-medium{
+    margin-top: 3rem
 }
 
 

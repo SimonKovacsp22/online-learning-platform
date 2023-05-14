@@ -1,12 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/app/environments/environment';
+import { ICourse } from 'src/app/models/course.model';
 import { IRating } from 'src/app/models/rating.model';
+import { IUser } from 'src/app/models/user.model';
 import { IVideo } from 'src/app/models/video.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  constructor() {}
+  myCourses: ICourse[] | null = null;
+  constructor(private http: HttpClient) {}
 
   getRatingArray = (rating: number) => {
     const ratingUp = Math.ceil(rating);
@@ -40,5 +45,12 @@ export class CourseService {
     const minutes = Math.floor((sum % 3600) / 60);
     if (hoursOnly) return `${hours} hours`;
     return `${hours} hours and ${minutes} minutes`;
+  };
+
+  getMyCourses = (user: IUser) => {
+    return this.http.get(environment.rooturl + '/courses/my/' + user.id, {
+      observe: 'response',
+      withCredentials: true,
+    });
   };
 }
