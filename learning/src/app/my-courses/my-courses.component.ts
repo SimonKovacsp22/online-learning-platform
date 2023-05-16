@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../services/course/course.service';
 import { LoginService } from '../services/login/login.service';
+import { IProgress } from '../models/progress.model';
+import { ICourse } from '../models/course.model';
 
 @Component({
   selector: 'app-my-courses',
@@ -13,17 +15,12 @@ export class MyCoursesComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  ngOnInit() {
-    this.getMyCourses();
-  }
+  ngOnInit() {}
 
-  getMyCourses() {
-    if (this.loginService.user.authStatus !== 'AUTH') return;
-    this.courseService
-      .getMyCourses(this.loginService.user)
-      .subscribe((responseData) => {
-        const { courses } = <{ courses: any[] }>responseData.body;
-        this.courseService.myCourses = courses;
-      });
+  getProgressForCourse(course: ICourse) {
+    return this.courseService.getProgress(
+      this.loginService.user.progresses,
+      course
+    );
   }
 }

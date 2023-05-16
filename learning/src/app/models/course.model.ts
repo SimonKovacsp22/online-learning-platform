@@ -1,5 +1,6 @@
 import { ICategory } from './category.model';
 import { ILanguage } from './language.model';
+import { IProgress } from './progress.model';
 import { IRating } from './rating.model';
 import { IUser, User } from './user.model';
 import { IVideo } from './video.model';

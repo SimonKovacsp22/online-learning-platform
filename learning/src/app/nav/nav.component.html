@@ -8,14 +8,11 @@
                 <ul class="d-flex list-unstyled mb-0 text-nav">
 
                     <app-categories></app-categories>
-                    <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3" routerLinkActive="color-primary">
+                    <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3" routerLinkActive="active">
                         <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a>
                     </li>
-                    <li [routerLink]="['/learning']" *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3"
-                        routerLinkActive="color-primary">
-                        <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">My Courses</a>
-                    </li>
-                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="color-primary">
+                    <app-my-courses-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-my-courses-prew>
+                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="active">
                         <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach</a>
                     </li>
 

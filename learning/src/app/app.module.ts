@@ -21,6 +21,8 @@ import { CartPrewComponent } from './cart-prew/cart-prew.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { CartComponent } from './cart/cart.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { MyCoursesPrewComponent } from './my-courses-prew/my-courses-prew.component';
+import { LearnCourseComponent } from './learn-course/learn-course.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { MyCoursesComponent } from './my-courses/my-courses.component';
     AvatarComponent,
     CartComponent,
     MyCoursesComponent,
+    MyCoursesPrewComponent,
+    LearnCourseComponent,
   ],
   imports: [
     BrowserModule,

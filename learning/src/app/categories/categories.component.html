@@ -1,5 +1,6 @@
-<li class="p-12 my-3 position-relative" (mouseenter)="onCategoriesHover()" (mouseleave)="onCategoriesLeave()">
-    <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Categories</a>
+<li class="p-12 my-3 position-relative cursor-pointer" (mouseenter)="onCategoriesHover()"
+    (mouseleave)="onCategoriesLeave()" routerLinkActive="active">
+    <a class=" color-gray-400 d-inline text-decoration-none">Categories</a>
     <div [ngClass]="{ 'd-none': !categoryModalVisible}" class="hover-modal-container-left position-absolute">
         <div class="hover-modal bg-white border-gray-300 rounded-2 py-2 pb-64 modal-shadow">
             <ul class="list-unstyled mb-0 text-nav">

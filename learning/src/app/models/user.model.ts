@@ -1,3 +1,5 @@
+import { IProgress } from './progress.model';
+
 export interface IUser {
   id: number;
   email: string;
@@ -9,6 +11,7 @@ export interface IUser {
   avatar: string;
   createDt?: string;
   authStatus?: string;
+  progresses?: IProgress[];
 }
 
 export class User implements IUser {
@@ -22,6 +25,7 @@ export class User implements IUser {
   avatar = '';
   createDt = '';
   authStatus = '';
+  progresses = [];
   constructor(
     id?: number,
     firstName?: string,
@@ -30,7 +34,8 @@ export class User implements IUser {
     password?: string,
     role?: string,
     authStatus?: string,
-    pwd?: string
+    pwd?: string,
+    progresses?: IProgress[]
   ) {
     this.id = id || 0;
     this.firstName = firstName || '';

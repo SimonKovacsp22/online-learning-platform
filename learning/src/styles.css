@@ -16,20 +16,22 @@
     --bs-spacer: 2rem;
     --yellow-500: #e59819;
     --yellow-600:#b4690e;
-
-
+    
+    
+  }
+  
+  body {
+      font-family: 'Noto Sans', sans-serif;
+      box-sizing: border-box;
+      margin: 0;
   }
 
+  /* .active a {
+    color: var(--color-primary);
+  } */
   .progress {
     --bs-progress-height: 5px;
   }
-
-body {
-    font-family: 'Noto Sans', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-}
-
 
 .box-shadow {
    box-shadow: 3px 3px 32px rgba(0,0,0,.1)
@@ -113,6 +115,11 @@ body {
     font-size: 32px;
     font-weight: 600;
 
+}
+
+.title-fixed-height {
+    display: block;
+    min-height: 51px;
 }
 
 
@@ -367,6 +374,12 @@ background-color: var(--color-primary-dark) !important;
     width: 64px;
     height: 64px;
   }
+
+  .course-image-xs {
+    min-width: 64px;
+    width: 64px;
+    height: 64px;
+}
 
   .hover-modal {
     z-index: 100;

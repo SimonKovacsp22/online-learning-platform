@@ -54,6 +54,6 @@ export class CartService {
   }
 
   isCourseInCart(course: ICourse) {
-    return this.cart?.courses.findIndex((c) => (c.id = course.id)) !== -1;
+    return this.cart?.courses.findIndex((c) => c.id === course.id) !== -1;
   }
 }

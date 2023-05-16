@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
 import { ICourse } from 'src/app/models/course.model';
+import { IProgress, Progress } from 'src/app/models/progress.model';
 import { IRating } from 'src/app/models/rating.model';
 import { IUser } from 'src/app/models/user.model';
 import { IVideo } from 'src/app/models/video.model';
@@ -53,4 +54,14 @@ export class CourseService {
       withCredentials: true,
     });
   };
+
+  getProgress = (progresses: IProgress[], course: ICourse) => {
+    const courseProgress = progresses.find((p) => p.course === course.id);
+    if (courseProgress) return courseProgress.ratio;
+    return 0;
+  };
+
+  isCourseMine(course: ICourse) {
+    return this.myCourses?.findIndex((c) => c.id === course.id) !== -1;
+  }
 }

@@ -8,6 +8,7 @@ import { TeachComponent } from './teach/teach.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { LearnCourseComponent } from './learn-course/learn-course.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'courses/:id', component: CourseDetailComponent },
   { path: 'teach', component: TeachComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'learning/my/:id', component: LearnCourseComponent },
 ];
 
 @NgModule({

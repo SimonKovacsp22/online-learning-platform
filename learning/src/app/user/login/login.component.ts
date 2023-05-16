@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faEnvelope, faLock, faOtter } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/models/user.model';
 import { NgForm } from '@angular/forms';
@@ -11,8 +11,9 @@ import { LoginService } from 'src/app/services/login/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor(public loginService: LoginService, private router: Router) {}
+
   authStatus: string = '';
   credentials = {
     email: '',
@@ -21,6 +22,11 @@ export class LoginComponent {
   faEnvelope = faEnvelope;
   faLock = faLock;
   faOtter = faOtter;
+
+  ngOnInit() {
+    if (this.loginService.user.authStatus === 'AUTH')
+      this.router.navigate(['/']);
+  }
 
   validateUser(loginForm: NgForm) {
     this.loginService

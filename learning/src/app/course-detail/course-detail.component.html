@@ -113,15 +113,21 @@
             }">
                 <header>
                     <h1 class="text-title-medium fw-700 mb-3">&euro;{{course.price}}</h1>
-                    <button *ngIf="!cartService.isCourseInCart(course)" (click)="addCourseToCart(course)"
-                        class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark mb-2">Add
-                        to cart</button>
-                    <button *ngIf="cartService.isCourseInCart(course)" [routerLink]="['/cart']"
+                    <button *ngIf="courseService.isCourseMine(course) ; else buyButtons"
+                        [routerLink]="['/learning/my/', course.id]"
                         class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark mb-2">Go
-                        to cart </button>
-                    <button
-                        class="button-nav button color-primary border border-1 border-primary rounded-1 w-100 button-hover-secondary-gray mb-3">Buy
-                        now</button>
+                        to course</button>
+                    <ng-template #buyButtons>
+                        <button *ngIf="!cartService.isCourseInCart(course)" (click)="addCourseToCart(course)"
+                            class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark mb-2">Add
+                            to cart</button>
+                        <button *ngIf="cartService.isCourseInCart(course)" [routerLink]="['/cart']"
+                            class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark mb-2">Go
+                            to cart </button>
+                        <button
+                            class="button-nav button color-primary border border-1 border-primary rounded-1 w-100 button-hover-secondary-gray mb-3">Buy
+                            now</button>
+                    </ng-template>
                     <p class="text-caption text-center mb-4">30-Day Money-Back-Guarantee</p>
                 </header>
                 <div>
