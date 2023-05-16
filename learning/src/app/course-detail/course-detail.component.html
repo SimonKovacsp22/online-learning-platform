@@ -39,23 +39,14 @@
         <div class="mb-5">
             <header>
                 <h2 class="text-title-tertiary fw-bold mb-4">Course content</h2>
-                <p class="text-caption color-gray-600">{{course.videos.length}} &#x2022; lectures &#x2022;
+                <!-- <p class="text-caption color-gray-600">{{course.videos.length}} &#x2022; lectures &#x2022;
                     {{courseService.getTotalLength(course.videos)}} total
                     length
-                </p>
+                </p> -->
             </header>
-            <ul class="border-gray-400 p-4 rounded-3 list-unstyled">
-                <li class="mb-3 d-flex justify-content-between cursor-pointer" *ngFor="let video of course.videos">
-                    <div class="d-flex">
-                        <fa-icon class="me-3" [icon]="faClapperboard" />
-                        <p class="text-caption color-primary text-decoration-underline mb-0 ">{{video.title}}
-                        </p>
-                    </div>
-                    <div class="d-flex">
-                        <p class="text-caption color-primary text-decoration-underline me-3 mb-0 ">Preview</p>
-                        <p class="text-caption color-gray-600 mb-0">{{video.duration}}</p>
-                    </div>
-                </li>
+            <ul class=" list-unstyled">
+                <app-course-section [section]="section" *ngFor="let section of course.sections">
+                </app-course-section>
             </ul>
         </div>
         <div class="mb-5">
@@ -135,8 +126,8 @@
                     <div class="d-flex align-items-center mb-2">
                         <div class="icon-wrapper me-3"><fa-icon [icon]="faClapperboard" style="font-size: 14px;" />
                         </div>
-                        <p class="text-caption mb-0">{{courseService.getTotalLength(course.videos,true)}} on demand
-                            video</p>
+                        <!-- <p class="text-caption mb-0">{{courseService.getTotalLength(course.videos,true)}} on demand
+                            video</p> -->
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <div class="icon-wrapper me-3"> <fa-icon [icon]="faInfinity" style="font-size: 14px;" /></div>
