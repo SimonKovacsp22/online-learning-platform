@@ -6,3 +6,31 @@
     border-top-left-radius: var(--bs-border-radius-lg);
     border-top-right-radius: var(--bs-border-radius-lg);
 }
+
+.arrow-up {
+    animation: rotateAnimationUp 300ms forwards
+}
+
+.arrow-down {
+    animation: rotateAnimationDown 300ms forwards
+}
+
+@keyframes rotateAnimationUp {
+    0% {
+      transform: rotateZ(0deg);
+  
+    }  
+    100% {
+        transform: rotateZ(-180deg);
+    }
+  }
+
+  @keyframes rotateAnimationDown {
+    0% {
+      transform: rotateZ(-180deg);
+  
+    }  
+    100% {
+        transform: rotateZ(0deg);
+    }
+  }

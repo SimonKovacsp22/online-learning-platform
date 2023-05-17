@@ -28,6 +28,7 @@ export class CourseDetailComponent {
   courseId = 0;
   isScrolled = false;
   course: ICourse | null = null;
+  totalRating = 0;
   faCircleExclamation = faCircleExclamation;
   faGlobe = faGlobe;
   faClosedCaptioning = faClosedCaptioning;
@@ -53,6 +54,11 @@ export class CourseDetailComponent {
         .getCourseById(this.courseId)
         .subscribe((responseData) => {
           this.course = <any>responseData.body;
+          if (this.course != null) {
+            this.totalRating = this.courseService.getTotalRating(
+              this.course.ratings
+            );
+          }
         });
     });
   }

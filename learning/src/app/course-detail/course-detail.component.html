@@ -1,15 +1,24 @@
 <section class="row mt-large justify-content-center">
+    <!-- Left Side -->
     <div *ngIf="course !== null" class="col-6 me-4">
         <header class="mb-5">
             <a [routerLink]="['/categories/', course.categories[0].id]"
                 class="mb-3 d-block fw-bold color-primary text-decoration-none">{{course.categories[0].name}}</a>
             <h1 class="text-title-medium mb-3">{{course.title}}</h1>
             <h5 class="text-subtitle-secondary mb-3">{{course.subtitle}}</h5>
-            <p class="mb-2 text-caption color-gray-600">{{course.students.length}} students</p>
-
-            <p class="mb-2 text-caption color-gray-600">Created by <span
-                    class="color-primary text-decoration-underline">{{course.user.firstName + ' ' +
-                    course.user.lastName}}</span></p>
+            <div class="d-flex mb-2">
+                <div class="d-flex align-items-center">
+                    <p class="text-caption color-yellow-600 mb-0 fw-bold me-1">{{totalRating}}</p>
+                    <fa-icon *ngFor="let star of courseService.getRatingArray(totalRating)" [icon]="faStar"
+                        class="text-super-caption color-yellow-500" />
+                    <p class="mb-0 text-caption text-decoration-underline color-primary px-2">({{course.ratings.length}}
+                        ratings)</p>
+                </div>
+                <p class="mb-0 text-caption color-gray-600">{{course.students.length}} students</p>
+            </div>
+            <p class="mb-2 text-caption color-gray-600">Created by &nbsp;<span
+                    class="color-primary text-decoration-underline">{{courseService.getFirstNameAndLastNameDevidedBySpace(course.user)}}</span>
+            </p>
             <div class="d-flex">
                 <div class="d-flex me-4">
                     <fa-icon class="me-2" [icon]="faCircleExclamation" style="font-size: 17px;" />
@@ -17,7 +26,8 @@
                 </div>
                 <div class="d-flex me-4">
                     <fa-icon class="me-2" [icon]="faGlobe" />
-                    <p class="me-1" *ngFor="let language of course.languages">{{language.name}}</p>
+                    <p class="me-1" *ngFor="let language of course.languages">
+                        {{courseService.toCamelCase(language.name)}}</p>
                 </div>
                 <div class="d-flex me-2">
                     <fa-icon [icon]="faClosedCaptioning" style="font-size: 18px;" />
@@ -26,6 +36,7 @@
             </div>
 
         </header>
+        <!-- What you will learn -->
         <div class="p-4 border-gray-400 rounded-3 mb-5">
             <h2 class="text-title-tertiary fw-bold mb-3">What you&apos;ll learn</h2>
             <div class="row">
@@ -35,20 +46,25 @@
                 </div>
             </div>
         </div>
-
+        <!-- Course content * Sections and Videos -->
         <div class="mb-5">
             <header>
                 <h2 class="text-title-tertiary fw-bold mb-4">Course content</h2>
-                <!-- <p class="text-caption color-gray-600">{{course.videos.length}} &#x2022; lectures &#x2022;
-                    {{courseService.getTotalLength(course.videos)}} total
+                <p class="text-caption color-gray-600">
+                    {{course.sections.length}}
+                    sections &#x2022;
+                    {{courseService.getTotalLectures(course.sections)}}
+                    lectures &#x2022;
+                    {{courseService.getTotalLength(course.sections,false,true)}} total
                     length
-                </p> -->
+                </p>
             </header>
             <ul class=" list-unstyled">
                 <app-course-section [section]="section" *ngFor="let section of course.sections">
                 </app-course-section>
             </ul>
         </div>
+        <!-- Description -->
         <div class="mb-5">
             <header>
                 <h2 class="text-title-tertiary fw-bold mb-4">Description</h2>
@@ -57,9 +73,9 @@
                 <p class="text-caption mb-0" [innerHTML]="course.description"></p>
             </div>
         </div>
-
+        <!-- Ratings -->
         <div>
-            <header class="d-flex align-items-center mb-4">
+            <header class="d-flex align-items-center mb-3">
                 <fa-icon [icon]="faStar" class="text-button-lg me-1 color-yellow-500" />
                 <h2 class="text-title-tertiary fw-bold mb-0">
                     {{courseService.getTotalRating(course.ratings)}} course rating &#x2022; {{course.ratings.length}}
@@ -67,35 +83,14 @@
                 </h2>
             </header>
             <div class="row justify-content-between">
-                <div *ngFor="let rating of course.ratings" class="col-5 pe-4 pt-4 pb-32 border-top-gray-400">
-                    <header class="d-flex justify-content-between mb-3">
-                        <div class="d-flex">
-                            <div *ngIf="!rating.user.avatar"
-                                class="user-badge user-badge-md me-3 text-subhero text-white fw-bold">
-                                {{rating.user.firstName.slice(0,1)+rating.user.lastName.slice(0,1)}}
-                            </div>
-                            <img class="user-badge me-3" *ngIf="rating.user.avatar" src="{{rating.user.avatar}}">
-                            <div>
-                                <h3 class="text-button-lg fw-700">{{rating.user.firstName}}
-                                    {{rating.user.lastName.slice(0,1)}}.
-                                </h3>
-                                <div class="d-flex align-items-center">
-                                    <fa-icon *ngFor="let star of courseService.getRatingArray(rating.amount)"
-                                        [icon]="faStar" class="text-super-caption color-yellow-500" />
-                                    <p class="ms-2 text-super-caption fw-bold mb-0">{{rating.createdAt | date}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <fa-icon class="icon-22-size cursor-pointer" [icon]="faEllipsisVertical" />
-                    </header>
-                    <div class="text-nav">
-                        <p class="mb-0">{{rating.message}}</p>
-                    </div>
+                <div class="col-6 p-3" *ngFor="let rating of course.ratings">
+                    <app-rating [rating]="rating"></app-rating>
                 </div>
+
             </div>
         </div>
     </div>
-
+    <!-- Right Side -->
     <div class="col-4">
         <div *ngIf="course !== null" class="course-modal border-gray-400 modal-shadow">
             <img src="{{course.imageUrl}}" class="w-100" />
@@ -126,8 +121,8 @@
                     <div class="d-flex align-items-center mb-2">
                         <div class="icon-wrapper me-3"><fa-icon [icon]="faClapperboard" style="font-size: 14px;" />
                         </div>
-                        <!-- <p class="text-caption mb-0">{{courseService.getTotalLength(course.videos,true)}} on demand
-                            video</p> -->
+                        <p class="text-caption mb-0">{{courseService.getTotalLength(course.sections,true)}} on demand
+                            video</p>
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <div class="icon-wrapper me-3"> <fa-icon [icon]="faInfinity" style="font-size: 14px;" /></div>

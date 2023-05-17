@@ -9,8 +9,11 @@ import { faAngleDown, faClapperboard } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./course-section.component.css'],
 })
 export class CourseSectionComponent {
+  isVideosVisible = false;
   faAngleDown = faAngleDown;
   faClapperboard = faClapperboard;
   constructor(public courseService: CourseService) {}
   @Input() section: ISection | null = null;
+
+  toggleVideosVisible = () => (this.isVideosVisible = !this.isVideosVisible);
 }

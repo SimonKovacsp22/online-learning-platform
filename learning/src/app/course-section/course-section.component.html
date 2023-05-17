@@ -1,16 +1,22 @@
 <li *ngIf="section !== null" class="rounded-3 border-gray-400">
-    <div class=" p-3 bg-gray-300 w-100 rounded-top-3 border-bottom-gray-400">
+    <div (click)="toggleVideosVisible()"
+        class="p-3 bg-gray-300 w-100 rounded-top-3 border-bottom-gray-400 cursor-pointer">
         <div class="d-flex justify-content-between px-2 ">
             <div class="d-flex">
-                <fa-icon class="me-3" [icon]="faAngleDown" style="font-size: 14px" />
+                <fa-icon class="me-3" [icon]="faAngleDown" [ngClass]="{
+                    'arrow-up': isVideosVisible,
+                    'arrow-down': !isVideosVisible
+                }" style="font-size: 14px" />
                 <h6 class="mb-0 fw-bold">{{section.title}}</h6>
             </div>
             <p class="mb-0 text-caption">{{section.videos.length}} lectures &#x2022;
-                {{courseService.getTotalLength(section.videos)}}</p>
+                {{courseService.getSectionLength(section.videos)}}</p>
         </div>
     </div>
-    <ul class="list-unstyled p-3">
-        <li class="mb-3 d-flex justify-content-between cursor-pointer" *ngFor="let video of section.videos">
+    <ul class="list-unstyled p-3" [ngClass]="{
+        'd-none': !isVideosVisible
+    }">
+        <li class="py-2 d-flex justify-content-between cursor-pointer px-2" *ngFor="let video of section.videos">
             <div class="d-flex ">
                 <fa-icon class="me-3" [icon]="faClapperboard" style="font-size:14px" />
                 <p class="text-caption color-primary text-decoration-underline mb-0 ">{{video.title}}

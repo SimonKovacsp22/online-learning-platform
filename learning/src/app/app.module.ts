@@ -24,6 +24,7 @@ import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { MyCoursesPrewComponent } from './my-courses-prew/my-courses-prew.component';
 import { LearnCourseComponent } from './learn-course/learn-course.component';
 import { CourseSectionComponent } from './course-section/course-section.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CourseSectionComponent } from './course-section/course-section.componen
     MyCoursesPrewComponent,
     LearnCourseComponent,
     CourseSectionComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,

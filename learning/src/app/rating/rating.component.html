@@ -1,0 +1,24 @@
+<div *ngIf="rating !== null" class="pe-4 pt-4 border-top-gray-400">
+    <header class="d-flex justify-content-between mb-3 ">
+        <div class="d-flex">
+            <div *ngIf="!rating.user.avatar" class="user-badge user-badge-md me-3 text-subhero text-white fw-bold">
+                {{courseService.getAvatarInitials(rating.user)}}
+            </div>
+            <img class="user-badge me-3" *ngIf="rating.user.avatar" src="{{rating.user.avatar}}">
+            <div>
+                <h3 class="text-button-lg fw-700">
+                    {{courseService.getFirstNameAndLastNameFirstLetter(rating.user)}}.
+                </h3>
+                <div class="d-flex align-items-center">
+                    <fa-icon *ngFor="let star of courseService.getRatingArray(rating.amount)" [icon]="faStar"
+                        class="text-super-caption color-yellow-500" />
+                    <p class="ms-2 text-super-caption fw-bold mb-0">{{rating.createdAt | date}}</p>
+                </div>
+            </div>
+        </div>
+        <fa-icon class="icon-22-size cursor-pointer" [icon]="faEllipsisVertical" />
+    </header>
+    <div class="text-nav">
+        <p class="mb-0">{{rating.message}}</p>
+    </div>
+</div>
