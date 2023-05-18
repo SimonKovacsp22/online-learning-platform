@@ -50,3 +50,11 @@
     bottom: 50px;
     transform: rotateY(180deg);
   }
+
+  .mb-21 {
+    margin-bottom: 12px;
+  }
+
+  .mb-36 {
+    margin-bottom: 36px;
+  }

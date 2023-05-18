@@ -1,4 +1,5 @@
-<div (mouseenter)="onAvatarHover()" (mouseleave)="onAvatarLeave()" class="user-avatar-container position-relative px-6">
+<div (mouseenter)="onAvatarHover()" (mouseleave)="onAvatarLeave()"
+    class="d-none d-md-block user-avatar-container position-relative px-6">
     <div *ngIf="!loginService.user.avatar"
         class="user-badge user-badge-sm text-caption text-white fw-bold cursor-pointer">
         {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}

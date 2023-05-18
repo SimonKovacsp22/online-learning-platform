@@ -1,28 +1,39 @@
 <nav class="navbar nav p-0">
+
     <div class="container-xxl">
         <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center ">
-                <a [routerLink]="['/']"
-                    class="fs-2 text-logo text-decoration-none me-3 color-blue-900 position-relative">Lurnx<fa-icon
-                        [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
-                <ul class="d-flex list-unstyled mb-0 text-nav">
-
-                    <app-categories></app-categories>
-                    <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3" routerLinkActive="active">
-                        <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a>
-                    </li>
-                    <app-my-courses-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-my-courses-prew>
-                    <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="active">
-                        <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach</a>
-                    </li>
+            <div class="d-flex align-items-center">
+                <button class="d-md-none p-12 icon-gray-400" (click)="open()">
+                    <fa-icon [icon]="faBars" class="icon-nav-size icon-button">Launch demo
+                        offcanvas</fa-icon>
+                </button>
 
 
-                </ul>
-                <div class="ms-3 nav-input-container">
+                <div class="d-flex align-items-center">
+                    <ul class="d-none d-md-flex list-unstyled mb-0 text-nav align-items-center">
+                        <a [routerLink]=" ['/']"
+                            class="fs-2 text-logo text-decoration-none me-3 color-blue-900 position-relative">Lurnx<fa-icon
+                                [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
+                        <app-categories></app-categories>
+                        <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3" routerLinkActive="active">
+                            <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a>
+                        </li>
+                        <app-my-courses-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-my-courses-prew>
+                        <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="active">
+                            <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach</a>
+                        </li>
 
-                    <input class="text-nav" type="text" placeholder="Search">
+                        <li class="ms-3 nav-input-container">
+
+                            <input class="text-nav" type="text" placeholder="Search">
+                        </li>
+
+                    </ul>
                 </div>
             </div>
+            <a [routerLink]=" ['/']"
+                class="d-md-none fs-2 text-logo text-decoration-none color-blue-900 position-relative">Lurnx<fa-icon
+                    [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
             <div class="d-flex text-nav align-items-center col-gap-10 ">
                 <app-cart-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-cart-prew>
 

@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   faEnvelope = faEnvelope;
   faLock = faLock;
   faOtter = faOtter;
+  isError = false;
+  isLoading = false;
 
   ngOnInit() {
     if (this.loginService.user.authStatus === 'AUTH')
@@ -29,9 +31,15 @@ export class LoginComponent implements OnInit {
   }
 
   validateUser(loginForm: NgForm) {
+    this.isLoading = true;
     this.loginService
       .validateLoginDetails(this.loginService.user)
       .subscribe((responseData) => {
+        if (responseData.status !== 200) {
+          this.isError = true;
+          this.isLoading = false;
+          return;
+        }
         window.sessionStorage.setItem(
           'Authorization',
           responseData.headers.get('Authorization')!
@@ -44,6 +52,7 @@ export class LoginComponent implements OnInit {
         );
         let xsrf = getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
+        this.isLoading = false;
         this.router.navigate(['/']);
       });
   }

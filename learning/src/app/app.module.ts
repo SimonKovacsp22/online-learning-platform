@@ -25,6 +25,7 @@ import { MyCoursesPrewComponent } from './my-courses-prew/my-courses-prew.compon
 import { LearnCourseComponent } from './learn-course/learn-course.component';
 import { CourseSectionComponent } from './course-section/course-section.component';
 import { RatingComponent } from './rating/rating.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { RatingComponent } from './rating/rating.component';
     LearnCourseComponent,
     CourseSectionComponent,
     RatingComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

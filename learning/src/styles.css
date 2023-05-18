@@ -46,6 +46,10 @@
     font-size: 14px;
 }
 
+.line-height-16 {
+    line-height: 16px;
+}
+
 .text-super-caption {
     font-size: 12px;
     color: var(--gray-600);
