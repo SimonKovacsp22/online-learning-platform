@@ -33,4 +33,8 @@ export class LoginService {
     window.sessionStorage.setItem('Authorization', '');
     this.user = new User();
   }
+
+  getBadgeInitials() {
+    return this.user.firstName.slice(0, 1) + this.user.lastName.slice(0, 1);
+  }
 }

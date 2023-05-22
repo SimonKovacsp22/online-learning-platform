@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from '../services/login/login.service';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,5 +10,9 @@ import { NgbActiveOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SidebarComponent {
   @Input() name = 'World';
-  constructor(public activeOffcanvas: NgbActiveOffcanvas) {}
+  faXmark = faXmark;
+  constructor(
+    public activeOffcanvas: NgbActiveOffcanvas,
+    public loginService: LoginService
+  ) {}
 }

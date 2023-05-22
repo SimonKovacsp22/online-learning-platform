@@ -1,9 +1,20 @@
-<div class="offcanvas-header">
-    <h5 class="offcanvas-title">Offcanvas</h5>
-    <button type="button" class="btn-close text-reset" aria-label="Close"
-        (click)="activeOffcanvas.dismiss('Cross click')"></button>
+<div class="offcanvas-header d-flex align-items-start p-3 bg-gray-300">
+    <div class="d-flex align-items-center">
+        <div *ngIf="!loginService.user.avatar" class="user-badge user-badge-lg text-white fw-bold cursor-pointer me-3">
+            {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}
+        </div>
+        <img *ngIf="loginService.user.avatar" class="user-badge user-badge-lg me-3" src="{{loginService.user.avatar}}">
+        <div>
+            <h5 class="text-button-lg fw-bold mb-2">{{loginService.user.firstName + ' ' +
+                loginService.user.lastName}}</h5>
+            <p class="text-caption mb-0">{{loginService.user.email}}</p>
+        </div>
+    </div>
+    <button type="button" aria-label="Close" (click)="activeOffcanvas.dismiss()">
+        <fa-icon [icon]="faXmark" class="icon-nav-size" />
+    </button>
 </div>
 <div class="offcanvas-body">
 
-    <button type="button" class="btn btn-outline-dark" (click)="activeOffcanvas.close('Close click')">Close</button>
+
 </div>
