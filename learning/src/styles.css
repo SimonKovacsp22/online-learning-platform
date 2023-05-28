@@ -248,6 +248,10 @@ background-color: var(--color-primary-dark) !important;
     border: 1px solid rgba(40,48,80,.13);
 }
 
+.border-bottom-gray-300 {
+    border-bottom: 1px solid rgba(40,48,80,.13);
+}
+
 .border-gray-400 {
     border: 1px solid rgba(40,48,80,.20);
 }
@@ -309,6 +313,10 @@ background-color: var(--color-primary-dark) !important;
 }
 .bg-gray-300 {
     background-color: var(--gray-300);
+}
+
+.bg-gray-400 {
+    background-color:rgba(40,48,80,.20) ;
 }
 
 .icon-nav-size svg{

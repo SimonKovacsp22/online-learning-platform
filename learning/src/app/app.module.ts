@@ -26,6 +26,7 @@ import { LearnCourseComponent } from './learn-course/learn-course.component';
 import { CourseSectionComponent } from './course-section/course-section.component';
 import { RatingComponent } from './rating/rating.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AccordionComponent } from './accordion/accordion.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FontAwesomeModule,
     UserModule,
     HttpClientModule,
+    AccordionComponent,
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-XSRF-TOKEN',

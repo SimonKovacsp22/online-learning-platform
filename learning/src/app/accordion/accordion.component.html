@@ -1,0 +1,19 @@
+<div ngbAccordion #accordion="ngbAccordion" class="w-100">
+    <div ngbAccordionItem="first" class="border-0">
+        <header ngbAccordionHeader class="p-3 bg-gray-300 d-flex justify-content-between align-items-start">
+            <button ngbAccordionButton class="p-0 bg-gray-300">
+                <ng-content select="[slot=top]"></ng-content>
+            </button>
+            <ng-content select="[slot=close]"></ng-content>
+        </header>
+
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody class="p-0">
+
+                <ng-template>
+                    <ng-content select="[slot=bottom]"></ng-content>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

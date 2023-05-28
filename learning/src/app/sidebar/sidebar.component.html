@@ -1,20 +1,49 @@
-<div class="offcanvas-header d-flex align-items-start p-3 bg-gray-300">
-    <div class="d-flex align-items-center">
-        <div *ngIf="!loginService.user.avatar" class="user-badge user-badge-lg text-white fw-bold cursor-pointer me-3">
-            {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}
+<div class="offcanvas-header p-0 flex-column overflow-y-scroll">
+    <!-- Avatar Accordion -->
+    <app-accordion class="w-100">
+        <!-- Header -->
+        <div slot="top" class="d-flex align-items-center">
+            <div *ngIf="!loginService.user.avatar"
+                class="user-badge user-badge-md text-white fw-bold cursor-pointer me-2">
+                {{loginService.user.firstName.slice(0,1)+loginService.user.lastName.slice(0,1)}}
+            </div>
+            <img *ngIf="loginService.user.avatar" class="user-badge user-badge-lg me-3"
+                src="{{loginService.user.avatar}}">
+            <div>
+                <h5 class="text-button-lg fw-bold mb-1">{{loginService.user.firstName + ' ' +
+                    loginService.user.lastName}}</h5>
+                <p class="text-caption mb-0">{{loginService.user.email}}</p>
+            </div>
         </div>
-        <img *ngIf="loginService.user.avatar" class="user-badge user-badge-lg me-3" src="{{loginService.user.avatar}}">
-        <div>
-            <h5 class="text-button-lg fw-bold mb-2">{{loginService.user.firstName + ' ' +
-                loginService.user.lastName}}</h5>
-            <p class="text-caption mb-0">{{loginService.user.email}}</p>
-        </div>
-    </div>
-    <button type="button" aria-label="Close" (click)="activeOffcanvas.dismiss()">
-        <fa-icon [icon]="faXmark" class="icon-nav-size" />
-    </button>
-</div>
-<div class="offcanvas-body">
+        <!-- Close button -->
+        <button slot="close" type="button" aria-label="Close" (click)="activeOffcanvas.dismiss()">
+            <fa-icon [icon]="faXmark" class="icon-nav-size" />
+        </button>
+        <!-- Menu -->
+        <ul slot="bottom" class="p-3 list-unstyled text-nav text-start mb-0">
+            <li [routerLink]="['/learning']" class="py-2 cursor-pointer hover-primary">My courses</li>
+            <li [routerLink]="['/cart']" class="py-2 cursor-pointer hover-primary">My cart</li>
+            <li class="py-2 cursor-pointer hover-primary">Purchase history</li>
+            <li class="py-2 cursor-pointer hover-primary">Teach dashboard</li>
+            <li class="py-2 cursor-pointer hover-primary">Edit profile</li>
+        </ul>
+    </app-accordion>
 
+</div>
+<div class="offcanvas-body p-0">
+    <!-- Categories -->
+    <ul class="list-unstyled w-100 mb-0 text-nav border-bottom-gray-300 p-3">
+        <li [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
+            class="py-2 d-flex justify-content-between category-hover cursor-pointer" *ngFor="let cat of categories">
+            <a class=" color-gray-400 d-inline text-decoration-none hover-primary">{{cat.name}}</a>
+            <fa-icon class="category-icon" style="font-size: 12px;" [icon]="faAngleRight" />
+        </li>
+    </ul>
+    <div class="p-3">
+        <button
+            class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray w-100 mt-3"
+            (click)="logOut()">Log out
+        </button>
+    </div>
 
 </div>
