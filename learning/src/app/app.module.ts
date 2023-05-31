@@ -27,6 +27,7 @@ import { CourseSectionComponent } from './course-section/course-section.componen
 import { RatingComponent } from './rating/rating.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccordionComponent } from './accordion/accordion.component';
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AccordionComponent } from './accordion/accordion.component';
     CourseSectionComponent,
     RatingComponent,
     SidebarComponent,
+    VideoPlayerComponent,
   ],
   imports: [
     BrowserModule,
