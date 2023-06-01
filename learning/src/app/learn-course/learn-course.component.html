@@ -1,2 +1,70 @@
-<app-video-player
-    [options]="{autoplay: true,fluid:true,aspectRatio:'16:9', sources: [{ src: selectedVideo, type: 'video/mp4' }]}"></app-video-player>
+<section>
+    <!-- Navbar -->
+    <div class="border-bottom-gray-400">
+        <div class="bg-primary container-fluid">
+            <div class="row ">
+                <nav class="col-12 px-4 d-flex align-items-center">
+                    <a [routerLink]=" ['/']"
+                        class="fs-2 text-logo text-decoration-none pe-3 text-white position-relative ">Lurnx<fa-icon
+                            [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
+                    <div class="border-start-gray-400 py-1 ps-3 color-gray-100">
+                        <h6 *ngIf="course !== null" class="mb-0 fw-normal">{{course.title}}</h6>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+    <div *ngIf="course !== null" class=" container-fluid">
+        <div class="row">
+            <div class=" col">
+
+                <div class="row justify-content-center bg-primary">
+                    <div class="col-11 ">
+                        <!-- Video Player -->
+                        <app-video-player
+                            [options]="{autoplay: false,fluid:true,aspectRatio:'16:9', sources: [{ src: selectedVideo, type: 'video/mp4' }]}"></app-video-player>
+                    </div>
+                </div>
+                <!-- Course Overview -->
+                <div class="row justify-content-center">
+                    <div class="mt-4 col-11">
+                        <app-tab-overview [course]="course"></app-tab-overview>
+                    </div>
+                </div>
+            </div>
+            <!-- Sections Menu -->
+            <div class="col-3 px-0">
+                <div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Course content</h6>
+
+                    </div>
+                    <app-my-course-menu>
+                        <div slot="title">
+                            <h6 class="mb-1">Section</h6>
+                            <p class="mb-0 text-super-caption">HELLO</p>
+                        </div>
+                        <div slot="body">
+                            <p>video 1</p>
+                            <p>video 2</p>
+                            <p>video 3</p>
+                        </div>
+                    </app-my-course-menu>
+                    <app-my-course-menu>
+                        <div slot="title">
+                            <p>1st section</p>
+                        </div>
+                        <div slot="body">
+                            <p>video 1</p>
+                            <p>video 2</p>
+                            <p>video 3</p>
+                        </div>
+                    </app-my-course-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>

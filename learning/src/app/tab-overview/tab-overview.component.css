@@ -1,0 +1,11 @@
+.nav-tabs .nav-link {
+    border-radius: 0;
+}
+
+.nav-link {
+    color: var(--color-secondary);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--color-primary);
+}

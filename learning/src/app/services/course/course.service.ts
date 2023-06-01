@@ -109,6 +109,16 @@ export class CourseService {
     });
   };
 
+  getMyCourseById = (courseId: number) => {
+    return this.http.get(
+      environment.rooturl + '/courses/my/course/' + courseId,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  };
+
   getProgress = (progresses: IProgress[], course: ICourse) => {
     const courseProgress = progresses.find((p) => p.course === course.id);
     if (courseProgress) return courseProgress.ratio;

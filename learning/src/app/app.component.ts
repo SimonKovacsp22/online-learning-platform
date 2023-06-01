@@ -25,6 +25,14 @@ export class AppComponent implements OnInit {
 
   isContainerFluidRoute(): boolean {
     // @ts-ignore
-    return this.route.snapshot['_routerState'].url === '/learning';
+    const route = this.route.snapshot['_routerState'].url;
+
+    return route === '/learning' || route.includes('/learning/my');
+  }
+
+  isNavbarVisible(): boolean {
+    // @ts-ignore
+    const route = this.route.snapshot['_routerState'].url;
+    return !route.includes('/learning/my');
   }
 }

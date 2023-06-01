@@ -1,4 +1,6 @@
-<app-nav></app-nav>
+<app-nav [ngClass]="{
+    'd-none': !isNavbarVisible()
+}"></app-nav>
 
 <section class="container-fluid " [ngClass]="{
     

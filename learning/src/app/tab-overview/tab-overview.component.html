@@ -1,0 +1,108 @@
+<div *ngIf="course !== null">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs">
+        <li [ngbNavItem]="1">
+            <button ngbNavLink>Overview</button>
+            <!--Course Overview -->
+            <ng-template ngbNavContent>
+                <!-- About -->
+                <div class="row border-bottom-gray-400  p-4">
+                    <div class="col-6 ">
+                        <h3 class="text-title-tertiary fw-700 mb-4">About this course</h3>
+                        <p class="mb-0 text-nav">{{course.subtitle}}</p>
+                    </div>
+                </div>
+                <!-- Number -->
+                <div class="row p-4 border-bottom-gray-400">
+                    <div class="col-3">
+                        <p class="mb-1 fw-bold">By the numbers</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="mb-1 text-nav">Skill level: Beginner Level</p>
+                        <p class="mb-1 text-nav">Students: {{course.students.length}}</p>
+                        <p class="mb-1 text-nav">Languages: {{courseService.toCamelCase(course.languages[0].name)}}</p>
+                        <p class="mb-1 text-nav">Captions: No</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="mb-1 text-nav">Lectures: {{courseService.getTotalLectures(course.sections)}}</p>
+                        <p class="mb-1 text-nav">Video: {{courseService.getTotalLength(course.sections,true)}}</p>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="row p-4 border-bottom-gray-400">
+                    <div class="col-3">
+                        <p class="mb-1 fw-bold">Description</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="text-nav mb-0" [innerHTML]="course.description"></p>
+                    </div>
+                </div>
+                <!-- Instructor -->
+                <div class="row p-4">
+                    <div class="col-3">
+                        <p class="mb-1 fw-bold">Instructor</p>
+                    </div>
+                    <div class="col-6">
+                        <header class="d-flex align-items-center">
+                            <div *ngIf="!course.user.avatar" class="user-badge user-badge-lg text-white fw-bold me-4">
+                                {{courseService.getAvatarInitials(course.user)}}
+                            </div>
+                            <img *ngIf="course.user.avatar" class="user-badge user-badge-lg me-4"
+                                src="{{course.user.avatar}}">
+                            <div>
+                                <h5 class="text-subtitle-secondary fw-bold mb-2">
+                                    {{courseService.getFirstNameAndLastNameDevidedBySpace(course.user)}}</h5>
+                            </div>
+                        </header>
+                    </div>
+                </div>
+
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <button ngbNavLink>Q&A</button>
+            <!-- Questions and Andwers -->
+            <ng-template ngbNavContent>
+                <p>
+                    Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                    farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip
+                    jean
+                    shorts
+                    ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                    Keytar
+                    helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum
+                    wes
+                    anderson
+                    8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party
+                    scenester
+                    stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+                </p>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+            <button ngbNavLink>Reviews</button>
+            <!-- Ratings -->
+            <ng-template ngbNavContent>
+                <p>
+                    Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam.
+                    Nulla
+                    facilisi.
+                    Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+                    congue
+                    et odio.
+                    Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed
+                    diam urna,
+                    egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl
+                    enim, nec
+                    tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                    penatibus et
+                    magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies
+                    in
+                    eget
+                    neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                </p>
+            </ng-template>
+        </li>
+
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

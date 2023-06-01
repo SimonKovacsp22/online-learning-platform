@@ -28,6 +28,8 @@ import { RatingComponent } from './rating/rating.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
+import { MyCourseMenuComponent } from './my-course-menu/my-course-menu.component';
+import { TabOverviewComponent } from './tab-overview/tab-overview.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
     UserModule,
     HttpClientModule,
     AccordionComponent,
+    MyCourseMenuComponent,
+    TabOverviewComponent,
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-XSRF-TOKEN',

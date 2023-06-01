@@ -1,0 +1,17 @@
+<div ngbAccordion #accordion="ngbAccordion">
+    <div ngbAccordionItem="first" class="my-accordion">
+        <h2 ngbAccordionHeader>
+            <button ngbAccordionButton class="acc-btn">
+                <ng-content select="[slot=title]"></ng-content>
+            </button>
+        </h2>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    <ng-content select="[slot=body]"></ng-content>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+</div>
