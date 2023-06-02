@@ -82,24 +82,52 @@
             <button ngbNavLink>Reviews</button>
             <!-- Ratings -->
             <ng-template ngbNavContent>
-                <p>
-                    Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam.
-                    Nulla
-                    facilisi.
-                    Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
-                    congue
-                    et odio.
-                    Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed
-                    diam urna,
-                    egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl
-                    enim, nec
-                    tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
-                    penatibus et
-                    magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies
-                    in
-                    eget
-                    neque. Phasellus nec tortor vel tellus pulvinar feugiat.
-                </p>
+                <div class="row p-4 justify-content-center">
+                    <div class="col-7">
+                        <div class="d-flex justify-content-between  mb-4">
+                            <h3 class="text-title-tertiary line-height-45">Reviews</h3>
+                            <div class="custom-select position-relative">
+                                <select class="" type="text">
+
+                                    <option selected="true">All ratings</option>
+                                    <option value="5">Five stars</option>
+                                    <option value="4">Four stars</option>
+                                    <option value="3">Three stars</option>
+                                    <option value="2">Two stars</option>
+                                    <option value="1">One star</option>
+                                </select>
+                                <fa-icon class="chevron" [icon]="faChevronDown" />
+                            </div>
+                        </div>
+                        <div *ngFor="let rating of course.ratings" class="border-bottom-gray-400 pb-3">
+                            <header class=" d-flex mb-3">
+                                <div *ngIf="!rating.user.avatar"
+                                    class="user-badge user-badge-md text-white fw-bold me-4">
+                                    {{courseService.getAvatarInitials(course.user)}}
+                                </div>
+                                <img *ngIf="rating.user.avatar" class="user-badge user-badge-lg me-4"
+                                    src="{{course.user.avatar}}">
+                                <div>
+                                    <h6 class="fw-bold mb-0">
+                                        {{courseService.getFirstNameAndLastNameFirstLetter(rating.user)}}.</h6>
+
+                                    <div class="d-flex align-items-center ml-minus-3 mb-2">
+                                        <fa-icon *ngFor="let star of courseService.getRatingArray(rating.amount)"
+                                            [icon]="faStar" class="text-subtitle-secondary color-yellow-500" />
+                                        <p class="ms-3 text-super-caption fw-normal mb-0">
+                                            {{formatDate(rating.createdAt.toString())}}</p>
+                                    </div>
+
+                                    <div class="text-caption">
+                                        <p class="mb-0">{{rating.message}}</p>
+                                    </div>
+                                </div>
+
+                            </header>
+
+                        </div>
+                    </div>
+                </div>
             </ng-template>
         </li>
 

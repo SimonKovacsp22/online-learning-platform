@@ -9,3 +9,42 @@
 .nav-tabs .nav-link.active {
     color: var(--color-primary);
 }
+
+.line-height-45 {
+    line-height: 45px !important;
+}
+
+.custom-select .chevron {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .custom-select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-block: 12px;
+    padding-left:16px;
+    padding-right: 35px; /* Add space for the icon */
+    background: #fff;
+
+  }
+
+  .custom-select select:focus-visible {
+    outline: none;
+  }
+
+  .custom-select select:hover {
+    background-color: var(--gray-200);
+    cursor: pointer;
+  }
+  .custom-select select option {
+    background-color: white;
+  }
+
+  .ml-minus-3 {
+    margin-left:-3px;
+  }

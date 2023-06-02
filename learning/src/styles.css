@@ -42,9 +42,6 @@
     box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
 }
 
-.text-caption {
-    font-size: 14px;
-}
 
 .line-height-16 {
     line-height: 16px;
@@ -53,6 +50,9 @@
 .text-super-caption {
     font-size: 12px;
     color: var(--gray-600);
+}
+.text-caption {
+    font-size: 14px;
 }
 
 .text-nav {

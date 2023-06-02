@@ -40,27 +40,17 @@
                         <h6 class="mb-0">Course content</h6>
 
                     </div>
-                    <app-my-course-menu>
+                    <app-my-course-menu *ngFor="let section of course.sections">
                         <div slot="title">
-                            <h6 class="mb-1">Section</h6>
+                            <h6 class="mb-1">{{section.title}}</h6>
                             <p class="mb-0 text-super-caption">HELLO</p>
                         </div>
                         <div slot="body">
-                            <p>video 1</p>
-                            <p>video 2</p>
-                            <p>video 3</p>
+                            <p *ngFor="let video of section.videos">{{video.title}}</p>
+
                         </div>
                     </app-my-course-menu>
-                    <app-my-course-menu>
-                        <div slot="title">
-                            <p>1st section</p>
-                        </div>
-                        <div slot="body">
-                            <p>video 1</p>
-                            <p>video 2</p>
-                            <p>video 3</p>
-                        </div>
-                    </app-my-course-menu>
+
                 </div>
             </div>
         </div>
