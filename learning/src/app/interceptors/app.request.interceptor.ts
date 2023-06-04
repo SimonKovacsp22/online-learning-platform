@@ -13,7 +13,7 @@ import { User } from '../models/user.model';
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
   user = new User();
-  excludedEndpoints: string[] = ['/categories', 'register'];
+  excludedEndpoints: string[] = ['/categories', 'register', 'checkout'];
   constructor(private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

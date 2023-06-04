@@ -1,0 +1,15 @@
+<section class="d-flex justify-content-center mt-large align-items-center">
+    <form id="payment-form" (submit)="confirmPayment($event)">
+        <div id="link-authentication-element">
+            <!--Stripe.js injects the Link Authentication Element-->
+        </div>
+        <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+        </div>
+        <button id="submit" type="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Pay now</span>
+        </button>
+        <div id="payment-message" class="hidden"></div>
+    </form>
+</section>

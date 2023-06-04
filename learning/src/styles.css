@@ -445,6 +445,7 @@ background-color: var(--color-primary-dark) !important;
   
   .button-disabled {
     background-color: var(--gray-600) !important;
+    pointer-events: none;
 }
 
   @keyframes fadeAndScaleAnimation {

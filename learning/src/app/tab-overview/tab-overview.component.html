@@ -84,7 +84,7 @@
             <ng-template ngbNavContent>
                 <div class="row p-4 justify-content-center">
                     <div class="col-7">
-                        <div class="d-flex justify-content-between  mb-4">
+                        <div class="d-flex justify-content-between">
                             <h3 class="text-title-tertiary line-height-45">Reviews</h3>
                             <div class="custom-select position-relative">
                                 <select class="" type="text">
@@ -99,8 +99,8 @@
                                 <fa-icon class="chevron" [icon]="faChevronDown" />
                             </div>
                         </div>
-                        <div *ngFor="let rating of course.ratings" class="border-bottom-gray-400 pb-3">
-                            <header class=" d-flex mb-3">
+                        <div *ngFor="let rating of course.ratings" class="border-bottom-gray-400 py-4">
+                            <header class=" d-flex">
                                 <div *ngIf="!rating.user.avatar"
                                     class="user-badge user-badge-md text-white fw-bold me-4">
                                     {{courseService.getAvatarInitials(course.user)}}

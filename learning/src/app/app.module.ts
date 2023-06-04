@@ -30,6 +30,8 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { MyCourseMenuComponent } from './my-course-menu/my-course-menu.component';
 import { TabOverviewComponent } from './tab-overview/tab-overview.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { TabOverviewComponent } from './tab-overview/tab-overview.component';
     RatingComponent,
     SidebarComponent,
     VideoPlayerComponent,
+    CheckoutComponent,
+    PaymentSuccessComponent,
   ],
   imports: [
     BrowserModule,

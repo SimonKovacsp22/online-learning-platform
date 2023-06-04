@@ -53,7 +53,7 @@
             <h4 class="text-title-medium fw-bold">&euro;{{cartService.calculateTotal(cartService.cart.courses)}}</h4>
         </header>
         <div class="pb-3 border-bottom-gray-400">
-            <button disabled="{{cartService.cart.courses.length === 0}}"
+            <button (click)="checkout()"
                 class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark cursor-pointer"
                 [ngClass]="{
                     'button-disabled':cartService.cart.courses.length === 0

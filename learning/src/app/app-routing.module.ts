@@ -17,6 +17,8 @@ import { CartComponent } from './cart/cart.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { LearnCourseComponent } from './learn-course/learn-course.component';
 import { IUser } from './models/user.model';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 const canActivatePrivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -38,9 +40,11 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'categories/:id', component: CourseListComponent },
+  { path: 'success', component: PaymentSuccessComponent },
   {
     path: 'learning',
     component: MyCoursesComponent,
@@ -58,6 +62,12 @@ const routes: Routes = [
     component: LearnCourseComponent,
     canActivate: [canActivatePrivate],
   },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [canActivatePrivate],
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
