@@ -13,7 +13,14 @@ export class MyCoursesComponent implements OnInit {
   constructor(
     public courseService: CourseService,
     private loginService: LoginService
-  ) {}
+  ) {
+    this.courseService
+      .getMyCourses(this.loginService.user)
+      .subscribe((data) => {
+        const { courses } = <{ courses: any[] }>data.body;
+        this.courseService.myCourses = courses;
+      });
+  }
 
   ngOnInit() {}
 

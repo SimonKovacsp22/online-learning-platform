@@ -5,6 +5,7 @@ import { environment } from 'src/app/environments/environment';
 import { ICart } from 'src/app/models/cart.model';
 import { ICourse } from 'src/app/models/course.model';
 import { OrderItem } from 'src/app/models/order-item.mode';
+import { Order } from 'src/app/models/order.model';
 import { PaymentInfo } from 'src/app/models/payment-info.model';
 import { IPurchase, Purchase } from 'src/app/models/purchase.model';
 import { IUser } from 'src/app/models/user.model';
@@ -14,7 +15,8 @@ import { IUser } from 'src/app/models/user.model';
 })
 export class CartService {
   cart: ICart | null = null;
-  subject: Subject<ICart> = new BehaviorSubject<ICart>(this.cart!);
+
+  public paymentIntent$ = new Observable<string>();
   constructor(private http: HttpClient) {}
 
   getCartByUser(user: IUser) {
@@ -36,6 +38,7 @@ export class CartService {
   }
 
   removeCourseFromCart(user: IUser, course: ICourse) {
+    console.log('here');
     const body = {
       courseId: course.id,
       userId: user.id,
@@ -62,23 +65,16 @@ export class CartService {
     return this.http.post<PaymentInfo>(environment.rooturl + '/checkout', info);
   }
 
-  // createOrder(email: string): Observable<any> {
-  //   this.cart.subscribe((data) => {
-  //     if (data.id && data.courses.length > 0 && data.user?.email) {
-  //       let purchase: IPurchase = new Purchase(data.user.email, []);
-  //       purchase.orderItems = data.courses.map((c) => new OrderItem(c));
-  //       console.log(purchase.orderItems);
-  //       return this.http.post<IPurchase>(
-  //         environment.rooturl + '/checkout/purchase',
-  //         purchase
-  //       );
-  //     } else {
-  //       return new Observable(undefined);
-  //     }
-  //   });
-
-  //   return new Observable(undefined);
-  // }
+  fulfillOrder(email: string): Observable<any> {
+    if (this.cart !== null) {
+      let orderItems = this.cart.courses.map((c) => new OrderItem(c));
+      console.log(orderItems);
+      return this.http.post<Purchase>(
+        environment.rooturl + '/checkout/purchase',
+        { email, orderItems }
+      );
+    } else return new Observable(undefined);
+  }
 
   isCourseInCart(course: ICourse) {
     return this.cart?.courses.findIndex((c) => c.id === course.id) !== -1;

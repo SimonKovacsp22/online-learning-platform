@@ -18,7 +18,8 @@
                             <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a>
                         </li>
                         <app-my-courses-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-my-courses-prew>
-                        <li *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3" routerLinkActive="active">
+                        <li [routerLink]=" ['/teach']" *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3"
+                            routerLinkActive="active">
                             <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach</a>
                         </li>
 

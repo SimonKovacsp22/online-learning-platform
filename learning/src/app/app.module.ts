@@ -32,6 +32,7 @@ import { MyCourseMenuComponent } from './my-course-menu/my-course-menu.component
 import { TabOverviewComponent } from './tab-overview/tab-overview.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     VideoPlayerComponent,
     CheckoutComponent,
     PaymentSuccessComponent,
+    TeachDashboardComponent,
   ],
   imports: [
     BrowserModule,

@@ -34,7 +34,6 @@ export class CartPrewComponent implements OnInit {
       .getCartByUser(this.loginService.user)
       .subscribe((responseData) => {
         this.cartService.cart = <any>responseData.body;
-        this.cartService.subject.next(<any>responseData.body);
       });
   }
 }

@@ -25,6 +25,7 @@ export class CheckoutComponent implements OnInit {
     const appearance = {
       theme: 'stripe',
     };
+
     this.route.queryParams.subscribe((params) => {
       this.clientSecret = params['client_secret'];
       if (this.clientSecret === '' || this.clientSecret == null) {
