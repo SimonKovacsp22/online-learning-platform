@@ -38,7 +38,6 @@ export class CartService {
   }
 
   removeCourseFromCart(user: IUser, course: ICourse) {
-    console.log('here');
     const body = {
       courseId: course.id,
       userId: user.id,

@@ -20,6 +20,7 @@ import { IUser } from './models/user.model';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
+import { TeachManageComponent } from './teach-manage/teach-manage.component';
 
 const canActivatePrivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -54,6 +55,11 @@ const routes: Routes = [
   {
     path: 'teach',
     component: TeachDashboardComponent,
+    canActivate: [canActivatePrivate],
+  },
+  {
+    path: 'teach/manage/:id',
+    component: TeachManageComponent,
     canActivate: [canActivatePrivate],
   },
   { path: 'courses/:id', component: CourseDetailComponent },

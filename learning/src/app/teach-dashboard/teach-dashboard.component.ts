@@ -21,4 +21,10 @@ export class TeachDashboardComponent {
         this.taughtCourses = courses;
       });
   }
+
+  createNewCourse() {
+    this.courseService
+      .createCourse('Test', 5)
+      .subscribe((data) => console.log(data));
+  }
 }

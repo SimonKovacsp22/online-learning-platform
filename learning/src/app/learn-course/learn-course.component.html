@@ -1,19 +1,6 @@
 <section>
     <!-- Navbar -->
-    <div class="border-bottom-gray-400">
-        <div class="bg-primary container-fluid">
-            <div class="row ">
-                <nav class="col-12 px-4 d-flex align-items-center">
-                    <a [routerLink]=" ['/']"
-                        class="fs-2 text-logo text-decoration-none pe-3 text-white position-relative ">Lurnx<fa-icon
-                            [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
-                    <div class="border-start-gray-400 py-1 ps-3 color-gray-100">
-                        <h6 *ngIf="course !== null" class="mb-0 fw-normal">{{course.title}}</h6>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <app-nav-private [title]="course?.title"></app-nav-private>
     <!-- Content -->
     <div *ngIf="course !== null" class=" container-fluid">
         <div class="row">

@@ -22,4 +22,5 @@ export interface ICourse {
   whatYouWillLearn: IWYWL[];
   languages: ILanguage[];
   sections: ISection[];
+  draft: boolean;
 }

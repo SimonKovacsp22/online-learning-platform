@@ -1,1 +1,61 @@
-<p>teach-dashboard works!</p>
+<section>
+    <!-- Navbar -->
+    <app-nav-private [title]="undefined"></app-nav-private>
+    <!-- Courses -->
+    <div class="container-xxl mt-semi-large">
+        <div class="row justify-content-center">
+            <div class="col-8 col-lg-10 col-md-8">
+                <header class="d-flex justify-content-between">
+                    <h1 class="text-title-medium mb-0">Courses</h1>
+                    <button (click)="createNewCourse()" class="button-regular rounded-1 bg-primary text-white
+                    button-hover-primary-dark fw-bold">New course</button>
+                </header>
+            </div>
+        </div>
+        <div *ngIf="taughtCourses && taughtCourses.length > 0 ;else noCourses" class="row justify-content-center  mt-4">
+            <div [routerLink]="['/teach/manage/',course.id]" *ngFor="let course of taughtCourses" class="col-10 mb-3">
+                <div class="d-flex height-9 border-gray-400 w-100">
+                    <img class="object-fit-cover" *ngIf="course.imageUrl ;else placeholderImage"
+                        src="{{course.imageUrl}}" width="142" />
+                    <ng-template #placeholderImage><img class="image-grayscale"
+                            src="https://s.udemycdn.com/course/200_H/placeholder.jpg" width="142" /></ng-template>
+                    <div class="p-3 d-flex flex-grow-1 justify-content-between">
+                        <div class="d-flex flex-column justify-content-between">
+                            <h6>{{course.title}}</h6>
+                            <div class="d-flex">
+                                <p [ngClass]="{
+                                    'fw-bold': course.draft,
+                                    'color-gray-800':course.draft
+                                }" class="mb-0 text-super-caption lh-lg mb-0">Draft</p>&nbsp;&nbsp;
+                                <p [ngClass]="{
+                                    'fw-bold': !course.draft,
+                                    'color-gray-800':!course.draft
+                                }" class="mb-0 text-super-caption lh-lg mb-0">Public</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <div>========================</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #noCourses>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-4 col-md-6 col-xl-4 d-sm-flex d-md-block d-lg-flex justify-content-end">
+                    <img class="image-grayscale" src="https://s.udemycdn.com/instructor/dashboard/video-creation.jpg" />
+
+                </div>
+                <div class="col-12 col-lg-4 col-md-6 col-xl-4 ">
+                    <img class="image-grayscale"
+                        src="https://s.udemycdn.com/instructor/dashboard/engaging-course.jpg" />
+
+                </div>
+                <div class="col-12 mt-3">
+                    <p class="text-center text-subhero">No courses</p>
+                </div>
+
+            </div>
+        </ng-template>
+    </div>
+</section>

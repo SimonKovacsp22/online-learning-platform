@@ -148,8 +148,26 @@ export class CourseService {
       }
     );
   };
+
+  createCourse = (title: string, categoryId: number) => {
+    return this.http.post<postCourseResponse>(
+      environment.rooturl + '/courses/draft',
+      {
+        title,
+        categoryId,
+      },
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  };
 }
 
 interface getCoursesResponse {
   courses: ICourse[];
+}
+
+interface postCourseResponse {
+  course: ICourse;
 }

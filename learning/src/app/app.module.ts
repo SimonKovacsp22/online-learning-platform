@@ -33,6 +33,8 @@ import { TabOverviewComponent } from './tab-overview/tab-overview.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
+import { NavPrivateComponent } from './nav-private/nav-private.component';
+import { TeachManageComponent } from './teach-manage/teach-manage.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.compo
     CheckoutComponent,
     PaymentSuccessComponent,
     TeachDashboardComponent,
+    NavPrivateComponent,
+    TeachManageComponent,
   ],
   imports: [
     BrowserModule,
