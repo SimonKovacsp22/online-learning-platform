@@ -30,6 +30,10 @@
   /* .active a {
     color: var(--color-primary);
   } */
+
+  .w-80 {
+    width: 80%;
+  }
   .progress {
     --bs-progress-height: 5px;
   }
@@ -157,6 +161,10 @@
 .p-10 {
     padding: 10px;
 }
+.p-x-6px {
+    padding-inline: 6px;
+}
+
 .px-6 {
     padding-inline: 64px;
 }
@@ -255,7 +263,10 @@ background-color: var(--color-primary-dark) !important;
 .button-hover-secondary-gray:hover:not(.button-disabled) {
     background-color: var(--gray-200) !important;
 }
-
+.input-large {
+    height: 48px;
+    outline: none;
+}
 
 
 .border-gray-200 {
@@ -351,6 +362,12 @@ background-color: var(--color-primary-dark) !important;
 .icon-reg-size svg{
     width: 30px;
     height: 30px;
+}
+
+.caret-select {
+    right: 16px;
+    top: calc(50% - 10px);
+    pointer-events: none;
 }
 
 .otter-icon svg {
@@ -472,7 +489,30 @@ background-color: var(--color-primary-dark) !important;
     background-color: var(--gray-600) !important;
     pointer-events: none;
 }
+select::-ms-expand {
+    display: none;
+}
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.box-select {
+    cursor: pointer;
+    outline: none;
+}
+
+.box-option {
+    pointer-events: none;
+    background-color: white;
+}
+
+
+.box-select:hover {
+    background-color: var(--gray-200);
+}
   @keyframes fadeAndScaleAnimation {
     0% {
       opacity: 0;

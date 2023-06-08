@@ -35,6 +35,9 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
 import { NavPrivateComponent } from './nav-private/nav-private.component';
 import { TeachManageComponent } from './teach-manage/teach-manage.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,7 @@ import { TeachManageComponent } from './teach-manage/teach-manage.component';
     TeachDashboardComponent,
     NavPrivateComponent,
     TeachManageComponent,
+    CreateCourseComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,9 +71,12 @@ import { TeachManageComponent } from './teach-manage/teach-manage.component';
     FontAwesomeModule,
     UserModule,
     HttpClientModule,
+    FormsModule,
     AccordionComponent,
+    ReactiveFormsModule,
     MyCourseMenuComponent,
     TabOverviewComponent,
+    QuillModule.forRoot(),
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-XSRF-TOKEN',

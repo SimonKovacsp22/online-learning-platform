@@ -1,8 +1,46 @@
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
 .side-nav {
     width: 16rem;
     min-width: 16rem;
-    background-color: red;
 }
+
+.fixed-width-350 {
+    max-width: 300px;
+}
+
+.mb-negative-5 {
+    margin-bottom: -5px;
+}
+
+.manage-option:hover {
+    cursor: pointer;
+    background-color: var(--gray-200);
+    
+}
+
+.manage-option {
+    position: relative;
+}
+
+.manage-option-selected::before {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--color-primary);
+}
+
+.img-large-fixed-height {
+    max-height: 16rem;
+}
+
+
+
 
 
 

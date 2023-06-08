@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { ICourse } from 'src/app/models/course.model';
 import { IProgress, Progress } from 'src/app/models/progress.model';
@@ -116,6 +115,15 @@ export class CourseService {
   getMyCourseById = (courseId: number) => {
     return this.http.get(
       environment.rooturl + '/courses/my/course/' + courseId,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  };
+  getTaughtCourseById = (courseId: number) => {
+    return this.http.get(
+      environment.rooturl + '/courses/teach/course/' + courseId,
       {
         observe: 'response',
         withCredentials: true,

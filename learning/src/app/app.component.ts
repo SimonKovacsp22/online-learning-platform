@@ -30,13 +30,18 @@ export class AppComponent implements OnInit {
     return (
       route === '/learning' ||
       route.includes('/learning/my') ||
-      route.includes('/teach')
+      route.includes('/teach') ||
+      route.includes('/create')
     );
   }
 
   isNavbarVisible(): boolean {
     // @ts-ignore
     const route = this.route.snapshot['_routerState'].url;
-    return route.includes('/learning/my') || route.includes('/teach');
+    return (
+      route.includes('/learning/my') ||
+      route.includes('/teach') ||
+      route.includes('/create')
+    );
   }
 }

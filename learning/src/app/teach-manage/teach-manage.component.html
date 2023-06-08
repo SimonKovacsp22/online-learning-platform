@@ -1,13 +1,60 @@
 <section>
     <!-- Navbar -->
-    <app-nav-private [title]="undefined"></app-nav-private>
+    <app-nav-private [title]="undefined">
+        <button slot="button"
+            class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray bg-white fw-semibold py-2">SAVE</button>
+    </app-nav-private>
     <div class="container-fluid mt-semi-large">
         <div class="row justify-content-center">
-            <div class="col-8 d-flex">
-                <div class="side-nav"></div>
-                <div class="container-fluid ">
+            <div class="col-9 d-flex">
+                <!-- Sidebar -->
+                <div class="side-nav px-3">
+                    <div class="p-2">
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-2">Plan your course</h6>
+                            <div (click)="onOptionChange('intended students')" [ngClass]="{
+                                'manage-option-selected': selectedOption === 'intended students'
+                            }" class="d-flex align-items-center manage-option px-3 py-2">
+                                <fa-icon [icon]="faCircleCheck"
+                                    class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                                <p class="mb-0 fw-normal">Intended students</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-2">Create your content</h6>
+                            <div (click)="onOptionChange('curiculum')" [ngClass]="{
+                                'manage-option-selected': selectedOption === 'curiculum'
+                            }" class="d-flex align-items-center manage-option px-3 py-2 ">
+                                <fa-icon [icon]="faCircleCheck"
+                                    class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                                <p class="mb-0 fw-normal">Curiculum</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold mb-2">Publish your course</h6>
+                            <div (click)="onOptionChange('landing page')" [ngClass]="{
+                                'manage-option-selected': selectedOption === 'landing page'
+                            }" class="d-flex align-items-center manage-option px-3 py-2 mb-2">
+                                <fa-icon [icon]="faCircleCheck"
+                                    class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                                <p class="mb-0 fw-normal">Landing page</p>
+                            </div>
+                            <div (click)="onOptionChange('pricing')" [ngClass]="{
+                                'manage-option-selected': selectedOption === 'pricing'
+                            }" class="d-flex align-items-center manage-option px-3 py-2 mb-2">
+                                <fa-icon [icon]="faCircleCheck"
+                                    class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                                <p class="mb-0 fw-normal">Pricing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark">Publish</button>
+                </div>
+                <!-- Landing Page -->
+                <div *ngIf="selectedOption === 'landing page'" class="container-fluid ">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 px-4">
                             <div class="paper-shadow">
                                 <header class="border-bottom-gray-400 px-6 py-40">
                                     <h3 class="mb-0 text-title-tertiary">Course landing page</h3>
@@ -19,11 +66,99 @@
                                         it can also help you gain visibility in search engines like Google. As you
                                         complete this section, think about creating a compelling Course Landing Page
                                         that demonstrates why someone would want to enroll in your course.</p>
+                                    <div>
+                                        <form [formGroup]="courseForm">
+                                            <div class="mb-4">
+                                                <label for="title" class="mb-1 text-nav fw-bold">Course title</label>
+                                                <!-- Title Input -->
+                                                <input formControlName="title" name="title"
+                                                    class="input-large w-100 mb-1 px-3 py-2" type="text"
+                                                    placeholder="You course title." />
+                                                <p class="text-super-caption">Your title should be a mix of
+                                                    attention-grabbing,
+                                                    informative, and optimized for search</p>
+                                            </div>
+                                            <div class="mb-4">
+                                                <label for="subtitle" class="mb-1 text-nav fw-bold">Subtitle</label>
+                                                <!-- Subtitle Input -->
+                                                <input formControlName="subtitle" name="subtitle"
+                                                    class="input-large w-100 mb-1 px-3 py-2" type="text"
+                                                    placeholder="You course subtitle." />
+                                                <p class="text-super-caption">Use 1 or 2 related keywords, and mention
+                                                    3-4 of the most important areas that you've covered during your
+                                                    course.</p>
+                                            </div>
+                                            <!-- Text editor -->
+                                            <div class="mb-4">
+                                                <label for="subtitle" class="mb-1 text-nav fw-bold">Description</label>
+                                                <!-- Text editor -->
+                                                <div class=""><quill-editor></quill-editor></div>
+                                                <p class="text-super-caption">Use 1 or 2 related keywords, and mention
+                                                    3-4 of the most important areas that you've covered during your
+                                                    course.</p>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-4 fixed-width-350">
+                                                    <label class="mb-1 text-nav fw-bold" for="language">Language</label>
+                                                    <div class="position-relative">
+                                                        <!-- Language select -->
+                                                        <select formControlName="language" name="language"
+                                                            class="box-select w-100 input-large px-3 py-2" type="text"
+                                                            required>
+                                                            <option class="box-option" selected>English(US)</option>
+
+                                                        </select>
+                                                        <fa-icon class="position-absolute caret-select"
+                                                            [icon]="faAngleDown" />
+                                                    </div>
+                                                </div>
+                                                <!-- Category Select -->
+                                                <div class="col-4 fixed-width-350">
+                                                    <label class="mb-1 text-nav fw-bold" for="category">Language</label>
+                                                    <div class="position-relative">
+                                                        <select name="category"
+                                                            class="box-select w-100 input-large px-3 py-2 position-relative"
+                                                            type="text" required>
+                                                            <option *ngFor="let category of categories"
+                                                                class="box-option" selected>{{category.name}}</option>
+                                                        </select>
+                                                        <fa-icon class="position-absolute caret-select"
+                                                            [icon]="faAngleDown" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Course Image -->
+                                            <div class="row">
+                                                <label class="mb-1 text-nav fw-bold" for="image-input">Course
+                                                    image</label>
+                                                <div class="col-6">
+
+                                                    <img *ngIf="imagePreview !== null ;else placeholderImage"
+                                                        class="d-block border-gray-400 img-large-fixed-height"
+                                                        src="{{imagePreview}}" alt="image-preview" />
+                                                    <ng-template #placeholderImage>
+                                                        <img class="d-block border-gray-400 img-large-fixed-height"
+                                                            src="https://s.udemycdn.com/course/750x422/placeholder.jpg"
+                                                            alt="image-preview" />
+                                                    </ng-template>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-1">Upload your course image here.</p>
+                                                    <input type="file" (change)="onFileSelected($event)"
+                                                        accept="image/*">
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
