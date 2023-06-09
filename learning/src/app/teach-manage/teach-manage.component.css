@@ -7,7 +7,11 @@
     min-width: 16rem;
 }
 
-.fixed-width-350 {
+.fixed-width-1500 {
+    max-width: 1500px;
+}
+
+.fixed-width-300 {
     max-width: 300px;
 }
 

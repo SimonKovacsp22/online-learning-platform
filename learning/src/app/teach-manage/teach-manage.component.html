@@ -1,6 +1,6 @@
 <section>
     <!-- Navbar -->
-    <app-nav-private [title]="undefined">
+    <app-nav-private [title]="course?.title">
         <button slot="button"
             class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray bg-white fw-semibold py-2">SAVE</button>
     </app-nav-private>
@@ -54,7 +54,7 @@
                 <!-- Landing Page -->
                 <div *ngIf="selectedOption === 'landing page'" class="container-fluid ">
                     <div class="row">
-                        <div class="col-12 px-4">
+                        <div class="col-12 px-4 fixed-width-1500">
                             <div class="paper-shadow">
                                 <header class="border-bottom-gray-400 px-6 py-40">
                                     <h3 class="mb-0 text-title-tertiary">Course landing page</h3>
@@ -105,7 +105,11 @@
                                                         <select formControlName="language" name="language"
                                                             class="box-select w-100 input-large px-3 py-2" type="text"
                                                             required>
-                                                            <option class="box-option" selected>English(US)</option>
+                                                            <option
+                                                                [selected]="language.id === courseForm.get('language')?.value"
+                                                                [ngValue]="language.name"
+                                                                *ngFor="let language of languages" class="box-option">
+                                                                {{language.name}}</option>
 
                                                         </select>
                                                         <fa-icon class="position-absolute caret-select"
@@ -113,14 +117,17 @@
                                                     </div>
                                                 </div>
                                                 <!-- Category Select -->
-                                                <div class="col-4 fixed-width-350">
+                                                <div class="col-4 fixed-width-300">
                                                     <label class="mb-1 text-nav fw-bold" for="category">Language</label>
                                                     <div class="position-relative">
                                                         <select name="category"
                                                             class="box-select w-100 input-large px-3 py-2 position-relative"
                                                             type="text" required>
-                                                            <option *ngFor="let category of categories"
-                                                                class="box-option" selected>{{category.name}}</option>
+                                                            <option
+                                                                [selected]="category.id === courseForm.get('category')?.value "
+                                                                [ngValue]="category.id"
+                                                                *ngFor="let category of categories" class="box-option">
+                                                                {{category.name}}</option>
                                                         </select>
                                                         <fa-icon class="position-absolute caret-select"
                                                             [icon]="faAngleDown" />

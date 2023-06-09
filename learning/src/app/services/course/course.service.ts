@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
 import { ICourse } from 'src/app/models/course.model';
+import { ILanguage } from 'src/app/models/language.model';
 import { IProgress, Progress } from 'src/app/models/progress.model';
 import { IRating } from 'src/app/models/rating.model';
 import { ISection } from 'src/app/models/section.model';
@@ -170,6 +171,15 @@ export class CourseService {
       }
     );
   };
+
+  getLanguages = () => {
+    return this.http.get<getlanguageResponse>(
+      environment.rooturl + '/courses/languages',
+      {
+        observe: 'response',
+      }
+    );
+  };
 }
 
 interface getCoursesResponse {
@@ -178,4 +188,8 @@ interface getCoursesResponse {
 
 interface postCourseResponse {
   course: ICourse;
+}
+
+interface getlanguageResponse {
+  languages: ILanguage;
 }
