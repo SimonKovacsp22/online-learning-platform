@@ -22,6 +22,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
 import { TeachManageComponent } from './teach-manage/teach-manage.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
+import { CoursesBySearchComponent } from './courses-by-search/courses-by-search.component';
 
 const canActivatePrivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -84,6 +85,10 @@ const routes: Routes = [
     path: 'checkout',
     component: CheckoutComponent,
     canActivate: [canActivatePrivate],
+  },
+  {
+    path: 'search/:searchTerm',
+    component: CoursesBySearchComponent,
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

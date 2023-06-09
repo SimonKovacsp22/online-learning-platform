@@ -6,17 +6,5 @@
 
 
 
-.nav-input-container input {
-    border:none;
-    border-bottom: 1px solid;
-    border-radius: 0;
-    padding: 12px;
-}
 
-.nav-input-container input:focus-visible {
-    outline:none;
-    border-bottom: 2px solid var(--color-primary);
-    border-radius: 3px;
-    padding-bottom: 11px;
-}
 

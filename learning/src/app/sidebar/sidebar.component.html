@@ -35,7 +35,7 @@
     <ul class="list-unstyled w-100 mb-0 text-nav border-bottom-gray-300 p-3">
         <li [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
             class="py-2 d-flex justify-content-between category-hover cursor-pointer" *ngFor="let cat of categories">
-            <a class=" color-gray-400 d-inline text-decoration-none hover-primary">{{cat.name}}</a>
+            <a class=" color-gray-900 d-inline text-decoration-none hover-primary">{{cat.name}}</a>
             <fa-icon class="category-icon" style="font-size: 12px;" [icon]="faAngleRight" />
         </li>
     </ul>

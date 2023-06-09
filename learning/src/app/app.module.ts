@@ -38,6 +38,8 @@ import { TeachManageComponent } from './teach-manage/teach-manage.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
+import { SearchComponent } from './search/search.component';
+import { CoursesBySearchComponent } from './courses-by-search/courses-by-search.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { QuillModule } from 'ngx-quill';
     NavPrivateComponent,
     TeachManageComponent,
     CreateCourseComponent,
+    SearchComponent,
+    CoursesBySearchComponent,
   ],
   imports: [
     BrowserModule,

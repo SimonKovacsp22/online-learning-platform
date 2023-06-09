@@ -15,18 +15,15 @@
                                 [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
                         <app-categories></app-categories>
                         <li *ngIf="loginService.user.authStatus!='AUTH'" class="p-12 my-3" routerLinkActive="active">
-                            <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach on Lurnx</a>
+                            <a class="cursor-pointer color-gray-900 d-inline text-decoration-none">Teach on Lurnx</a>
                         </li>
                         <app-my-courses-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-my-courses-prew>
                         <li [routerLink]=" ['/teach']" *ngIf="loginService.user.authStatus=='AUTH'" class="p-12 my-3"
                             routerLinkActive="active">
-                            <a class="cursor-pointer color-gray-400 d-inline text-decoration-none">Teach</a>
+                            <a class="cursor-pointer color-gray-900 d-inline text-decoration-none">Teach</a>
                         </li>
 
-                        <li class="ms-3 nav-input-container">
-
-                            <input class="text-nav" type="text" placeholder="Search">
-                        </li>
+                        <app-search></app-search>
 
                     </ul>
                 </div>
@@ -37,7 +34,7 @@
             <div class="d-flex text-nav align-items-center col-gap-10 ">
                 <app-cart-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-cart-prew>
 
-                <button *ngIf="loginService.user.authStatus!='AUTH'" class="button-nav button color-gray-400 p-12 my-3"
+                <button *ngIf="loginService.user.authStatus!='AUTH'" class="button-nav button color-gray-900 p-12 my-3"
                     [routerLink]="['/','login']">Login</button>
                 <button *ngIf="loginService.user.authStatus!='AUTH'"
                     class="button-nav button color-primary border border-1 border-primary rounded-1 my-3 button-hover-secondary-gray"
