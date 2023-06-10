@@ -16,3 +16,7 @@
 .image-hover-dark:hover .course-image-md {
     filter: brightness(75%);
 }
+
+.fixed-with-240 {
+    max-width: 240px;
+}

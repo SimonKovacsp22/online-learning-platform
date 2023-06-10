@@ -1,1 +1,16 @@
-<p>courses-by-search works!</p>
+<section class="row mt-large justify-content-center">
+    <header class="col-10 mb-4 d-flex justify-content-between">
+        <h3 class="text-title-medium">{{courses.length}} results for "{{searchTerm}}"</h3>
+        <div class="position-relative">
+            <select class="box-select w-100 input-large px-3 py-2 pe-5" type="text">
+                <option class="box-option">Newest</option>
+                <option selected class="box-option">Highest rated</option>
+                <option class="box-option">Most popular</option>
+            </select>
+            <fa-icon class="position-absolute caret-select" [icon]="faAngleDown" />
+        </div>
+    </header>
+    <div class="col-10"><app-course-template *ngFor="let course of courses" [course]="course"></app-course-template>
+    </div>
+
+</section>

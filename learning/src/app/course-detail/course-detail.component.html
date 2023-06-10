@@ -38,9 +38,9 @@
         </header>
         <!-- What you will learn -->
         <div class="p-4 border-gray-400 rounded-3 mb-5">
-            <h2 class="text-title-tertiary fw-bold mb-3">What you&apos;ll learn</h2>
+            <h2 class="text-title-tertiary fw-bold mb-2">What you&apos;ll learn</h2>
             <div class="row">
-                <div class="d-flex mt-2 col-6" *ngFor="let unit of course.whatYouWillLearn">
+                <div class="d-flex mt-3 col-6 lh-sm" *ngFor="let unit of course.whatYouWillLearn">
                     <fa-icon class="me-3" [icon]="faCheck" />
                     <p class="text-caption mb-0">{{unit.sentence}}</p>
                 </div>

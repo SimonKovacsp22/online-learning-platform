@@ -17,6 +17,8 @@ export class CourseService {
   constructor(private http: HttpClient) {}
 
   getRatingArray = (rating: number) => {
+    if (rating === 0) return [];
+    console.log(rating);
     const ratingUp = Math.ceil(rating);
     return new Array(ratingUp).fill(1);
   };
@@ -28,6 +30,7 @@ export class CourseService {
       (acc, { amount }: IRating) => acc + amount,
       initialValue
     );
+    if (sum === 0) return 0;
     const average = sum / ratings.length;
 
     const averageRounded = Math.ceil(average);
@@ -180,6 +183,12 @@ export class CourseService {
       }
     );
   };
+  searchCoursesPaginate(page: number, size: number, searchTerm: string) {
+    const searchUrl =
+      `${environment.rooturl}/courses/search?title=${searchTerm}&` +
+      `page=${page}&size=${size}`;
+    return this.http.get<getPaginationResponse>(searchUrl);
+  }
 }
 
 interface getCoursesResponse {
@@ -192,4 +201,14 @@ interface postCourseResponse {
 
 interface getlanguageResponse {
   languages: ILanguage;
+}
+
+interface getPaginationResponse {
+  courses: {
+    content: ICourse[];
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
 }

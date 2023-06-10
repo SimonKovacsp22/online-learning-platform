@@ -51,7 +51,7 @@ export class TeachManageComponent implements OnInit {
             title: this.course?.title,
             subtitle: this.course?.subtitle,
             language:
-              this.course?.languages[0].id != null
+              this.course?.languages[0] && this.course.languages.length > 0
                 ? this.course?.languages[0].id
                 : 1052,
             category:

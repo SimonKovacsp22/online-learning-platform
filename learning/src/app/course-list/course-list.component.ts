@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../services/dash/dashboard.service';
 import { ICourse } from '../models/course.model';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation, faStar } from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from '../services/course/course.service';
 import { LoginService } from '../services/login/login.service';
 
@@ -13,6 +13,7 @@ import { LoginService } from '../services/login/login.service';
 })
 export class CourseListComponent {
   faExclemation = faCircleExclamation;
+  faStar = faStar;
   categoryId = 0;
   categoryName = '';
   courses: ICourse[] = [];

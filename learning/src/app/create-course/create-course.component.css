@@ -14,20 +14,7 @@ select {
     appearance: none;
 }
 
-.box-select {
-    cursor: pointer;
-    outline: none;
-}
 
-.box-option {
-    pointer-events: none;
-    background-color: white;
-}
-
-
-.box-select:hover {
-    background-color: var(--gray-200);
-}
 
 .bottom-bar {
     bottom:0;
