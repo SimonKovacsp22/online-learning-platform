@@ -4,8 +4,8 @@
     justify-content: center;
     background-color: #fff;
     cursor: pointer;
-    padding: 12.5px 18px;
-    line-height: 15px;
+    padding: 12.5px 1.125rem;
+    line-height: 0.9375rem;
   }
   
   .btn-google:hover {
@@ -13,8 +13,8 @@
   }
   
   .btn-google-icon {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     margin-right: 8px;
   }
 
@@ -35,7 +35,7 @@
   }
 .red-left-position {
   transform: rotateY(180deg);
-  left: 150px;
+  left: 13,125rem;
   bottom: 80px;
 
 }
@@ -46,13 +46,13 @@
   }
 
   .otter-icon {
-    left: -25px;
-    bottom: 50px;
+    left: -1,5625rem;
+    bottom: 3,125rem;
     transform: rotateY(180deg);
   }
 
   .mb-21 {
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
   }
 
   .mb-36 {

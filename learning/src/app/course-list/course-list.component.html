@@ -16,10 +16,10 @@
 
     </div>
     <!-- Recent -->
-    <div class="col-12 mt-3 d-flex flex-row">
-        <div class="d-flex">
+    <div class="col-12 mt-3 d-flex flex-row w-2050">
+        <div class="d-flex flex-nowrap overflow-x-auto w-100">
             <div *ngFor="let course of courses" [routerLink]="['/courses/', course.id]"
-                class="cursor-pointer image-hover-dark me-3 fixed-with-240">
+                class="cursor-pointer image-hover-dark me-3 fixed-with-240 pb-2">
                 <img src="{{course.imageUrl}}" class="course-image-md mb-2" />
                 <h6 class="fw-700 mb-1 overflow-hidden">{{course.title}}</h6>
                 <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>

@@ -22,16 +22,16 @@ select {
     width: 100%;
     z-index: 1;
     background-color: white;
-    box-shadow: 0 -2px 4px rgba(0,0,0,.08), 0 -4px 12px rgba(0,0,0,.08);
-    padding:16px 24px;
+    box-shadow: 0 -2px 4px rgba(0,0,0,.08), 0 -4px 0.75rem rgba(0,0,0,.08);
+    padding:1rem 1.5rem;
 }
 
 .box-radio::before {
     content: '';
     display: inline-block;
     vertical-align: middle;
-    width: 15px;
-    height: 15px;
+    width: 0.9375rem;
+    height: 0.9375rem;
     border-radius: 50%;
     border: 2px solid #ddd;
     background-color: transparent;

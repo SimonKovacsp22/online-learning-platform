@@ -7,7 +7,9 @@
     color: rgb(40,48,80) !important;
 }
 
-
+.w-2050 {
+    width:2050px;
+}
 
 .image-hover-dark:hover .course-image-md {
     filter: brightness(75%);

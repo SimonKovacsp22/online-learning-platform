@@ -10,7 +10,7 @@
     border-bottom: none;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    padding-top:48px;
+    padding-top:3rem;
   }
 
   .mb-55 {
@@ -18,16 +18,16 @@
   }
 
   .teal-leaf {
-    right: 12px;
+    right: 0.75rem;
     top: 8px;
-      width: 50px;
+      width: 3,125rem;
       transform: rotateX(180deg);
   }
 
   
   .orange-leaf {
     z-index:1 ;
-    right: 38px;
+    right: 2.375rem;
     top: 40px;
     width: 40px;
   }
@@ -42,6 +42,6 @@
 
   .otter-icon {
     left: calc( 50% - 30px) ;
-    bottom: -64px;
+    bottom: -4rem;
     transform: rotateZ(270deg);
   }

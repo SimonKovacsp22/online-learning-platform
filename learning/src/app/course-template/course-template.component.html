@@ -1,31 +1,29 @@
-<div class="row">
-    <div *ngIf="course != null" [routerLink]="['/courses/', course.id]"
-        class="col-12 d-block d-md-flex align-items-start justify-content-between py-3 border-bottom-gray-400 cursor-pointer image-hover-dark">
-        <div class="d-block d-md-flex align-items-start">
-            <img src="{{course.imageUrl}}" class="course-image-md me-3 mb-2" />
-            <div>
-                <h6 class="fw-700 mb-1 ">{{course.title}}</h6>
-                <p class="mb-1 text-caption">{{course.subtitle}}</p>
-                <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
-                <div class="d-flex align-items-center">
-                    <p class="text-super-caption color-yellow-600 mb-0 fw-bold me-1">{{totalRating}}</p>
-                    <fa-icon *ngFor="let star of courseService.getRatingArray(totalRating)" [icon]="faStar"
-                        class="text-super-caption color-yellow-500" />
-                    <p class="mb-0 text-super-caption px-2">({{course.ratings.length}})</p>
-                </div>
-                <p class="text-super-caption mb-1">{{courseService.getTotalLength(course.sections,true)}} &#x2022;
-                    {{course.sections.length}} lectures &#x2022; All levels</p>
-                <div class="d-flex mb-1">
-                    <div class="me-1 text-white bg-primary text-super-caption px-1 rounded-1"
-                        *ngFor="let language of course.languages">
-                        {{language.name}}
-                    </div>
+<div *ngIf="course != null" [routerLink]="['/courses/', course.id]"
+    class=" d-block d-md-flex align-items-start justify-content-between py-3 border-bottom-gray-400 cursor-pointer image-hover-dark">
+    <div class="d-block d-md-flex align-items-start course-width-fixed-md-none">
+        <img src="{{course.imageUrl}}" class="course-image-md me-3 mb-2 w-100 w-md-none" />
+        <div>
+            <h6 class="fw-700 mb-1 ">{{course.title}}</h6>
+            <p class="mb-1 text-caption">{{course.subtitle}}</p>
+            <p class="mb-1 text-super-caption">{{course.user.firstName + " " + course.user.lastName}}</p>
+            <div class="d-flex align-items-center">
+                <p class="text-super-caption color-yellow-600 mb-0 fw-bold me-1">{{totalRating}}</p>
+                <fa-icon *ngFor="let star of courseService.getRatingArray(totalRating)" [icon]="faStar"
+                    class="text-super-caption color-yellow-500" />
+                <p class="mb-0 text-super-caption px-2">({{course.ratings.length}})</p>
+            </div>
+            <p class="text-super-caption mb-1">{{courseService.getTotalLength(course.sections,true)}} &#x2022;
+                {{course.sections.length}} lectures &#x2022; All levels</p>
+            <div class="d-flex mb-1">
+                <div class="me-1 text-white bg-primary text-super-caption px-1 rounded-1"
+                    *ngFor="let language of course.languages">
+                    {{language.name}}
                 </div>
             </div>
         </div>
-        <div>
-            <p class="mb-1 fw-700">&euro;{{course.price}}</p>
-            <p class="mb-1 text-caption text-decoration-line-through All Levels">&euro;84.99</p>
-        </div>
+    </div>
+    <div>
+        <p class="mb-1 fw-700">&euro;{{course.price}}</p>
+        <p class="mb-1 text-caption text-decoration-line-through All Levels">&euro;84.99</p>
     </div>
 </div>

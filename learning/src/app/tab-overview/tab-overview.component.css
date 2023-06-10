@@ -17,7 +17,7 @@
 .custom-select .chevron {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 0.625rem;
     transform: translateY(-50%);
     pointer-events: none;
   }
@@ -26,8 +26,8 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding-block: 12px;
-    padding-left:16px;
+    padding-block: 0.75rem;
+    padding-left:1rem;
     padding-right: 35px; /* Add space for the icon */
     background: #fff;
 

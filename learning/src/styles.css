@@ -39,45 +39,49 @@
   }
 
 .box-shadow {
-   box-shadow: 3px 3px 32px rgba(0,0,0,.1)
+   box-shadow: 3px 3px 2rem rgba(0,0,0,.1)
 }
 
 .modal-shadow {
-    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
+    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 0.75rem rgba(0,0,0,.08);
 }
 
 .paper-shadow {
-    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.16);
+    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 0.75rem rgba(0,0,0,.16);
 }
 
 
 .line-height-16 {
-    line-height: 16px;
+    line-height: 1rem;
 }
 
 .text-super-caption {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--gray-600);
 }
+
+.super-caption {
+    font-size: 0.75rem;
+}
 .text-caption {
-    font-size: 14px;
+    font-size: .875rem;
 }
 
 .text-nav {
     font-weight: 400;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 21px;
     color: var(--gray-900);
 }
 
 .text-button-lg {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 1rem;
 }
 
 .text-hero {
-    font-size: 67px;
+    font-size: 4,1875rem;
     font-weight: 600;
     line-height: 74px;
     color: var(--color-secondary);
@@ -85,27 +89,27 @@
 
 .text-subhero {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 28px;
     color: var(--color-secondary);
 }
 
 .text-paragraph {
-    line-height: 22.4px;
-    font-size: 15px;
+    line-height: 1.4rem;
+    font-size: 0.9375rem;
     font-weight: 400;
 }
 
 .text-subtitle {
     font-weight: 400;
-    font-size: 17px;
-    line-height: 22.4px;
+    font-size: 1,0625rem;
+    line-height: 1.4rem;
     color: var(--color-secondary);
 }
 
 .text-subtitle-secondary {
-    font-size: 18px;
-    color: var(--color-secondary);
+    font-size: 1.125rem;
+    /* color: var(--color-secondary); */
 }
 
 .text-logo {
@@ -114,24 +118,24 @@
 }
 
 .text-title {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 600;
-    line-height: 52.8px;
+    line-height: 3.3rem;
 }
 
 .text-title-secondary {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: 600;
 }
 
 .text-title-tertiary {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
-    line-height: 26.88px;
+    line-height: 1.7rem;
 }
 
 .text-title-medium {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 600;
 
 }
@@ -152,58 +156,58 @@
 }
 
 .col-gap-10 {
-    column-gap: 10px;
+    column-gap: 0.625rem;
 }
 
 .p-12 {
-    padding: 12px;
+    padding: 0.75rem;
 }
 .p-10 {
-    padding: 10px;
+    padding: 0.625rem;
 }
 .p-x-6px {
     padding-inline: 6px;
 }
 
 .px-6 {
-    padding-inline: 64px;
+    padding-inline: 4rem;
 }
 
 .py-18 {
-    padding-block: 18px;
+    padding-block: 1.125rem;
 }
 
 .py-40 {
     padding-block: 40px;
 }
 .p-48 {
-    padding: 48px;
+    padding: 3rem;
 }
 .pb-32 {
-    padding-bottom:32px !important;
+    padding-bottom:2rem !important;
 }
 
 .pb-64 {
-    padding-bottom:64px !important;
+    padding-bottom:4rem !important;
 }
 
 .mb-32 {
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 .mb-24 {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }
 
 
 .my-12 {
-    margin-block: 12px;
+    margin-block: 0.75rem;
 }
 .py-10 {
-    padding-block: 10px !important;
+    padding-block: 0.625rem !important;
 }
 
 .py-12 {
-    padding-block:12px;
+    padding-block:0.75rem;
 }
 
 
@@ -235,16 +239,16 @@ button {
 }
 
 .button-nav {
-    padding: 12px 18px;
-    line-height: 15px;
+    padding: 0.75rem 1.125rem;
+    line-height: 0.9375rem;
 }
 
 .button-regular {
-    padding: 15px 18px;
-    line-height: 15px;
+    padding: 0.9375rem 1.125rem;
+    line-height: 0.9375rem;
 }
 .button-text {
-    line-height: 15px;
+    line-height: 0.9375rem;
     white-space: nowrap;
 }
 
@@ -253,7 +257,7 @@ button {
 }
 
 .button-large {
-    padding: 20px 32px;
+    padding: 1.25rem 2rem;
 }
 
 .button-hover-primary-dark:hover:not(.button-disabled) {
@@ -264,7 +268,7 @@ background-color: var(--color-primary-dark) !important;
     background-color: var(--gray-200) !important;
 }
 .input-large {
-    height: 48px;
+    height: 3rem;
     outline: none;
 }
 
@@ -351,8 +355,8 @@ background-color: var(--color-primary-dark) !important;
 }
 
 .icon-nav-size svg{
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 .icon-22-size {
@@ -365,8 +369,8 @@ background-color: var(--color-primary-dark) !important;
 }
 
 .caret-select {
-    right: 16px;
-    top: calc(50% - 10px);
+    right: 1rem;
+    top: calc(50% - 0.625rem);
     pointer-events: none;
 }
 
@@ -376,8 +380,8 @@ background-color: var(--color-primary-dark) !important;
 }
 
 .icon-input-size svg {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
 }
 
 .icon-gray-600 svg path {
@@ -418,28 +422,28 @@ background-color: var(--color-primary-dark) !important;
   }
 
   .user-badge-md {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
+    width: 3,125rem;
+    height: 3,125rem;
+    min-width: 3,125rem;
   }
 
   .user-badge-sm {
     width: 34px;
-    height: 32px;
-    min-width: 32px;
+    height: 2rem;
+    min-width: 2rem;
   }
 
   .user-badge-lg {
-    font-size: 24px;
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
+    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    min-width: 4rem;
   }
 
   .course-image-xs {
-    min-width: 64px;
-    width: 64px;
-    height: 64px;
+    min-width: 4rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .course-image-md {
@@ -453,8 +457,8 @@ background-color: var(--color-primary-dark) !important;
 
   .hover-modal {
     z-index: 100;
-    margin-top: 20px;
-      min-width: 300px;
+    margin-top: 1.25rem;
+      min-width: 18.75rem;
       opacity: 0;
       animation: fadeAndScaleAnimation 200ms cubic-bezier(.2,0,.38,.9) forwards
   }
@@ -466,7 +470,7 @@ background-color: var(--color-primary-dark) !important;
   
   .cart-hover-modal {
       margin-top: 4px;
-      min-width: 300px;
+      min-width: 18.75rem;
       opacity: 0;
       animation: fadeAndScaleAnimation 200ms cubic-bezier(.2,0,.38,.9) forwards
   }
@@ -540,11 +544,22 @@ select {
       transform: scale(1);
     }
   }
+  
+  .course-width-fixed-md-none {
+    max-width: 18rem;
+  }
+ 
 
   @media (min-width:768px) {
     .course-image-md {
         width: 240px;
         height: 135px;
+    }
+    .course-width-fixed-md-none {
+        max-width: none;;
+    }
+    .w-md-none {
+        width: unset !important;
     }
   }
 
