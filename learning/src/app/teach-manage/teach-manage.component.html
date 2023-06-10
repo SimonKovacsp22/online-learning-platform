@@ -166,7 +166,50 @@
                         </div>
                     </div>
                 </div>
+                <!-- Intended learners-->
+                <div *ngIf="selectedOption === 'intended students'" class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 px-4 fixed-width-1500">
+                            <div class="paper-shadow">
+                                <header class="border-bottom-gray-400 px-6 py-40">
+                                    <h3 class="mb-0 text-title-tertiary">Intended learners</h3>
+                                </header>
+                                <div class="px-6 py-40">
+                                    <p class="text-paragraph mb-5">The following descriptions will be publicly visible
+                                        on
+                                        your <strong class="color-primary">Course Landing Page</strong> and will have a
+                                        direct impact on your
+                                        course performance. These descriptions will help learners decide if your course
+                                        is right for them.</p>
+                                    <div>
+                                        <form [formGroup]="learnersForm">
+                                            <div class="mb-4">
+                                                <label for="title" class="mb-1 text-nav fw-bold">What will students
+                                                    learn in your course?</label>
+                                                <p class="text-paragraph">You must enter at least <strong
+                                                        class="color-primary">4 learning
+                                                        objectives or outcomes</strong> that
+                                                    learners can expect to achieve after completing your course.</p>
+                                                <!-- Title Input -->
 
+                                                <input
+                                                    *ngFor="let sentence of whatYouWillLearn; let sentenceIdx = index"
+                                                    [formControlName]="'input'+sentenceIdx"
+                                                    class="input-large w-100 mb-3 px-3 py-2" type="text"
+                                                    placeholder="{{sentence.sentence}}" />
+                                                <div class="d-flex align-items-center color-primary cursor-pointer hover-dark"
+                                                    (click)="addMoreWYWL()">
+                                                    <fa-icon class="icon-22-size" [icon]="faPlus" />
+                                                    <span class="text-paragraph fw-bold ms-2">Add more</span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

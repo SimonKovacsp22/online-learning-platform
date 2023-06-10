@@ -10,7 +10,7 @@
                     <div class="col-11 ">
                         <!-- Video Player -->
                         <app-video-player
-                            [options]="{autoplay: false,fluid:true,aspectRatio:'16:9', sources: [{ src: selectedVideo, type: 'video/mp4' }]}"></app-video-player>
+                            [options]="{autoplay: false,fluid:true,aspectRatio:'16:9', sources: [{ src: selectedVideoUrl, type: 'video/mp4' }]}"></app-video-player>
                     </div>
                 </div>
                 <!-- Course Overview -->
@@ -27,13 +27,22 @@
                         <h6 class="mb-0">Course content</h6>
 
                     </div>
-                    <app-my-course-menu *ngFor="let section of course.sections">
+                    <app-my-course-menu *ngFor="let section of course.sections,let sectionIdx = index">
                         <div slot="title">
-                            <h6 class="mb-1">{{section.title}}</h6>
+                            <h6 class="mb-2 fw-bold text-section">Section{{sectionIdx+1}}:&nbsp;{{section.title}}</h6>
                             <p class="mb-0 text-super-caption">HELLO</p>
                         </div>
                         <div slot="body">
-                            <p *ngFor="let video of section.videos">{{video.title}}</p>
+                            <div (click)="onVideoSelect(video.sourceUrl)"
+                                *ngFor="let video of section.videos;let videoIdx = index"
+                                class="d-flex align-items-start cursor-pointer px-3 py-2 video-hover">
+                                <input class="mt-5px me-2" type="checkbox" />
+                                <div>
+                                    <p class="text-caption fw-normal mb-2">{{videoIdx + 1}}.&nbsp;{{video.title}}</p>
+                                    <fa-icon class="icon-gray-600" [icon]="faClapperboard" />&nbsp;<span
+                                        class="text-super-caption">{{courseService.getVideoLength(video.durationInSeconds)}}</span>
+                                </div>
+                            </div>
 
                         </div>
                     </app-my-course-menu>

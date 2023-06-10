@@ -13,7 +13,6 @@ export class SearchComponent {
   constructor(private router: Router) {}
 
   doSearch(value: string) {
-    console.log(value);
     this.router.navigateByUrl(`/search/${value}`);
   }
 

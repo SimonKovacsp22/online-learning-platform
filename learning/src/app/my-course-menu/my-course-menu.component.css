@@ -5,3 +5,21 @@
 .acc-btn {
     border-radius: 0 !important;
 }
+
+.accordion-body {
+    padding: 0px 0px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    box-shadow: none !important;
+    background-color: var(--gray-100) !important;
+}
+
+.accordion-button:focus {
+    border-color:#dee2e6 !important ;
+    box-shadow: none !important;
+}
+
+.accordion-button {
+    background-color: var(--gray-100) !important;
+}

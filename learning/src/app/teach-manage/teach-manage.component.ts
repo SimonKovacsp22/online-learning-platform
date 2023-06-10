@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dash/dashboard.service';
 import { ICategory } from '../models/category.model';
-import { faCircleCheck, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleCheck,
+  faAngleDown,
+  faPlusCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from '../services/course/course.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ICourse } from '../models/course.model';
 import { ILanguage } from '../models/language.model';
+import { IWYWL, WYWL } from '../models/wywl.model';
 
 @Component({
   selector: 'app-teach-manage',
@@ -19,27 +24,32 @@ import { ILanguage } from '../models/language.model';
 export class TeachManageComponent implements OnInit {
   // @ts-ignore
   courseForm: FormGroup;
+  learnersForm: FormGroup;
   faCircleCheck = faCircleCheck;
   faAngleDown = faAngleDown;
+  faPlus = faPlusCircle;
   categories: ICategory[] = [];
-  selectedOption: string = 'landing page';
+  selectedOption: string = 'intended students';
   imagePreview: string | null = null;
   courseId: string | null = null;
   course: ICourse | null = null;
   languages: ILanguage[] = [];
+  whatYouWillLearn: IWYWL[] = [];
   constructor(
     private dashboardService: DashboardService,
     private courseService: CourseService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
-  ) {}
-  ngOnInit(): void {
+  ) {
     this.courseForm = this.formBuilder.group({
       title: '',
       subtitle: '',
       language: 1052,
       category: 0,
     });
+    this.learnersForm = this.formBuilder.group({});
+  }
+  ngOnInit(): void {
     this.courseId = this.route.snapshot.paramMap.get('id');
     if (this.courseId != null) {
       this.courseService
@@ -47,6 +57,7 @@ export class TeachManageComponent implements OnInit {
         .subscribe((data) => {
           const { course } = <any>data.body;
           this.course = course;
+          this.generateWhatYouWillLearnForm(course);
           this.courseForm.patchValue({
             title: this.course?.title,
             subtitle: this.course?.subtitle,
@@ -88,5 +99,34 @@ export class TeachManageComponent implements OnInit {
 
   onOptionChange(option: string) {
     this.selectedOption = option;
+  }
+
+  generateWhatYouWillLearnForm(course: ICourse) {
+    this.whatYouWillLearn = course.whatYouWillLearn;
+    if (this.whatYouWillLearn.length >= 4) {
+      this.whatYouWillLearn.forEach((input, idx) => {
+        this.learnersForm.addControl(
+          'input' + idx,
+          new FormControl(input.sentence)
+        );
+      });
+    } else {
+      while (this.whatYouWillLearn.length !== 4) {
+        this.whatYouWillLearn.push(new WYWL('Something', null));
+      }
+      this.whatYouWillLearn.forEach((input, idx) => {
+        this.learnersForm.addControl(
+          'input' + idx,
+          new FormControl('Something')
+        );
+        const key = 'input' + idx;
+      });
+    }
+  }
+
+  addMoreWYWL() {
+    this.whatYouWillLearn.push(new WYWL('Something', null));
+    const key = 'input' + (this.whatYouWillLearn.length - 1);
+    this.learnersForm.addControl(key, new FormControl('Something'));
   }
 }

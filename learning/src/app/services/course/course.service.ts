@@ -18,7 +18,6 @@ export class CourseService {
 
   getRatingArray = (rating: number) => {
     if (rating === 0) return [];
-    console.log(rating);
     const ratingUp = Math.ceil(rating);
     return new Array(ratingUp).fill(1);
   };
@@ -188,6 +187,11 @@ export class CourseService {
       `${environment.rooturl}/courses/search?title=${searchTerm}&` +
       `page=${page}&size=${size}`;
     return this.http.get<getPaginationResponse>(searchUrl);
+  }
+
+  getVideoLength(lengthInSeconds: number) {
+    const minutes = Math.floor(lengthInSeconds / 60);
+    return `${minutes}min`;
   }
 }
 

@@ -1,0 +1,11 @@
+.text-section {
+    font-size: 15px;
+}
+
+.mt-5px {
+    margin-top:5px;
+}
+
+.video-hover:hover{
+    background-color: var(--gray-200);
+}

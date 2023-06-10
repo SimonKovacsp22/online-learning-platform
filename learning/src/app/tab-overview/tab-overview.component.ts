@@ -1,7 +1,7 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { ICourse } from '../models/course.model';
-import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { CourseService } from '../services/course/course.service';
 import { faChevronDown, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

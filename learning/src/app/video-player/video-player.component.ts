@@ -39,9 +39,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.player = videojs(
       this.target.nativeElement,
       this.options,
-      function onPlayerReady() {
-        console.log('onPlayerReady', this);
-      }
+      function onPlayerReady() {}
     );
   }
 
