@@ -9,8 +9,8 @@
 .play-button {
     display: none;
     position: absolute;
-    width: 3,125rem;
-    height: 3,125rem;
+    width: 3.125rem;
+    height: 3.125rem;
     background-color: white;
     border-radius: 50%;
     left: 40%;

@@ -2,15 +2,15 @@
     #registerForm="ngForm">
     <header class="col-12 bg-primary register-header rounded-4 position-relative">
         <h2 class=" text-title mb-0 text-white">Lurnx<fa-icon [icon]="faOtter" class="icon-reg-size"></fa-icon></h2>
-        <img class="position-absolute teal-leaf" src="../../assets/teal-leaft.svg" />
-        <img class="position-absolute red-leaf" src="../../assets/red-leaf.svg" />
-        <img class="position-absolute orange-leaf" src="../../assets/orange-leaf.svg" />
+        <img class="position-absolute teal-leaf leaf" src="../../assets/teal-leaft.svg" />
+        <img class="position-absolute red-leaf leaf" src="../../assets/red-leaf.svg" />
+        <img class="position-absolute orange-leaf leaf" src="../../assets/orange-leaf.svg" />
         <fa-icon class="position-absolute  otter-icon color-primary" [icon]="faOtter" />
 
 
     </header>
     <!-- Left Side -->
-    <div class="col-6 register-container-left">
+    <div class="col-12 col-md-6 register-container-left">
 
         <!-- First Name -->
         <div class="form-group mb-24">
@@ -45,7 +45,7 @@
         </div>
     </div>
     <!-- Right Side -->
-    <div class="col-6 register-container-right">
+    <div class="col-12 col-md-6 register-container-right">
 
         <!-- Password -->
         <div class="form-group mb-24">
@@ -72,8 +72,7 @@
                 'py-10': isLoading
             }">{{!isLoading ?
             'Register' : ''}}
-            <div *ngIf="isLoading" class="spinner-border text-light" style="width:1,5625rem;height:1,5625rem;"
-                role="status">
+            <div *ngIf="isLoading" class="spinner-border text-light spinner-25" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </button>

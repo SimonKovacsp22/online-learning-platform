@@ -41,6 +41,7 @@ import { QuillModule } from 'ngx-quill';
 import { SearchComponent } from './search/search.component';
 import { CoursesBySearchComponent } from './courses-by-search/courses-by-search.component';
 import { CourseTemplateComponent } from './course-template/course-template.component';
+import { TeachManageSidebarComponent } from './teach-manage-sidebar/teach-manage-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { CourseTemplateComponent } from './course-template/course-template.compo
     SearchComponent,
     CoursesBySearchComponent,
     CourseTemplateComponent,
+    TeachManageSidebarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<div class="side-nav px-3">
+    <div class="p-2">
+        <div class="mb-4">
+            <h6 class="fw-bold mb-2">Plan your course</h6>
+            <div (click)="onOptionChange('students')" [ngClass]="{
+                'manage-option-selected': selectedOption === 'students'
+            }" class="d-flex align-items-center manage-option px-3 py-2">
+                <fa-icon [icon]="faCircleCheck" class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                <p class="mb-0 fw-normal">Intended students</p>
+            </div>
+        </div>
+        <div class="mb-4">
+            <h6 class="fw-bold mb-2">Create your content</h6>
+            <div (click)="onOptionChange('curiculum')" [ngClass]="{
+                'manage-option-selected': selectedOption === 'curiculum'
+            }" class="d-flex align-items-center manage-option px-3 py-2 ">
+                <fa-icon [icon]="faCircleCheck" class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                <p class="mb-0 fw-normal">Curiculum</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <h6 class="fw-bold mb-2">Publish your course</h6>
+            <div (click)="onOptionChange('basic')" [ngClass]="{
+                'manage-option-selected': selectedOption === 'basic'
+            }" class="d-flex align-items-center manage-option px-3 py-2 mb-2">
+                <fa-icon [icon]="faCircleCheck" class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                <p class="mb-0 fw-normal">Landing page</p>
+            </div>
+            <div (click)="onOptionChange('pricing')" [ngClass]="{
+                'manage-option-selected': selectedOption === 'pricing'
+            }" class="d-flex align-items-center manage-option px-3 py-2 mb-2">
+                <fa-icon [icon]="faCircleCheck" class="color-primary me-2 icon-nav-size mb-negative-5 " />
+                <p class="mb-0 fw-normal">Pricing</p>
+            </div>
+        </div>
+    </div>
+    <button class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark">Publish</button>
+</div>

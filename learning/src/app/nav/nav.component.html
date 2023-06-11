@@ -29,7 +29,7 @@
                 </div>
             </div>
             <a [routerLink]=" ['/']"
-                class="d-md-none fs-2 text-logo text-decoration-none color-blue-900 position-relative">Lurnx<fa-icon
+                class="d-none d-sm-block d-md-none fs-2 text-logo text-decoration-none color-blue-900 position-relative">Lurnx<fa-icon
                     [icon]="faOtter" class="icon-nav-size"></fa-icon></a>
             <div class="d-flex text-nav align-items-center col-gap-10 ">
                 <app-cart-prew *ngIf="loginService.user.authStatus=='AUTH'"></app-cart-prew>
@@ -37,7 +37,7 @@
                 <button *ngIf="loginService.user.authStatus!='AUTH'" class="button-nav button color-gray-900 p-12 my-3"
                     [routerLink]="['/','login']">Login</button>
                 <button *ngIf="loginService.user.authStatus!='AUTH'"
-                    class="button-nav button color-primary border border-1 border-primary rounded-1 my-3 button-hover-secondary-gray"
+                    class="sing-up-button button-nav button color-primary border border-1 border-primary rounded-1 my-3 button-hover-secondary-gray"
                     [routerLink]="['/','register']">Sign
                     up</button>
                 <app-avatar *ngIf="loginService.user.authStatus=='AUTH'"></app-avatar>

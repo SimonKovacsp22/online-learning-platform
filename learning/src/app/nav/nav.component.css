@@ -3,6 +3,16 @@
     box-shadow: 3px 3px 2rem rgba(0,0,0,.1);
 }
 
+.sing-up-button {
+    display: none;
+}
+
+@media (min-width: 290px) {
+    .sing-up-button {
+        display: block;
+    }
+}
+
 
 
 

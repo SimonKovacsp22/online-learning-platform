@@ -62,6 +62,10 @@ const routes: Routes = [
   {
     path: 'teach/manage/:id',
     component: TeachManageComponent,
+  },
+  {
+    path: 'teach/manage/:id/option/:optionId',
+    component: TeachManageComponent,
     canActivate: [canActivatePrivate],
   },
   { path: 'courses/:id', component: CourseDetailComponent },

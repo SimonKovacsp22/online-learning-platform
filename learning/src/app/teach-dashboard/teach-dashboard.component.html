@@ -14,7 +14,8 @@
         </div>
         <!-- Course -->
         <div *ngIf="taughtCourses && taughtCourses.length > 0 ;else noCourses" class="row justify-content-center  mt-4">
-            <div [routerLink]="['/teach/manage/',course.id]" *ngFor="let course of taughtCourses" class="col-10 mb-3">
+            <div [routerLink]="['/teach/manage/',course.id,'option','basic']" *ngFor="let course of taughtCourses"
+                class="col-10 mb-3">
                 <div class="d-flex height-9 border-gray-400 w-100">
                     <img class="object-fit-cover" *ngIf="course.imageUrl ;else placeholderImage"
                         src="{{course.imageUrl}}" width="142" />

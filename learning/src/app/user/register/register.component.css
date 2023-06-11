@@ -20,7 +20,7 @@
   .teal-leaf {
     right: 0.75rem;
     top: 8px;
-      width: 3,125rem;
+      width: 3.125rem;
       transform: rotateX(180deg);
   }
 
@@ -44,4 +44,46 @@
     left: calc( 50% - 30px) ;
     bottom: -4rem;
     transform: rotateZ(270deg);
+  }
+
+  input {
+    width: 100%;
+  }
+
+  @media (max-width:992px) {
+    .register-container-left {
+      padding: 2rem 3rem 3rem 4rem;
+    }
+    .register-container-right {
+      padding: 2rem 4rem 3rem 3rem;
+    }
+  }
+  @media (max-width:768px) {
+    .register-container-left {
+      padding: 1rem 2rem 0rem 2rem;
+    }
+    .register-container-right {
+      padding: 0rem 2rem 1rem 2rem;
+    }
+    .otter-icon {
+      display: none;
+    }
+    
+  }
+  @media (max-width:576px) {
+    .register-container-left {
+      padding: 1rem 1rem 0rem 1rem;
+    }
+    .register-container-right {
+      padding: 0rem 1rem 1rem 1rem;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .icon-input-size {
+      display: none;
+    }
+    .leaf {
+      display: none;
+    }
   }
