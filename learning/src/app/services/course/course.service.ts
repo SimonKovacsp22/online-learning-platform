@@ -204,6 +204,30 @@ export class CourseService {
       }
     );
   }
+  updateCoursePrice(price: number, courseId: number) {
+    return this.http.put<postOrPutCourseResponse>(
+      `${environment.rooturl}/courses/update/price/${courseId}`,
+      {
+        price,
+      },
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
+  updateCourseLearners(sentences: string[], courseId: number) {
+    return this.http.put<postOrPutCourseResponse>(
+      `${environment.rooturl}/courses/update/learning/${courseId}`,
+      {
+        sentences,
+      },
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 interface getCoursesResponse {

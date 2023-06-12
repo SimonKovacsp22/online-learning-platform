@@ -42,6 +42,7 @@ import { SearchComponent } from './search/search.component';
 import { CoursesBySearchComponent } from './courses-by-search/courses-by-search.component';
 import { CourseTemplateComponent } from './course-template/course-template.component';
 import { TeachManageSidebarComponent } from './teach-manage-sidebar/teach-manage-sidebar.component';
+import { AlertSuccessComponent } from './alert-success/alert-success.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { TeachManageSidebarComponent } from './teach-manage-sidebar/teach-manage
     CoursesBySearchComponent,
     CourseTemplateComponent,
     TeachManageSidebarComponent,
+    AlertSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +86,7 @@ import { TeachManageSidebarComponent } from './teach-manage-sidebar/teach-manage
     ReactiveFormsModule,
     MyCourseMenuComponent,
     TabOverviewComponent,
+
     QuillModule.forRoot(),
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',

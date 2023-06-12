@@ -9,8 +9,15 @@
                     <div *ngIf="title != null" class="border-start-gray-400 py-1 ps-3 color-gray-100">
                         <h6 class="mb-0 fw-normal">{{title}}</h6>
                     </div>
+                    <ng-content select="[slot=navigation]"></ng-content>
                 </div>
-                <ng-content select="[slot=button]"></ng-content>
+                <div class="d-flex align-items-center ">
+                    <ng-content select="[slot=loader]"></ng-content>
+                    <ng-content select="[slot=alert]"></ng-content>
+                    <ng-content select="[slot=button]"></ng-content>
+
+
+                </div>
             </nav>
         </div>
     </div>

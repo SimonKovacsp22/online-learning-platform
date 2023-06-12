@@ -1,8 +1,27 @@
 <section>
     <!-- Navbar -->
     <app-nav-private [title]="course?.title">
+        <div class="ms-3 d-flex gap-2" slot="navigation">
+            <div class="bg-secondary text-white fw-semibold text-caption line-height-16 py-1 px-2" *ngIf="course">
+                {{course.draft ?
+                'DRAFT'
+                : 'PUBLIC'}}</div>
+            <button class="text-white d-flex gap-1 fw-semibold" routerLink="/teach">
+
+                <span>Dashboard</span>
+                <fa-icon style="margin-top:1px;" [icon]="faArrow" />
+            </button>
+
+        </div>
+        <div slot="loader" *ngIf="isLoading" class="spinner-border spinner-25 text-light me-4" role="status">
+        </div>
         <button slot="button" (click)="updateCourse()"
-            class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray bg-white fw-semibold py-2">SAVE</button>
+            class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray bg-white fw-semibold py-2 ">SAVE</button>
+        <div slot="alert">
+            <app-alert-success [message]="successMessage" [show]="isAlertVisible"
+                (onClose)="handleCloseAlert($event)"></app-alert-success>
+
+        </div>
     </app-nav-private>
     <div class="container-fluid mt-semi-large">
         <div class="row justify-content-center">
@@ -111,8 +130,8 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <p class="mb-1">Upload your course image here.</p>
-                                                    <input formControlName="image" type="file"
-                                                        (change)="onFileSelected($event)" accept="image/*">
+                                                    <input type="file" (change)="onFileSelected($event)"
+                                                        accept="image/*">
                                                 </div>
                                             </div>
 
@@ -155,7 +174,7 @@
                                                     *ngFor="let sentence of whatYouWillLearn; let sentenceIdx = index"
                                                     [formControlName]="'input'+sentenceIdx"
                                                     class="input-large w-100 mb-3 px-3 py-2" type="text"
-                                                    placeholder="{{sentence.sentence}}" />
+                                                    placeholder="{{sentence.placeholder}}" />
                                                 <div class="d-flex align-items-center color-primary cursor-pointer hover-dark"
                                                     (click)="addMoreWYWL()">
                                                     <fa-icon class="icon-22-size" [icon]="faPlus" />
@@ -169,6 +188,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Pricing -->
                 <div *ngIf="option === 'pricing'" class="container-fluid ">
                     <div class="row">
                         <div class="col-12 px-4 fixed-width-1500">
@@ -187,7 +207,7 @@
                                             content
                                             must be less than 2 hours.</p>
                                     </div>
-                                    <form class="d-flex gap-3">
+                                    <form [formGroup]="priceForm" class="d-flex gap-3">
                                         <div class="position-relative">
                                             <select class="box-select w-100 input-large ps-3 pe-5 py-2">
                                                 <option class="box-option">EUR</option>
@@ -195,14 +215,75 @@
                                             <fa-icon class="position-absolute caret-select" [icon]="faAngleDown" />
                                         </div>
                                         <div class="position-relative">
-                                            <select class="box-select w-100 input-large ps-3 pe-5 py-2">
-                                                <option class="box-option">Free</option>
-                                                <option class="box-option">&euro;19.99 tier(1)</option>
-                                                <option class="box-option">&euro;24.99 tier(2)</option>
-                                                <option class="box-option">&euro;49.99 tier(3)</option>
-                                                <option class="box-option">&euro;99.99 tier(4)</option>
+                                            <select formControlName="price"
+                                                class="box-select w-100 input-large ps-3 pe-5 py-2">
+                                                <option [ngValue]="0" class="box-option">Free</option>
+                                                <option [ngValue]="19.99" class="box-option">&euro;19.99 tier(1)
+                                                </option>
+                                                <option [ngValue]="24.99" class="box-option">&euro;24.99 tier(2)
+                                                </option>
+                                                <option [ngValue]="49.99" class="box-option">&euro;49.99 tier(3)
+                                                </option>
+                                                <option [ngValue]="99.99" class="box-option">&euro;99.99 tier(4)
+                                                </option>
                                             </select>
                                             <fa-icon class="position-absolute caret-select" [icon]="faAngleDown" />
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Curriculum -->
+                <div *ngIf="option === 'curriculum'" class="container-fluid ">
+                    <div class="row">
+                        <div class="col-12 px-4 fixed-width-1500">
+                            <div class="paper-shadow">
+                                <header class="border-bottom-gray-400 px-6 py-40">
+                                    <h3 class="mb-0 text-title-tertiary fw-bold">Curriculum</h3>
+                                </header>
+                                <div class="px-6 py-40 row">
+                                    <div class="col-10">
+                                        <h6 class="text-nav fw-bold mb-3">Sections and lectures</h6>
+                                        <p class="text-paragraph mb-4">
+                                            Start putting together your course by creating sections or lectures
+                                            If you’re intending to offer your course for free, the total length of video
+                                            content must be less than 2 hours.
+                                        </p>
+                                    </div>
+                                    <form>
+                                        <div class="bg-gray-200 border-gray-900 mb-3"
+                                            *ngFor="let section of course?.sections;let sectionIdx = index">
+                                            <div class="px-2 py-3">
+                                                <h6 class="text-paragraph fw-bold mb-0">Section&nbsp;{{sectionIdx
+                                                    +1}}:&nbsp;&nbsp;
+                                                    <fa-icon [icon]="faFile" />
+                                                    <span class="ms-1 fw-normal">{{section.title}}</span>
+                                                </h6>
+                                            </div>
+                                            <div class="py-4 ps-5 pe-2">
+                                                <div class="bg-white px-2 py-3 border-gray-900 mb-2 d-flex justify-content-between"
+                                                    *ngFor="let video of section.videos;let videoIdx = index">
+                                                    <h3 class="text-paragraph fw-normal mb-0">
+
+                                                        <fa-icon [icon]="faCheck" />
+                                                        Lecture&nbsp;{{videoIdx
+                                                        +1}}:&nbsp;&nbsp;
+                                                        <fa-icon [icon]="faFile" />
+                                                        <span class="ms-1 fw-normal">{{video.title}}</span>
+                                                    </h3>
+                                                    <input type="file" />
+                                                </div>
+
+                                            </div>
+
+
+
+
+
                                         </div>
                                     </form>
 

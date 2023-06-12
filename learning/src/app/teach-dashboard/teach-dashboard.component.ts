@@ -5,6 +5,7 @@ import { LoginService } from '../services/login/login.service';
 
 import { BehaviorSubject, Subscription, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
+import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-teach-dashboard',
   templateUrl: './teach-dashboard.component.html',
@@ -14,6 +15,7 @@ export class TeachDashboardComponent {
   taughtCourses: ICourse[] = [];
   subscription!: Subscription;
   refreshSubject = new BehaviorSubject(undefined);
+  faArrow = faArrowRightToBracket;
 
   constructor(
     private courseService: CourseService,

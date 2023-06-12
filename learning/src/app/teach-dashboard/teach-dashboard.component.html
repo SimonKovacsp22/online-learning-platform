@@ -1,6 +1,13 @@
 <section>
     <!-- Navbar -->
-    <app-nav-private [title]="undefined"></app-nav-private>
+    <app-nav-private [title]="'Laboratory'">
+        <button slot="button" class="text-white d-flex gap-1 fw-semibold ms-3 border-white rounded-1"
+            routerLink="/learning">
+
+            <span>Student</span>
+            <fa-icon style="margin-top:1px;" [icon]="faArrow" />
+        </button>
+    </app-nav-private>
     <!-- Courses -->
     <div class="container-xxl mt-semi-large">
         <div class="row justify-content-center">
@@ -14,34 +21,42 @@
         </div>
         <!-- Course -->
         <div *ngIf="taughtCourses && taughtCourses.length > 0 ;else noCourses" class="row justify-content-center  mt-4">
-            <div [routerLink]="['/teach/manage/',course.id,'option','basic']" *ngFor="let course of taughtCourses"
-                class="col-10 mb-3">
+            <div *ngFor="let course of taughtCourses" class="col-10 mb-3">
                 <div class="d-flex height-9 border-gray-400 w-100">
-                    <img class="object-fit-cover" *ngIf="course.imageUrl ;else placeholderImage"
-                        src="{{course.imageUrl}}" width="142" />
-                    <ng-template #placeholderImage><img class="image-grayscale"
-                            src="https://s.udemycdn.com/course/200_H/placeholder.jpg" width="142" /></ng-template>
-                    <div class="p-3 row flex-grow-1 justify-content-between">
-                        <div class="col-5 d-flex flex-column justify-content-between">
-                            <h6>{{course.title}}</h6>
-                            <div class="d-flex">
-                                <p [ngClass]="{
-                                    'fw-bold': course.draft,
-                                    'color-gray-800':course.draft
-                                }" class="mb-0 text-super-caption lh-lg mb-0">Draft</p>&nbsp;&nbsp;
-                                <p [ngClass]="{
-                                    'fw-bold': !course.draft,
-                                    'color-gray-800':!course.draft
-                                }" class="mb-0 text-super-caption lh-lg mb-0">Public</p>
-                            </div>
+                    <div class="width-11 h-100">
+                        <img class="object-fit-cover z-50 height-9 width-11"
+                            *ngIf="course.imageUrl ;else placeholderImage" src="{{course.imageUrl}}" />
+                    </div>
+                    <ng-template #placeholderImage>
+                        <div class="width-11 h-100">
+                            <img class="image-grayscale z-50 height-9 width-11"
+                                src="https://s.udemycdn.com/course/200_H/placeholder.jpg" />
                         </div>
-                        <div class="col-7 d-flex justify-content-center align-items-center">
-                            <div class="progress w-80" role="progressbar" aria-label="Success example"
-                                aria-valuenow="25%" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" [ngStyle]="{
-                                'width.%': 50
-                            }"></div>
+                    </ng-template>
+                    <div [routerLink]="['/teach/manage/',course.id,'option','basic']"
+                        class="container-fluid cursor-pointer hover-blank">
+                        <div class="p-3 row flex-grow-1 justify-content-between">
+                            <div class="col-5 d-flex flex-column justify-content-between">
+                                <h6>{{course.title}}</h6>
+                                <div class="d-flex">
+                                    <p [ngClass]="{
+                                        'fw-bold': course.draft,
+                                        'color-gray-800':course.draft
+                                    }" class="mb-0 text-super-caption lh-lg mb-0">Draft</p>&nbsp;&nbsp;
+                                    <p [ngClass]="{
+                                        'fw-bold': !course.draft,
+                                        'color-gray-800':!course.draft
+                                    }" class="mb-0 text-super-caption lh-lg mb-0">Public</p>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex justify-content-center align-items-center">
+                                <div class="progress w-80" role="progressbar" aria-label="Success example"
+                                    aria-valuenow="25%" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" [ngStyle]="{
+                                    'width.%': 50
+                                }"></div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
