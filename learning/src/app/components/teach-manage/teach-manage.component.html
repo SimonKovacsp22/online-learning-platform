@@ -256,7 +256,7 @@
                                     </div>
                                     <form>
                                         <div class="bg-gray-200 border-gray-900 mb-3"
-                                            *ngFor="let section of course?.sections;let sectionIdx = index">
+                                            *ngFor="let section of this.sections;let sectionIdx = index">
                                             <div class="px-2 py-3">
                                                 <h6 class="text-paragraph fw-bold mb-0">Section&nbsp;{{sectionIdx
                                                     +1}}:&nbsp;&nbsp;
@@ -277,6 +277,11 @@
                                                     </h3>
                                                     <input type="file" />
                                                 </div>
+                                                <button type="button"
+                                                    class="bg-white cursor-pointer border-gray-900 text-paragraph d-flex align-items-center fw-semibold gap-2 py-1 px-2 button-hover-secondary-gray">
+                                                    <fa-icon class="text-subtitle-secondary" [icon]="faPlusN"></fa-icon>
+                                                    <p class="mb-0">Lecture item</p>
+                                                </button>
 
                                             </div>
 

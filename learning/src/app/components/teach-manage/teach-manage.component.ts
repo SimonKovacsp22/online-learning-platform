@@ -6,6 +6,7 @@ import {
   faPlusCircle,
   faArrowRightToBracket,
   faFile,
+  faPlus,
   faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from '../../services/course/course.service';
@@ -15,23 +16,26 @@ import { ICourse } from '../../models/course.model';
 import { ILanguage } from '../../models/language.model';
 import { IWYWL, WYWL } from '../../models/wywl.model';
 import { environment } from '../../environments/environment';
+import { ISection, Section } from 'src/app/models/section.model';
 
 @Component({
   selector: 'app-teach-manage',
   templateUrl: './teach-manage.component.html',
   styleUrls: [
     './teach-manage.component.css',
-    '../../../node_modules/quill/dist/quill.bubble.css',
+    '../../../../node_modules/quill/dist/quill.bubble.css',
   ],
 })
 export class TeachManageComponent implements OnInit {
   courseForm: FormGroup;
   learnersForm: FormGroup;
   priceForm: FormGroup;
+  curriculumForm: FormGroup;
   initialImage: string =
     'https://s.udemycdn.com/course/750x422/placeholder.jpg';
   faAngleDown = faAngleDown;
   faPlus = faPlusCircle;
+  faPlusN = faPlus;
   faArrow = faArrowRightToBracket;
   faFile = faFile;
   faCheck = faCircleCheck;
@@ -40,6 +44,7 @@ export class TeachManageComponent implements OnInit {
   courseId: string | null = null;
   course: ICourse | null = null;
   languages: ILanguage[] = [];
+  sections: ISection[] = [];
   whatYouWillLearn: IWYWL[] = [];
   option: string | null = 'basic';
   successMessage: string = 'Changes Saved Succefully.';
@@ -64,6 +69,7 @@ export class TeachManageComponent implements OnInit {
     this.priceForm = this.formBuilder.group({
       price: 0,
     });
+    this.curriculumForm = this.formBuilder.group({});
   }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -79,6 +85,7 @@ export class TeachManageComponent implements OnInit {
           this.updatePriceFrom();
           this.setImagePreview();
           this.generateWhatYouWillLearnForm(course);
+          this.generateCurriculumForm(course.sections);
           this.updateBasicForm();
         });
     }
@@ -91,6 +98,19 @@ export class TeachManageComponent implements OnInit {
     });
 
     this.courseForm.get('language')?.value;
+  }
+  generateCurriculumForm(sections: ISection[] | null) {
+    if (sections != null && sections.length > 0) {
+      this.sections = sections;
+    } else {
+      this.sections.push(new Section('Section 1', 1));
+    }
+    this.sections.forEach((input, idx) => {
+      this.curriculumForm.addControl(
+        'section' + idx,
+        new FormControl(input.title)
+      );
+    });
   }
   private updatePriceFrom() {
     if (this.course && this.course?.price) {

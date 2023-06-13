@@ -14,7 +14,7 @@ import videojs from 'video.js';
   templateUrl: './video-player.component.html',
   styleUrls: [
     './video-player.component.css',
-    '../../../node_modules/video.js/dist/video-js.css',
+    '../../../../node_modules/video.js/dist/video-js.css',
   ],
   encapsulation: ViewEncapsulation.None,
 })
@@ -48,5 +48,14 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     if (this.player) {
       this.player.dispose();
     }
+  }
+
+  updateVideoSource(sources: { src: string; type: string }[]) {
+    // Update the video sources
+    this.player.src(sources);
+
+    // Load the new source and play the video
+    this.player.load();
+    this.player.play();
   }
 }
