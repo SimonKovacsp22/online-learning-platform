@@ -7,22 +7,22 @@ import {
   RouterStateSnapshot,
   Routes,
 } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './user/login/login.component';
-import { RegisterComponent } from './user/register/register.component';
-import { CourseListComponent } from './course-list/course-list.component';
-import { TeachComponent } from './teach/teach.component';
-import { CourseDetailComponent } from './course-detail/course-detail.component';
-import { CartComponent } from './cart/cart.component';
-import { MyCoursesComponent } from './my-courses/my-courses.component';
-import { LearnCourseComponent } from './learn-course/learn-course.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { TeachComponent } from './components/teach/teach.component';
+import { CourseDetailComponent } from './components/course-detail/course-detail.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { LearnCourseComponent } from './components/learn-course/learn-course.component';
 import { IUser } from './models/user.model';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
-import { TeachManageComponent } from './teach-manage/teach-manage.component';
-import { CreateCourseComponent } from './create-course/create-course.component';
-import { CoursesBySearchComponent } from './courses-by-search/courses-by-search.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { TeachDashboardComponent } from './components/teach-dashboard/teach-dashboard.component';
+import { TeachManageComponent } from './components/teach-manage/teach-manage.component';
+import { CreateCourseComponent } from './components/create-course/create-course.component';
+import { CoursesBySearchComponent } from './components/courses-by-search/courses-by-search.component';
 
 const canActivatePrivate: CanActivateFn = (
   route: ActivatedRouteSnapshot,

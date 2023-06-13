@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
-import { UserModule } from './user/user.module';
+import { NavComponent } from './components/nav/nav.component';
+import { HomeComponent } from './components/home/home.component';
+import { UserModule } from './user.module';
 import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
@@ -13,36 +13,36 @@ import {
 } from '@angular/common/http';
 import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
-import { CategoriesComponent } from './categories/categories.component';
-import { CourseListComponent } from './course-list/course-list.component';
-import { TeachComponent } from './teach/teach.component';
-import { CourseDetailComponent } from './course-detail/course-detail.component';
-import { CartPrewComponent } from './cart-prew/cart-prew.component';
-import { AvatarComponent } from './avatar/avatar.component';
-import { CartComponent } from './cart/cart.component';
-import { MyCoursesComponent } from './my-courses/my-courses.component';
-import { MyCoursesPrewComponent } from './my-courses-prew/my-courses-prew.component';
-import { LearnCourseComponent } from './learn-course/learn-course.component';
-import { CourseSectionComponent } from './course-section/course-section.component';
-import { RatingComponent } from './rating/rating.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { AccordionComponent } from './accordion/accordion.component';
-import { VideoPlayerComponent } from './video-player/video-player.component';
-import { MyCourseMenuComponent } from './my-course-menu/my-course-menu.component';
-import { TabOverviewComponent } from './tab-overview/tab-overview.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { TeachDashboardComponent } from './teach-dashboard/teach-dashboard.component';
-import { NavPrivateComponent } from './nav-private/nav-private.component';
-import { TeachManageComponent } from './teach-manage/teach-manage.component';
-import { CreateCourseComponent } from './create-course/create-course.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { TeachComponent } from './components/teach/teach.component';
+import { CourseDetailComponent } from './components/course-detail/course-detail.component';
+import { CartPrewComponent } from './components/cart-prew/cart-prew.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { MyCoursesPrewComponent } from './components/my-courses-prew/my-courses-prew.component';
+import { LearnCourseComponent } from './components/learn-course/learn-course.component';
+import { CourseSectionComponent } from './components/course-section/course-section.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { MyCourseMenuComponent } from './components/my-course-menu/my-course-menu.component';
+import { TabOverviewComponent } from './components/tab-overview/tab-overview.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { TeachDashboardComponent } from './components/teach-dashboard/teach-dashboard.component';
+import { NavPrivateComponent } from './components/nav-private/nav-private.component';
+import { TeachManageComponent } from './components/teach-manage/teach-manage.component';
+import { CreateCourseComponent } from './components/create-course/create-course.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
-import { SearchComponent } from './search/search.component';
-import { CoursesBySearchComponent } from './courses-by-search/courses-by-search.component';
-import { CourseTemplateComponent } from './course-template/course-template.component';
-import { TeachManageSidebarComponent } from './teach-manage-sidebar/teach-manage-sidebar.component';
-import { AlertSuccessComponent } from './alert-success/alert-success.component';
+import { SearchComponent } from './components/search/search.component';
+import { CoursesBySearchComponent } from './components/courses-by-search/courses-by-search.component';
+import { CourseTemplateComponent } from './components/course-template/course-template.component';
+import { TeachManageSidebarComponent } from './components/teach-manage-sidebar/teach-manage-sidebar.component';
+import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
 
 @NgModule({
   declarations: [
