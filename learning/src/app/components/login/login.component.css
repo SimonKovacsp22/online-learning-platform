@@ -35,7 +35,7 @@
   }
 .red-left-position {
   transform: rotateY(180deg);
-  left: 13.125rem;
+  left: 150px;
   bottom: 80px;
 
 }
