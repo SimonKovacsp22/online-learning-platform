@@ -10,7 +10,8 @@
         </div>
         <div class="d-flex gap-3 align-items-center">
             <fa-icon (click)="updateSection()" class="text-super-caption cursor-pointer hover-black" [icon]="faPen" />
-            <fa-icon (click)="deleteSection()" class="text-super-caption cursor-pointer hover-black" [icon]="faTrash" />
+            <fa-icon (click)="deleteModalOpen(content,section.id)" class="text-super-caption cursor-pointer hover-black"
+                [icon]="faTrash" />
         </div>
     </div>
     <ng-template #sectionUpdateTemplate>
@@ -63,6 +64,21 @@
             <fa-icon class="" [icon]="faPlusN"></fa-icon>
             <p class="mb-0 text-paragraph fw-semibold">Lecture item</p>
         </button>
-
     </div>
 </div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h3 class="mb-0 text-subhero fw-bold">Please confirm</h3>
+        <div (click)="modal.close('Cross click')" class="px-2 cursor-pointer"> <fa-icon [icon]="faXmark"></fa-icon>
+        </div>
+    </div>
+    <div class="modal-body">
+        <p class="text-paragraph">You are about to remove an item. Are you sure you want to continue?</p>
+    </div>
+    <div class="modal-footer">
+        <button (click)="modal.close('Cancel click')" type="button"
+            class="border-primary border bg-white px-3 py-2 color-primary text-paragraph fw-bold button-hover-secondary-gray">Cancel</button>
+        <button type="button" class="bg-primary px-3 py-2 text-white text-paragraph fw-bold button-hover-primary-dark"
+            (click)="modal.close('OK')">OK</button>
+    </div>
+</ng-template>

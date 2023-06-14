@@ -10,6 +10,7 @@ import {
   faCircleCheck,
   faPen,
   faTrash,
+  faBan,
 } from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from '../../services/course/course.service';
 import { ActivatedRoute } from '@angular/router';
@@ -43,6 +44,7 @@ export class TeachManageComponent implements OnInit {
   faCheck = faCircleCheck;
   faTrash = faTrash;
   faPen = faPen;
+  faBan = faBan;
   categories: ICategory[] = [];
   imagePreview: string | null = null;
   courseId: string | null = null;
@@ -281,11 +283,17 @@ export class TeachManageComponent implements OnInit {
     this.isAddingSection = true;
   }
 
+  cancelNewSection() {
+    if (!this.isAddingSection) return;
+    this.isAddingSection = false;
+  }
+
   saveNewSection(sectionId: number | null) {
     const title = this.curriculumForm.get('newSection')?.value;
     const rank = this.curriculumForm.get('rank')?.value;
 
     if (this.courseId && title) {
+      this.isLoading = true;
       this.courseService
         .saveOrUpdateSection(title, rank, null, parseInt(this.courseId))
         .subscribe((data) => {
@@ -297,12 +305,15 @@ export class TeachManageComponent implements OnInit {
             );
             this.generateCurriculumForm(this.sections);
           }
+          this.showAlert();
+          this.isLoading = false;
         });
     }
     this.isAddingSection = false;
   }
 
   handleSectionUpdate(sections: ISection[]) {
+    this.showAlert();
     this.sections = sections.sort((a, b) => a.rank - b.rank);
   }
 }

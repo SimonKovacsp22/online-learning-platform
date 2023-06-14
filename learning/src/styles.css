@@ -19,6 +19,7 @@
     --bs-spacer: 2rem;
     --yellow-500: #e59819;
     --yellow-600:#b4690e;
+    --color-danger:#d10000;
     
     
   }
@@ -359,6 +360,9 @@ background-color: var(--color-primary-dark) !important;
 .color-blue-900 {
     color: var(--color-logo);
 }
+.color-danger {
+    color: var(--color-danger);
+}
 .color-primary {
     color: var(--color-primary);
 }
@@ -368,7 +372,7 @@ background-color: var(--color-primary-dark) !important;
 }
 
 .border-primary {
-    border-color: var(--color-primary);
+    border-color: var(--color-primary) !important;
 }
 
 .bg-primary {

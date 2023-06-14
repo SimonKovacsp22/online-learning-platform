@@ -88,7 +88,6 @@ import { ManageSectionComponent } from './manage-section/manage-section.componen
     ReactiveFormsModule,
     MyCourseMenuComponent,
     TabOverviewComponent,
-
     QuillModule.forRoot(),
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',

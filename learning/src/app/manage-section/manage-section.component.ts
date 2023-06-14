@@ -6,10 +6,12 @@ import {
   faCircleCheck,
   faPen,
   faTrash,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../services/course/course.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-manage-section',
@@ -26,13 +28,16 @@ export class ManageSectionComponent implements OnInit {
   faCheck = faCircleCheck;
   faPen = faPen;
   faTrash = faTrash;
+  faXmark = faXmark;
 
   isUpdating: boolean = false;
+  modalCloseResult = '';
 
   constructor(
     private courseService: CourseService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal
   ) {
     this.sectionForm = this.formBuilder.group({
       title: '',
@@ -53,9 +58,7 @@ export class ManageSectionComponent implements OnInit {
     // this.onSave.emit([]);
   }
 
-  deleteSection() {
-    // this.onSave.emit([]);
-  }
+  deleteSection() {}
 
   saveSection() {
     const title = this.sectionForm.get('title')?.value;
@@ -82,5 +85,23 @@ export class ManageSectionComponent implements OnInit {
 
   cancelUpdate() {
     this.isUpdating = false;
+  }
+
+  deleteModalOpen(content: any, sectionId: number | undefined) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then((result) => {
+        if (result === 'OK') {
+          const courseId = this.route.snapshot.paramMap.get('id');
+          if (courseId && sectionId) {
+            this.courseService
+              .deleteSection(sectionId, parseInt(courseId))
+              .subscribe((data) => {
+                const { course } = <any>data.body;
+                this.onSave.emit(course.sections);
+              });
+          }
+        }
+      });
   }
 }

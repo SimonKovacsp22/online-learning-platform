@@ -248,6 +248,20 @@ export class CourseService {
       }
     );
   }
+
+  deleteSection(sectionId: number | null, courseId: number) {
+    return this.http.request<postOrPutCourseResponse>(
+      'DELETE',
+      `${environment.rooturl}/courses/delete/curriculum/sections/${courseId}`,
+      {
+        observe: 'response',
+        withCredentials: true,
+        body: {
+          sectionId,
+        },
+      }
+    );
+  }
 }
 
 interface getCoursesResponse {
