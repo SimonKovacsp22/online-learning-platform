@@ -3,18 +3,19 @@ import { IVideo } from './video.model';
 export interface ISection {
   id?: number;
   title: string;
-  rank?: number;
+  rank: number;
   course_id?: number;
   videos: IVideo[];
 }
 
 export class Section implements ISection {
-  constructor(title: string, id?: number) {
+  constructor(title: string, rank: number, id?: number) {
     this.id = id;
     this.title = title;
     this.videos = [];
+    this.rank = rank;
   }
-  rank?: number | undefined;
+  rank: number;
   course_id?: number | undefined;
   videos: IVideo[];
   title: string;

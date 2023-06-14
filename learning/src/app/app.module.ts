@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
-import { UserModule } from './user.module';
+import { UserModule } from './services/user/user.module';
 import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
@@ -43,6 +43,7 @@ import { CoursesBySearchComponent } from './components/courses-by-search/courses
 import { CourseTemplateComponent } from './components/course-template/course-template.component';
 import { TeachManageSidebarComponent } from './components/teach-manage-sidebar/teach-manage-sidebar.component';
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
+import { ManageSectionComponent } from './manage-section/manage-section.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { AlertSuccessComponent } from './components/alert-success/alert-success.
     CourseTemplateComponent,
     TeachManageSidebarComponent,
     AlertSuccessComponent,
+    ManageSectionComponent,
   ],
   imports: [
     BrowserModule,

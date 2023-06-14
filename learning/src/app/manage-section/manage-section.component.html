@@ -1,0 +1,68 @@
+<div class="bg-gray-200 border-gray-900 mb-5 px-2 py-3">
+    <div *ngIf="!this.isUpdating;else sectionUpdateTemplate" class=" d-flex gap-3 pb-3">
+        <div class="d-flex gap-2  align-items-center">
+            <h6 class="text-paragraph fw-bold mb-0">Section&nbsp;{{section.rank
+                }}:
+            </h6>
+
+            <fa-icon class="text-caption" [icon]="faFile" />
+            <span class="text-paragraph fw-normal">{{section.title}}</span>
+        </div>
+        <div class="d-flex gap-3 align-items-center">
+            <fa-icon (click)="updateSection()" class="text-super-caption cursor-pointer hover-black" [icon]="faPen" />
+            <fa-icon (click)="deleteSection()" class="text-super-caption cursor-pointer hover-black" [icon]="faTrash" />
+        </div>
+    </div>
+    <ng-template #sectionUpdateTemplate>
+        <form [formGroup]="sectionForm" class="border-gray-900 bg-white p-2">
+            <div class="d-flex align-items-center mb-3">
+                <div class="d-flex align-items-center gap-1 me-2 title-min-width-5">
+                    <h6 class="mb-0  text-paragraph fw-bold text-nowrap">
+                        Section {{section.rank}}:
+                    </h6>
+                </div>
+                <div class="d-flex w-100">
+                    <input type="text" formControlName="title"
+                        class="flex-grow-1 outline-none input-small border-gray-900 me-3"
+                        placeholder="Insert section title">
+                    <input type="number" formControlName="rank"
+                        class="outline-none input-small border-gray-900 fixed-width-6 " placeholder="100">
+                </div>
+            </div>
+            <div class=" d-flex gap-2 justify-content-end">
+                <button (click)="cancelUpdate()" class="cursor-pointer
+                text-paragraph
+                fw-semibold
+                py-1 px-2
+                button-hover-secondary-gray">Cancel</button>
+                <button (click)="saveSection()" class="cursor-pointer
+                text-white
+                text-paragraph
+                bg-primary
+                fw-semibold
+                py-1 px-2
+                button-hover-primary-dark">Save Section</button>
+            </div>
+        </form>
+    </ng-template>
+    <div class="pt-3 pb-2 ps-5 pe-2">
+        <div class="bg-white px-2 py-12 border-gray-900 mb-3 d-flex justify-content-between"
+            *ngFor="let video of section.videos;let videoIdx = index">
+            <div class="d-flex gap-1 text-paragraph align-items-center">
+                <fa-icon class="text-caption mt-2px" [icon]="faCheck" />
+                <span>Lecture</span>
+                <span class="me-1">{{videoIdx
+                    +1}}:</span>
+                <fa-icon class="me-1 text-caption" [icon]="faFile" />
+                <h6 class="fw-normal mb-0 text-paragraph">{{video.title}}</h6>
+            </div>
+            <input type="file" />
+        </div>
+        <button type="button"
+            class="bg-white cursor-pointer border-gray-900 text-paragraph d-flex align-items-center fw-semibold gap-1 py-1 px-2 button-hover-secondary-gray">
+            <fa-icon class="" [icon]="faPlusN"></fa-icon>
+            <p class="mb-0 text-paragraph fw-semibold">Lecture item</p>
+        </button>
+
+    </div>
+</div>

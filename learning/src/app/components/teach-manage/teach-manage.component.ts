@@ -8,6 +8,8 @@ import {
   faFile,
   faPlus,
   faCircleCheck,
+  faPen,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from '../../services/course/course.service';
 import { ActivatedRoute } from '@angular/router';
@@ -39,6 +41,8 @@ export class TeachManageComponent implements OnInit {
   faArrow = faArrowRightToBracket;
   faFile = faFile;
   faCheck = faCircleCheck;
+  faTrash = faTrash;
+  faPen = faPen;
   categories: ICategory[] = [];
   imagePreview: string | null = null;
   courseId: string | null = null;
@@ -51,6 +55,7 @@ export class TeachManageComponent implements OnInit {
   isAlertVisible: boolean = false;
   timeoutId: any = null;
   isLoading: boolean = false;
+  isAddingSection: boolean = false;
   constructor(
     private dashboardService: DashboardService,
     private courseService: CourseService,
@@ -69,7 +74,10 @@ export class TeachManageComponent implements OnInit {
     this.priceForm = this.formBuilder.group({
       price: 0,
     });
-    this.curriculumForm = this.formBuilder.group({});
+    this.curriculumForm = this.formBuilder.group({
+      newSection: '',
+      rank: '',
+    });
   }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -101,14 +109,19 @@ export class TeachManageComponent implements OnInit {
   }
   generateCurriculumForm(sections: ISection[] | null) {
     if (sections != null && sections.length > 0) {
-      this.sections = sections;
-    } else {
-      this.sections.push(new Section('Section 1', 1));
+      this.sections = sections.sort((a, b) => a.rank - b.rank);
     }
+    //  else {
+    //   this.sections.push(new Section('Section 1', 1000));
+    // }
     this.sections.forEach((input, idx) => {
       this.curriculumForm.addControl(
-        'section' + idx,
+        'section' + input.id + 'title',
         new FormControl(input.title)
+      );
+      this.curriculumForm.addControl(
+        'section' + input.id + 'rank',
+        new FormControl(input.rank)
       );
     });
   }
@@ -261,5 +274,35 @@ export class TeachManageComponent implements OnInit {
     const sentences = environment.sentences;
     const randomIndex = Math.floor(Math.random() * sentences.length);
     return sentences[randomIndex];
+  }
+
+  addSectionTemplate() {
+    if (this.isAddingSection) return;
+    this.isAddingSection = true;
+  }
+
+  saveNewSection(sectionId: number | null) {
+    const title = this.curriculumForm.get('newSection')?.value;
+    const rank = this.curriculumForm.get('rank')?.value;
+
+    if (this.courseId && title) {
+      this.courseService
+        .saveOrUpdateSection(title, rank, null, parseInt(this.courseId))
+        .subscribe((data) => {
+          const { course } = <any>data.body;
+          if (this.course) {
+            this.course.sections = course.sections;
+            this.sections = course.sections.sort(
+              (a: ISection, b: ISection) => a.rank - b.rank
+            );
+            this.generateCurriculumForm(this.sections);
+          }
+        });
+    }
+    this.isAddingSection = false;
+  }
+
+  handleSectionUpdate(sections: ISection[]) {
+    this.sections = sections.sort((a, b) => a.rank - b.rank);
   }
 }

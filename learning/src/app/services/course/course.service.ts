@@ -228,6 +228,26 @@ export class CourseService {
       }
     );
   }
+
+  saveOrUpdateSection(
+    title: string,
+    rank: number,
+    sectionId: number | null,
+    courseId: number
+  ) {
+    return this.http.post<postOrPutCourseResponse>(
+      `${environment.rooturl}/courses/update/curriculum/sections/${courseId}`,
+      {
+        title,
+        sectionId,
+        rank,
+      },
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 interface getCoursesResponse {

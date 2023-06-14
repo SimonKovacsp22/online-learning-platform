@@ -246,50 +246,57 @@
                                     <h3 class="mb-0 text-title-tertiary fw-bold">Curriculum</h3>
                                 </header>
                                 <div class="px-6 py-40 row">
-                                    <div class="col-10">
+                                    <div class="col-10 mb-4">
                                         <h6 class="text-nav fw-bold mb-3">Sections and lectures</h6>
                                         <p class="text-paragraph mb-4">
                                             Start putting together your course by creating sections or lectures
-                                            If you’re intending to offer your course for free, the total length of video
+                                            If you&apos;re intending to offer your course for free, the total length of
+                                            video
                                             content must be less than 2 hours.
                                         </p>
                                     </div>
-                                    <form>
-                                        <div class="bg-gray-200 border-gray-900 mb-3"
+                                    <form [formGroup]="curriculumForm">
+                                        <app-manage-section [section]="section" (onSave)="handleSectionUpdate($event)"
                                             *ngFor="let section of this.sections;let sectionIdx = index">
-                                            <div class="px-2 py-3">
-                                                <h6 class="text-paragraph fw-bold mb-0">Section&nbsp;{{sectionIdx
-                                                    +1}}:&nbsp;&nbsp;
-                                                    <fa-icon [icon]="faFile" />
-                                                    <span class="ms-1 fw-normal">{{section.title}}</span>
-                                                </h6>
-                                            </div>
-                                            <div class="py-4 ps-5 pe-2">
-                                                <div class="bg-white px-2 py-3 border-gray-900 mb-2 d-flex justify-content-between"
-                                                    *ngFor="let video of section.videos;let videoIdx = index">
-                                                    <h3 class="text-paragraph fw-normal mb-0">
 
-                                                        <fa-icon [icon]="faCheck" />
-                                                        Lecture&nbsp;{{videoIdx
-                                                        +1}}:&nbsp;&nbsp;
-                                                        <fa-icon [icon]="faFile" />
-                                                        <span class="ms-1 fw-normal">{{video.title}}</span>
-                                                    </h3>
-                                                    <input type="file" />
+                                        </app-manage-section>
+
+                                        <button *ngIf="!isAddingSection;else sectionTemplate" type="button"
+                                            (click)="addSectionTemplate()"
+                                            class="bg-white cursor-pointer border-gray-900 text-paragraph d-flex align-items-center fw-semibold gap-2 py-1 px-2 button-hover-secondary-gray">
+                                            <fa-icon class="text-subtitle-secondary" [icon]="faPlusN"></fa-icon>
+                                            <p class="mb-0">Section</p>
+                                        </button>
+                                        <ng-template #sectionTemplate>
+                                            <div class="border-gray-900 px-2 py-3">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <h6 class="text-paragraph fw-bold mb-0 d-block title-min-width-7">
+                                                        New Section:&nbsp;</h6>
+                                                    <div class="d-flex w-100">
+                                                        <input type="text" formControlName="newSection"
+                                                            class="flex-grow-1 outline-none input-small border-gray-900 me-3"
+                                                            placeholder="Insert section title">
+                                                        <input type="number" formControlName="rank"
+                                                            class="outline-none input-small border-gray-900 fixed-width-6 "
+                                                            placeholder="100">
+                                                    </div>
                                                 </div>
-                                                <button type="button"
-                                                    class="bg-white cursor-pointer border-gray-900 text-paragraph d-flex align-items-center fw-semibold gap-2 py-1 px-2 button-hover-secondary-gray">
-                                                    <fa-icon class="text-subtitle-secondary" [icon]="faPlusN"></fa-icon>
-                                                    <p class="mb-0">Lecture item</p>
-                                                </button>
-
+                                                <div class=" d-flex gap-2 justify-content-end">
+                                                    <button class="cursor-pointer
+                                                    text-paragraph
+                                                    fw-semibold
+                                                    py-1 px-2
+                                                    button-hover-secondary-gray">Cancel</button>
+                                                    <button (click)="saveNewSection(null)" class="cursor-pointer
+                                                    text-white
+                                                    text-paragraph
+                                                    bg-primary
+                                                    fw-semibold
+                                                    py-1 px-2
+                                                    button-hover-primary-dark">Add Section</button>
+                                                </div>
                                             </div>
-
-
-
-
-
-                                        </div>
+                                        </ng-template>
                                     </form>
 
                                 </div>
