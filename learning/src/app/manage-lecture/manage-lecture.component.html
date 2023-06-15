@@ -1,0 +1,17 @@
+<div (mouseenter)="onLectureHover()" (mouseleave)="onLectureLeave()"
+    class="bg-white px-2 py-12 border-gray-900 mb-3 d-flex justify-content-between">
+    <div class="d-flex gap-1 text-paragraph align-items-center">
+        <span>Lecture</span>
+        <span class="me-1">{{video.rank
+            }}:</span>
+        <fa-icon class="me-1 text-caption" [icon]="faFile" />
+        <h6 class="fw-normal mb-0 text-paragraph">{{video.title}}</h6>
+    </div>
+    <div class="d-flex justify-content-end flex-grow-1 gap-4 pe-3" [ngClass]="{
+        'd-none': !isLectureHovered
+    }">
+        <fa-icon [icon]="faPen" (click)="updateLecture()"
+            class="cursor-pointer text-paragraph color-gray-600 hover-black" />
+        <fa-icon [icon]="faTrash" class="cursor-pointer text-paragraph color-gray-600 hover-black" />
+    </div>
+</div>

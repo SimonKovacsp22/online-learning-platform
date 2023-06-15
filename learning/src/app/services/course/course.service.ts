@@ -262,6 +262,28 @@ export class CourseService {
       }
     );
   }
+
+  createLecture(formData: FormData, courseId: number) {
+    return this.http.post<postOrPutLectureResponse>(
+      `${environment.rooturl}/courses/update/curriculum/lectures/${courseId}`,
+      formData,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
+
+  updateLecture(formData: FormData, courseId: number) {
+    return this.http.put<postOrPutLectureResponse>(
+      `${environment.rooturl}/courses/update/curriculum/lectures/${courseId}`,
+      formData,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 interface getCoursesResponse {
@@ -274,6 +296,10 @@ interface postOrPutCourseResponse {
 
 interface getlanguageResponse {
   languages: ILanguage;
+}
+
+interface postOrPutLectureResponse {
+  section: ISection;
 }
 
 interface getPaginationResponse {

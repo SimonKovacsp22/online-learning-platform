@@ -234,11 +234,16 @@
     margin-top: 3rem
 }
 
+
 .mt-semi-large {
     margin-top: 5rem;
 }
 .mt-large {
     margin-top: 7rem
+}
+
+.mt-xxl {
+    margin-top: 8rem
 }
 
 button {

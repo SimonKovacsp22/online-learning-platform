@@ -20,8 +20,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ManageSectionComponent implements OnInit {
   sectionForm: FormGroup;
+  lectureForm: FormGroup;
   @Input() section!: ISection;
-  @Output() onSave = new EventEmitter<ISection[]>();
+  @Output() onSaveSection = new EventEmitter<ISection[]>();
+  @Output() onSaveLecture = new EventEmitter<ISection>();
+  @Output() onUpdate = new EventEmitter<boolean>();
 
   faFile = faFile;
   faPlusN = faPlus;
@@ -30,7 +33,8 @@ export class ManageSectionComponent implements OnInit {
   faTrash = faTrash;
   faXmark = faXmark;
 
-  isUpdating: boolean = false;
+  isUpdatingSection: boolean = false;
+  isAddingLecture: boolean = false;
   modalCloseResult = '';
 
   constructor(
@@ -43,6 +47,12 @@ export class ManageSectionComponent implements OnInit {
       title: '',
       rank: 0,
     });
+    this.lectureForm = this.formBuilder.group({
+      title: '',
+      rank: 0,
+      duration: 0,
+      file: null,
+    });
   }
 
   ngOnInit(): void {
@@ -53,8 +63,8 @@ export class ManageSectionComponent implements OnInit {
   }
 
   updateSection() {
-    if (this.isUpdating) return;
-    this.isUpdating = true;
+    if (this.isUpdatingSection) return;
+    this.isUpdatingSection = true;
     // this.onSave.emit([]);
   }
 
@@ -64,10 +74,9 @@ export class ManageSectionComponent implements OnInit {
     const title = this.sectionForm.get('title')?.value;
     const rank = this.sectionForm.get('rank')?.value;
     const courseId = this.route.snapshot.paramMap.get('id');
-    console.log(title);
-    console.log(rank);
-    console.log(courseId);
+
     if (title && rank && courseId) {
+      this.onUpdate.emit(true);
       this.courseService
         .saveOrUpdateSection(
           title,
@@ -77,14 +86,17 @@ export class ManageSectionComponent implements OnInit {
         )
         .subscribe((data) => {
           const { course } = <any>data.body;
-          this.onSave.emit(course.sections);
-          this.isUpdating = false;
+          if (course != null) {
+            this.onSaveSection.emit(course.sections);
+            this.onUpdate.emit(false);
+            this.isUpdatingSection = false;
+          }
         });
     }
   }
 
   cancelUpdate() {
-    this.isUpdating = false;
+    this.isUpdatingSection = false;
   }
 
   deleteModalOpen(content: any, sectionId: number | undefined) {
@@ -98,10 +110,54 @@ export class ManageSectionComponent implements OnInit {
               .deleteSection(sectionId, parseInt(courseId))
               .subscribe((data) => {
                 const { course } = <any>data.body;
-                this.onSave.emit(course.sections);
+                this.onSaveSection.emit(course.sections);
               });
           }
         }
       });
+  }
+
+  addLectureTemplate() {
+    if (this.isAddingLecture) return;
+    this.isAddingLecture = true;
+  }
+
+  cancelNewLecture() {
+    if (!this.isAddingLecture) return;
+    this.isAddingLecture = false;
+  }
+
+  onFileSelected(event: Event) {
+    // @ts-ignore
+    const file = (event.target as HTMLInputElement).files[0];
+    this.lectureForm.get('file')?.setValue(file);
+  }
+
+  saveNewLecture(sectionId: number | undefined) {
+    const title = this.lectureForm.get('title')?.value;
+    const rank = this.lectureForm.get('rank')?.value;
+    const duration = this.lectureForm.get('duration')?.value;
+    const courseId = this.route.snapshot.paramMap.get('id');
+    const file: File = this.lectureForm.get('file')?.value;
+
+    if (this.lectureForm.valid && courseId && sectionId) {
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('rank', rank);
+      formData.append('duration', duration);
+      formData.append('file', file);
+      formData.append('sectionId', sectionId.toString());
+      this.onUpdate.emit(true);
+      this.courseService
+        .createLecture(formData, parseInt(courseId))
+        .subscribe((data) => {
+          const { section } = <any>data.body;
+          if (section != null) {
+            this.onSaveLecture.emit(section);
+            this.onUpdate.emit(false);
+            this.cancelUpdate();
+          }
+        });
+    }
   }
 }

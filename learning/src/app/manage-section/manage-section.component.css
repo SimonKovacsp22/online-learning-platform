@@ -5,3 +5,7 @@
 .modal-backdrop.show {
     opacity:1;
 }
+
+.fixed-width-8 {
+    max-width: 8rem;
+}

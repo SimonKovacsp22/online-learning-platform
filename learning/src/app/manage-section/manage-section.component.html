@@ -1,5 +1,5 @@
 <div class="bg-gray-200 border-gray-900 mb-5 px-2 py-3">
-    <div *ngIf="!this.isUpdating;else sectionUpdateTemplate" class=" d-flex gap-3 pb-3">
+    <div *ngIf="!this.isUpdatingSection;else sectionUpdateTemplate" class=" d-flex gap-3 pb-3">
         <div class="d-flex gap-2  align-items-center">
             <h6 class="text-paragraph fw-bold mb-0">Section&nbsp;{{section.rank
                 }}:
@@ -47,23 +47,53 @@
         </form>
     </ng-template>
     <div class="pt-3 pb-2 ps-5 pe-2">
-        <div class="bg-white px-2 py-12 border-gray-900 mb-3 d-flex justify-content-between"
-            *ngFor="let video of section.videos;let videoIdx = index">
-            <div class="d-flex gap-1 text-paragraph align-items-center">
-                <fa-icon class="text-caption mt-2px" [icon]="faCheck" />
-                <span>Lecture</span>
-                <span class="me-1">{{videoIdx
-                    +1}}:</span>
-                <fa-icon class="me-1 text-caption" [icon]="faFile" />
-                <h6 class="fw-normal mb-0 text-paragraph">{{video.title}}</h6>
-            </div>
-            <input type="file" />
-        </div>
-        <button type="button"
+
+        <app-manage-lecture *ngFor="let video of section.videos;let videoIdx = index"
+            [video]="video"></app-manage-lecture>
+        <button *ngIf="!isAddingLecture;else lectureTemplate" type="button" (click)="addLectureTemplate()"
             class="bg-white cursor-pointer border-gray-900 text-paragraph d-flex align-items-center fw-semibold gap-1 py-1 px-2 button-hover-secondary-gray">
             <fa-icon class="" [icon]="faPlusN"></fa-icon>
             <p class="mb-0 text-paragraph fw-semibold">Lecture item</p>
         </button>
+        <ng-template #lectureTemplate>
+            <form [formGroup]="lectureForm" class="bg-white border-gray-900 px-2 py-3">
+                <div class="d-flex align-items-center mb-2">
+                    <h6 class="text-paragraph fw-bold mb-0 d-block title-min-width-7 text-nowrap">
+                        New Lecture:&nbsp;</h6>
+                    <div class="d-flex w-100">
+                        <input type="text" formControlName="title" required
+                            class="flex-grow-1 outline-none input-small border-gray-900 me-3"
+                            placeholder="Insert lecture title">
+                        <input type="number" formControlName="rank" required
+                            class="outline-none input-small border-gray-900 fixed-width-6 " placeholder="100">
+                    </div>
+
+                </div>
+                <div class="d-flex mb-2">
+                    <h6 class="title-min-width-7 d-block mb-0 text-nowrap fw-bold text-paragraph">Duration (s):</h6>
+                    <div class="d-flex flex-grow-1 gap-3">
+                        <input class="outline-none input-small border-gray-900 fixed-width-8" type="number"
+                            formControlName="duration" required>
+                        <input type="file" required (change)="onFileSelected($event)"
+                            accept="video/mp4,video/x-m4v,video/*">
+                    </div>
+                </div>
+                <div class=" d-flex gap-2 justify-content-end">
+                    <button (click)="cancelNewLecture()" class="cursor-pointer
+                    text-paragraph
+                    fw-semibold
+                    py-1 px-2
+                    button-hover-secondary-gray">Cancel</button>
+                    <button (click)="saveNewLecture(section.id)" class="cursor-pointer
+                    text-white
+                    text-paragraph
+                    bg-primary
+                    fw-semibold
+                    py-1 px-2
+                    button-hover-primary-dark">Add Lecture</button>
+                </div>
+            </form>
+        </ng-template>
     </div>
 </div>
 <ng-template #content let-modal>

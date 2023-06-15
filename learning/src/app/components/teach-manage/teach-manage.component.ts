@@ -113,9 +113,6 @@ export class TeachManageComponent implements OnInit {
     if (sections != null && sections.length > 0) {
       this.sections = sections.sort((a, b) => a.rank - b.rank);
     }
-    //  else {
-    //   this.sections.push(new Section('Section 1', 1000));
-    // }
     this.sections.forEach((input, idx) => {
       this.curriculumForm.addControl(
         'section' + input.id + 'title',
@@ -315,5 +312,18 @@ export class TeachManageComponent implements OnInit {
   handleSectionUpdate(sections: ISection[]) {
     this.showAlert();
     this.sections = sections.sort((a, b) => a.rank - b.rank);
+  }
+
+  handleLectureCreate(section: ISection) {
+    this.showAlert();
+    const idx = this.sections.findIndex((s) => s.id == section.id);
+    console.log(idx);
+    if (idx !== -1) {
+      this.sections[idx] = section;
+    }
+  }
+
+  handleIsUpdating(isUpdating: boolean) {
+    this.isLoading = isUpdating;
   }
 }

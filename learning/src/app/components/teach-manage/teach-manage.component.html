@@ -30,7 +30,7 @@
 
         </div>
     </app-nav-private>
-    <div class="container-fluid mt-semi-large">
+    <div class="container-fluid mt-xxl">
         <div class="row justify-content-center">
             <div class="col-9 d-flex">
                 <!-- Sidebar -->
@@ -263,7 +263,10 @@
                                         </p>
                                     </div>
                                     <form [formGroup]="curriculumForm">
-                                        <app-manage-section [section]="section" (onSave)="handleSectionUpdate($event)"
+                                        <app-manage-section [section]="section"
+                                            (onSaveSection)="handleSectionUpdate($event)"
+                                            (onSaveLecture)="handleLectureCreate($event)"
+                                            (onUpdate)="handleIsUpdating($event)"
                                             *ngFor="let section of this.sections;let sectionIdx = index">
 
                                         </app-manage-section>
