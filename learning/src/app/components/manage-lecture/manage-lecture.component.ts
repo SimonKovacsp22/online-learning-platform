@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IVideo } from '../models/video.model';
+import { IVideo } from '../../models/video.model';
 import {
   faCheck,
   faFile,

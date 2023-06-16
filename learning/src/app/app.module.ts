@@ -43,8 +43,8 @@ import { CoursesBySearchComponent } from './components/courses-by-search/courses
 import { CourseTemplateComponent } from './components/course-template/course-template.component';
 import { TeachManageSidebarComponent } from './components/teach-manage-sidebar/teach-manage-sidebar.component';
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
-import { ManageSectionComponent } from './manage-section/manage-section.component';
-import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
+import { ManageSectionComponent } from './components/manage-section/manage-section.component';
+import { ManageLectureComponent } from './components/manage-lecture/manage-lecture.component';
 
 @NgModule({
   declarations: [

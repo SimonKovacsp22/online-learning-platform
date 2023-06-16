@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ISection } from '../models/section.model';
+import { ISection } from '../../models/section.model';
 import {
   faFile,
   faPlus,
@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService } from '../services/course/course.service';
+import { CourseService } from '../../services/course/course.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
