@@ -198,13 +198,13 @@ export class TeachManageComponent implements OnInit {
   updateCourse() {
     switch (this.option) {
       case 'basic':
-        this.isLoading = true;
         const formData = new FormData();
         formData.append('title', this.courseForm.get('title')?.value);
         formData.append('subtitle', this.courseForm.get('subtitle')?.value);
         formData.append('description', '');
         formData.append('file', this.courseForm.get('file')?.value);
-        if (this.courseId != null)
+        if (this.courseId != null) {
+          this.isLoading = true;
           this.courseService
             .updateCourseBasic(formData, parseInt(this.courseId))
             .subscribe((data) => {
@@ -214,30 +214,31 @@ export class TeachManageComponent implements OnInit {
               this.isLoading = false;
               this.showAlert();
             });
+        }
+
         break;
       case 'pricing':
-        this.isLoading = true;
         const price = this.priceForm.get('price')?.value;
         if (this.courseId != null) {
+          this.isLoading = true;
           this.courseService
             .updateCoursePrice(price, parseInt(this.courseId))
             .subscribe((data) => {
               const { course } = <any>data.body;
               this.course = course;
               this.updateBasicForm();
-              this.isLoading = false;
               this.showAlert();
+              this.isLoading = false;
             });
         }
         break;
       case 'students':
-        this.isLoading = true;
         const sentences: string[] = [];
         Object.values(this.learnersForm.controls).forEach((control) =>
           sentences.push(control.value)
         );
-        console.log(sentences);
         if (this.courseId != null) {
+          this.isLoading = true;
           this.courseService
             .updateCourseLearners(sentences, parseInt(this.courseId))
             .subscribe((data) => {
@@ -248,6 +249,7 @@ export class TeachManageComponent implements OnInit {
               this.showAlert();
             });
         }
+        break;
     }
   }
   private showAlert() {
@@ -280,7 +282,7 @@ export class TeachManageComponent implements OnInit {
     this.isAddingSection = true;
   }
 
-  cancelNewSection() {
+  cancelNewSectionTemplate() {
     if (!this.isAddingSection) return;
     this.isAddingSection = false;
   }

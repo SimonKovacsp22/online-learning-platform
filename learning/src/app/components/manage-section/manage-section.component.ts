@@ -32,6 +32,7 @@ export class ManageSectionComponent implements OnInit {
   faPen = faPen;
   faTrash = faTrash;
   faXmark = faXmark;
+  isLoading: boolean = false;
 
   isUpdatingSection: boolean = false;
   isAddingLecture: boolean = false;
@@ -122,7 +123,7 @@ export class ManageSectionComponent implements OnInit {
     this.isAddingLecture = true;
   }
 
-  cancelNewLecture() {
+  cancelNewLectureTemplate() {
     if (!this.isAddingLecture) return;
     this.isAddingLecture = false;
   }
@@ -148,6 +149,7 @@ export class ManageSectionComponent implements OnInit {
       formData.append('file', file);
       formData.append('sectionId', sectionId.toString());
       this.onUpdate.emit(true);
+      this.isLoading = true;
       this.courseService
         .createLecture(formData, parseInt(courseId))
         .subscribe((data) => {
@@ -155,9 +157,18 @@ export class ManageSectionComponent implements OnInit {
           if (section != null) {
             this.onSaveLecture.emit(section);
             this.onUpdate.emit(false);
+            this.isLoading = false;
             this.cancelUpdate();
           }
         });
     }
+  }
+
+  handleLectureUpdateSave(section: ISection) {
+    this.onUpdate.emit(false);
+    this.onSaveLecture.emit(section);
+  }
+  handleLectureUpdateStart() {
+    this.onUpdate.emit(true);
   }
 }
