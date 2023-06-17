@@ -79,7 +79,13 @@
                                             <div class="mb-4">
                                                 <label for="subtitle" class="mb-1 text-nav fw-bold">Description</label>
                                                 <!-- Text editor -->
-                                                <div class=""><quill-editor></quill-editor></div>
+
+                                                <div class=""><quill-editor formControlName="description" format="html"
+                                                        [modules]="modules"
+                                                        (onEditorChanged)="handleDescriptionChange($event)"
+                                                        (onContentChanged)="handleContentChange($event)"
+                                                        [styles]="{height:'150px'}"></quill-editor>
+                                                </div>
                                                 <p class="text-super-caption">Use 1 or 2 related keywords, and mention
                                                     3-4 of the most important areas that you've covered during your
                                                     course.</p>
@@ -93,7 +99,7 @@
                                                             class="box-select w-100 input-large px-3 py-2" type="text"
                                                             required>
                                                             <option
-                                                                [selected]="language.id === courseForm.get('language')?.value"
+                                                                [selected]="language.name == courseForm.get('language')?.value"
                                                                 [ngValue]="language.name"
                                                                 *ngFor="let language of languages" class="box-option">
                                                                 {{language.name}}</option>

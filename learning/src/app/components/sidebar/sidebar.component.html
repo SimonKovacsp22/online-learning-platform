@@ -40,7 +40,7 @@
         </li>
     </ul>
     <div class="p-3">
-        <button
+        <button *ngIf="loginService.user.authStatus ==='AUTH'"
             class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray w-100 mt-3"
             (click)="logOut()">Log out
         </button>

@@ -10,8 +10,8 @@
         </div>
         <div class="d-flex gap-3 align-items-center">
             <fa-icon (click)="updateSection()" class="text-super-caption cursor-pointer hover-black" [icon]="faPen" />
-            <fa-icon (click)="deleteModalOpen(content,section.id)" class="text-super-caption cursor-pointer hover-black"
-                [icon]="faTrash" />
+            <fa-icon *ngIf="section.videos.length === 0" (click)="deleteModalOpen(content,section.id)"
+                class="text-super-caption cursor-pointer hover-black" [icon]="faTrash" />
         </div>
     </div>
     <ng-template #sectionUpdateTemplate>

@@ -284,6 +284,21 @@ export class CourseService {
       }
     );
   }
+
+  deleteLecture(sectionId: number | null, lectureId: number, courseId: number) {
+    return this.http.request<postOrPutLectureResponse>(
+      'DELETE',
+      `${environment.rooturl}/courses/delete/curriculum/lectures/${courseId}`,
+      {
+        observe: 'response',
+        withCredentials: true,
+        body: {
+          sectionId,
+          lectureId,
+        },
+      }
+    );
+  }
 }
 
 interface getCoursesResponse {

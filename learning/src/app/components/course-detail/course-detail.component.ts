@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { DashboardService } from '../../services/dash/dashboard.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ICourse } from '../../models/course.model';
 import {
   faCircleExclamation,
@@ -18,6 +18,7 @@ import {
 import { CourseService } from '../../services/course/course.service';
 import { CartService } from '../../services/cart/cart.service';
 import { LoginService } from '../../services/login/login.service';
+import { OrderItem } from 'src/app/models/order-item.mode';
 
 @Component({
   selector: 'app-course-detail',
@@ -45,7 +46,8 @@ export class CourseDetailComponent {
     private route: ActivatedRoute,
     public courseService: CourseService,
     public cartService: CartService,
-    public loginService: LoginService
+    public loginService: LoginService,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       this.courseId = parseInt(params['id']);
@@ -81,5 +83,22 @@ export class CourseDetailComponent {
           this.cartService.cart?.courses.push(course);
         }
       });
+  }
+
+  buyNow() {
+    if (this.course) {
+      let orderItem: OrderItem = new OrderItem(this.course);
+      this.cartService
+        .createPaymentIntent({
+          orderItems: [orderItem],
+          currency: 'EUR',
+          receiptEmail: this.loginService.user.email,
+        })
+        .subscribe((responseData) => {
+          this.router.navigateByUrl(
+            '/checkout?client_secret=' + responseData.client_secret
+          );
+        });
+    }
   }
 }

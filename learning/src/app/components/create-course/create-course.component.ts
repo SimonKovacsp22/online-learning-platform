@@ -25,6 +25,7 @@ export class CreateCourseComponent implements OnInit {
     `I haven't decided if I have time`,
   ];
   courseTitle: string = '';
+  selectedCategory: string = '';
   categoryId: number | undefined;
 
   constructor(
@@ -44,24 +45,29 @@ export class CreateCourseComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.dashboardService
-      .getCategories()
-      .subscribe((data) => (this.categories = <any>data.body));
+    this.dashboardService.getCategories().subscribe((data) => {
+      this.categories = <any>data.body;
+    });
   }
 
   createNewCourse() {
-    console.log(this.categoryId);
-    console.log(this.courseTitle);
-    if (this.categoryId && this.courseTitle.length >= 15) {
-      this.courseService
-        .createCourse(this.courseTitle, this.categoryId)
-        .subscribe((data) => {
-          const { course } = <{ course: ICourse }>data.body;
-          if (course.id) {
-            console.log(course);
-            this.router.navigateByUrl('/teach/manage/' + course.id);
-          }
-        });
+    if (this.selectedCategory !== '') {
+      const categoryId = this.categories.find(
+        (c) => c.name === this.selectedCategory
+      )?.id;
+      if (categoryId && this.courseTitle.length >= 15) {
+        this.courseService
+          .createCourse(this.courseTitle, categoryId)
+          .subscribe((data) => {
+            const { course } = <{ course: ICourse }>data.body;
+            if (course.id) {
+              console.log(course);
+              this.router.navigateByUrl(
+                '/teach/manage/' + course.id + '/option/basic'
+              );
+            }
+          });
+      }
     }
   }
 
@@ -88,5 +94,9 @@ export class CreateCourseComponent implements OnInit {
     if (radioButton) {
       radioButton.checked = true;
     }
+  }
+
+  handleCategorySelect(event: Event) {
+    this.selectedCategory = (event.target as HTMLSelectElement).value;
   }
 }

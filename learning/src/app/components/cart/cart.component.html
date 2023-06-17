@@ -3,65 +3,74 @@
         <h1 class="text-title-secondary fw-bold mb-5">Shopping Cart</h1>
 
     </header>
-    <div class="col-9 pe-5">
-        <h5 class="text-subtitle-secondary fw-bold">
-            {{cartService.cart.courses.length}} Courses in
-            Cart</h5>
-        <div *ngFor="let course of cartService.cart.courses"
-            class="d-flex w-100 justify-content-between py-3 border-top-gray-400">
-            <div class="d-flex justify-content-between w-100">
-                <div [routerLink]="['/courses/', course.id]" class="d-flex cursor-pointer">
-                    <div class="course-image-sm me-3">
-                        <img src="{{course.imageUrl}}" class="object-fit-cover w-100 h-100" />
-                    </div>
-                    <div>
-                        <h6 class="fw-700 mb-1">{{course.title}}</h6>
-                        <p class="text-caption mb-1">{{course.user.firstName + ' ' + course.user.lastName}}</p>
-                        <div class="d-flex align-items-center mb-1">
-                            <p class="text-caption color-yellow-600 fw-700 mb-0 me-1">
-                                {{courseService.getTotalRating(course.ratings)}}</p>
-                            <fa-icon
-                                *ngFor="let star of courseService.getRatingArray(courseService.getTotalRating(course.ratings))"
-                                [icon]="faStar" class="text-super-caption color-yellow-500" />
-                            <p class="text-caption color-gray-600 mb-0 ms-1">{{'(' + course.ratings.length + '
-                                ratings)'}}
+    <div class="flex-column-reverse flex-lg-row row">
+        <!-- Items -->
+        <div class="col-12 col-lg-9 pe-lg-5">
+            <h5 class="text-subtitle-secondary fw-bold">
+                {{cartService.cart.courses.length}} Courses in
+                Cart</h5>
+            <div *ngFor="let course of cartService.cart.courses"
+                class="d-flex flex-column flex-sm-row w-100 justify-content-between py-3 border-top-gray-400 ">
+                <div class="d-flex flex-column flex-sm-row justify-content-between w-100">
+                    <div [routerLink]="['/courses/', course.id]"
+                        class="d-flex flex-column flex-md-row cursor-pointer course-width-fixed-md-none">
+                        <div class="course-image-sm me-3 mb-2 mb-md-0">
+                            <img src="{{course.imageUrl}}" class="object-fit-cover w-100" />
+                        </div>
+                        <div>
+                            <h6 class="fw-700 mb-1">{{course.title}}</h6>
+                            <p class="text-caption mb-1">{{course.user.firstName + ' ' + course.user.lastName}}</p>
+                            <div class="d-flex align-items-center mb-1">
+                                <p class="text-caption color-yellow-600 fw-700 mb-0 me-1">
+                                    {{courseService.getTotalRating(course.ratings)}}</p>
+                                <fa-icon
+                                    *ngFor="let star of courseService.getRatingArray(courseService.getTotalRating(course.ratings))"
+                                    [icon]="faStar" class="text-super-caption color-yellow-500" />
+                                <p class="text-caption color-gray-600 mb-0 ms-1">{{'(' + course.ratings.length + '
+                                    ratings)'}}
+                                </p>
+                            </div>
+                            <p class="text-super-caption color-gray-600">
+                                {{courseService.getTotalLength(course.sections,true)}} &#x2022;
+                                {{courseService.getTotalLectures(course.sections)}} lectures &#x2022;
+                                All levels
                             </p>
                         </div>
-                        <!-- <p class="text-super-caption color-gray-600">{{course.videos.length}} lectures &#x2022;
-                            {{courseService.getTotalLength(course.videos,true)}} &#x2022;
-                            All levels
-                        </p> -->
+                    </div>
+                    <div class="text-end ps-md-4 ">
+                        <button (click)="removeCourseFromCart(course)"
+                            class="d-block text-caption pb-2 px-0 px-md-2 color-primary cursor-pointer button-text py-0">Remove</button>
+                        <button
+                            class="d-block text-caption pb-2 px-0 px-md-2  color-primary cursor-pointer button-text py-0">Move
+                            to
+                            Whishlist</button>
                     </div>
                 </div>
-                <div class="text-end ps-4">
-                    <button (click)="removeCourseFromCart(course)"
-                        class="d-block text-caption pb-2 color-primary cursor-pointer button-text py-0">Remove</button>
-                    <button class="d-block text-caption pb-2 color-primary cursor-pointer button-text py-0">Move to
-                        Whishlist</button>
+                <div class="text-sm-end ps-sm-3 ps-md-5">
+                    <h6 class="fw-700 color-primary-dark mt-sm-1 mb-0">&euro;{{course.price}}</h6>
                 </div>
-            </div>
-            <div class="text-end ps-5">
-                <h6 class="fw-700 color-primary-dark mb-0">&euro;{{course.price}}</h6>
+
             </div>
 
         </div>
-
-    </div>
-    <div class="col-3 ps-4">
-        <header class="mb-3">
-            <h6 class="fw-bold color-gray-600">Total:</h6>
-            <h4 class="text-title-medium fw-bold">&euro;{{cartService.calculateTotal(cartService.cart.courses)}}</h4>
-        </header>
-        <div class="pb-3 border-bottom-gray-400">
-            <button (click)="checkout()"
-                class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark cursor-pointer"
-                [ngClass]="{
-                    'button-disabled':cartService.cart.courses.length === 0
-                }">Checkout
-            </button>
-        </div>
-        <div class="mt-3">
-            <h6 class="fw-bold">Promotions</h6>
+        <!-- Checkout -->
+        <div class="col-12 col-lg-3  ps-lg-4">
+            <header class="mb-3">
+                <h6 class="fw-bold color-gray-600">Total:</h6>
+                <h4 class="text-title-medium fw-bold">&euro;{{cartService.calculateTotal(cartService.cart.courses)}}
+                </h4>
+            </header>
+            <div class="pb-3 border-bottom-gray-400">
+                <button (click)="checkout()"
+                    class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark cursor-pointer"
+                    [ngClass]="{
+                        'button-disabled':cartService.cart.courses.length === 0
+                    }">Checkout
+                </button>
+            </div>
+            <div class="mt-3">
+                <h6 class="fw-bold">Promotions</h6>
+            </div>
         </div>
     </div>
 </section>

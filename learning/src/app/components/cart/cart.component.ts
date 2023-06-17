@@ -6,8 +6,6 @@ import { CourseService } from '../../services/course/course.service';
 import { ICourse } from '../../models/course.model';
 import { Router } from '@angular/router';
 import { OrderItem } from '../../models/order-item.mode';
-import { environment } from '../../environments/environment';
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',

@@ -61,6 +61,8 @@ export class ManageSectionComponent implements OnInit {
       title: this.section.title,
       rank: this.section.rank,
     });
+
+    this.section.videos.sort((a, b) => a.rank - b.rank);
   }
 
   updateSection() {
@@ -104,7 +106,7 @@ export class ManageSectionComponent implements OnInit {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
-        if (result === 'OK') {
+        if (result === 'OK' && this.section.videos.length === 0) {
           const courseId = this.route.snapshot.paramMap.get('id');
           if (courseId && sectionId) {
             this.courseService

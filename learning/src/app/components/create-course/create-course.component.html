@@ -36,10 +36,11 @@
                     <h1 class="mb-4 text-title-medium fw-bold">What category best fits the knowledge you'll share?</h1>
                     <p class="mb-5">If you're not sure about the right category, you can change it later.</p>
                     <div class="mx-5 fixed-width  w-100 position-relative"><select #select="ngModel" ngModel
-                            name="category" class="box-select w-100 input-large px-3 py-2" type="text" required
+                            (change)="handleCategorySelect($event)" name="category"
+                            class="box-select w-100 input-large px-3 py-2" type="text" required
                             [(ngModel)]="categoryId">
                             <option class="box-option" selected>Choose a category</option>
-                            <option class="box-option" [value]="category.id" *ngFor="let category of categories">
+                            <option class="box-option" *ngFor="let category of categories">
                                 {{category.name}}
                             </option>
                         </select>

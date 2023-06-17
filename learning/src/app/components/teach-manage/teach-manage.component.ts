@@ -20,6 +20,8 @@ import { ILanguage } from '../../models/language.model';
 import { IWYWL, WYWL } from '../../models/wywl.model';
 import { environment } from '../../environments/environment';
 import { ISection, Section } from 'src/app/models/section.model';
+import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-teach-manage',
@@ -58,17 +60,22 @@ export class TeachManageComponent implements OnInit {
   timeoutId: any = null;
   isLoading: boolean = false;
   isAddingSection: boolean = false;
+  description: string = '';
+  timeout: any;
+  modules = {};
+
   constructor(
     private dashboardService: DashboardService,
     private courseService: CourseService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private sanitizer: DomSanitizer
   ) {
     this.courseForm = this.formBuilder.group({
       title: '',
       subtitle: '',
       description: '',
-      language: 1052,
+      language: 'ENGLISH',
       category: 0,
       file: null,
     });
@@ -80,6 +87,27 @@ export class TeachManageComponent implements OnInit {
       newSection: '',
       rank: '',
     });
+
+    this.modules = {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+
+        [{ header: 1 }, { header: 2 }], // custom button values
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+        [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+        [{ direction: 'rtl' }], // text direction
+
+        [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+        [{ font: [] }],
+        [{ align: [] }],
+
+        ['clean'], // remove formatting button
+      ],
+    };
   }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -144,12 +172,13 @@ export class TeachManageComponent implements OnInit {
       subtitle: this.course?.subtitle,
       language:
         this.course?.languages[0] && this.course.languages.length > 0
-          ? this.course?.languages[0].id
-          : 1052,
+          ? this.course?.languages[0].name
+          : 'ENGLISH',
       category:
         this.course?.categories[0].id != null
           ? this.course?.categories[0].id
           : 0,
+      description: this.course?.description,
     });
   }
 
@@ -164,6 +193,17 @@ export class TeachManageComponent implements OnInit {
       this.imagePreview = e.target.result;
     };
     reader.readAsDataURL(file);
+  }
+
+  handleDescriptionChange(event: EditorChangeContent | EditorChangeSelection) {}
+
+  handleContentChange(event: any) {
+    clearTimeout(this.timeout); // Clear any existing timeout
+
+    this.timeout = setTimeout(() => {
+      this.description = event.html;
+      console.log('Description set:', this.description);
+    }, 500); // Set the delay to 0.5 seconds (500 milliseconds)
   }
 
   generateWhatYouWillLearnForm(course: ICourse) {
@@ -201,8 +241,9 @@ export class TeachManageComponent implements OnInit {
         const formData = new FormData();
         formData.append('title', this.courseForm.get('title')?.value);
         formData.append('subtitle', this.courseForm.get('subtitle')?.value);
-        formData.append('description', '');
+        formData.append('description', this.description);
         formData.append('file', this.courseForm.get('file')?.value);
+        formData.append('language', this.courseForm.get('language')?.value);
         if (this.courseId != null) {
           this.isLoading = true;
           this.courseService

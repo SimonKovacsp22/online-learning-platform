@@ -1,5 +1,11 @@
 .course-image-sm {
     min-width: 11.25rem;
     width: 11.25rem;
-    height: 4.1875rem;
+}
+
+@media (max-width:768px) {
+    .course-image-sm {
+        min-width: none;
+        width: 100%;
+    }
 }
