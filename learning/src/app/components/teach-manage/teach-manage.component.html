@@ -96,8 +96,7 @@
                                                     <div class="position-relative">
                                                         <!-- Language select -->
                                                         <select formControlName="language" name="language"
-                                                            class="box-select w-100 input-large px-3 py-2" type="text"
-                                                            required>
+                                                            class="box-select w-100 input-large px-3 py-2" type="text">
                                                             <option
                                                                 [selected]="language.name == courseForm.get('language')?.value"
                                                                 [ngValue]="language.name"
@@ -114,11 +113,11 @@
                                                     <label class="mb-1 text-nav fw-bold"
                                                         for="category">Categories</label>
                                                     <div class="position-relative">
-                                                        <select name="category"
+                                                        <select formControlName="category" name="category"
                                                             class="box-select w-100 input-large px-3 py-2 position-relative"
-                                                            type="text" required>
+                                                            type="text">
                                                             <option
-                                                                [selected]="category.id === courseForm.get('category')?.value "
+                                                                [selected]="category.id == courseForm.get('category')?.value "
                                                                 [ngValue]="category.id"
                                                                 *ngFor="let category of categories" class="box-option">
                                                                 {{category.name}}</option>

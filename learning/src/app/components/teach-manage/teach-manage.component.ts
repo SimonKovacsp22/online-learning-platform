@@ -182,6 +182,11 @@ export class TeachManageComponent implements OnInit {
     });
   }
 
+  handleCategoryChange(event: Event) {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    console.log(selectedValue);
+  }
+
   onFileSelected(event: Event) {
     // @ts-ignore
     const file = (event.target as HTMLInputElement).files[0];
@@ -243,6 +248,7 @@ export class TeachManageComponent implements OnInit {
         formData.append('subtitle', this.courseForm.get('subtitle')?.value);
         formData.append('description', this.description);
         formData.append('file', this.courseForm.get('file')?.value);
+        formData.append('categoryId', this.courseForm.get('category')?.value);
         formData.append('language', this.courseForm.get('language')?.value);
         if (this.courseId != null) {
           this.isLoading = true;
