@@ -1,6 +1,12 @@
 <section>
     <!-- Navbar -->
-    <app-nav-private [title]="course?.title"></app-nav-private>
+    <app-nav-private [title]="course?.title">
+        <button slot="button" class="text-white rounded-1 d-flex gap-1 fw-semibold border-white" routerLink="/learning">
+
+            <span>My courses</span>
+            <fa-icon style="margin-top:1px;" [icon]="faArrow" />
+        </button>
+    </app-nav-private>
     <!-- Content -->
     <div *ngIf="course !== null" class=" container-fluid mt-medium">
         <div class="row">

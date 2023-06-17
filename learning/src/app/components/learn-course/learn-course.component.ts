@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faClapperboard } from '@fortawesome/free-solid-svg-icons';
+import {
+  faClapperboard,
+  faArrowRightToBracket,
+} from '@fortawesome/free-solid-svg-icons';
 import { ICourse } from '../../models/course.model';
 import { LoginService } from '../../services/login/login.service';
 import { CourseService } from '../../services/course/course.service';
@@ -17,6 +20,7 @@ export class LearnCourseComponent implements OnInit {
   course: ICourse | null = null;
   courseId: number = 0;
   faClapperboard = faClapperboard;
+  faArrow = faArrowRightToBracket;
   sortedSections: ISection[] = [];
   selectedVideoSources: { src: string; type: string }[] = [];
   previouslySelectedLectureId: number | null = null;
