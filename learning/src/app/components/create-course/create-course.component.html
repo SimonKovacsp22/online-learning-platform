@@ -35,17 +35,17 @@
                 <div class="col-12 d-flex flex-column align-items-center">
                     <h1 class="mb-4 text-title-medium fw-bold">What category best fits the knowledge you'll share?</h1>
                     <p class="mb-5">If you're not sure about the right category, you can change it later.</p>
-                    <div class="mx-5 fixed-width  w-100 position-relative"><select #select="ngModel" ngModel
-                            (change)="handleCategorySelect($event)" name="category"
-                            class="box-select w-100 input-large px-3 py-2" type="text" required
-                            [(ngModel)]="categoryId">
-                            <option class="box-option" selected>Choose a category</option>
-                            <option class="box-option" *ngFor="let category of categories">
+                    <form [formGroup]="categoryForm" class="mx-5 fixed-width  w-100 position-relative"><select
+                            formControlName="categoryId" name="category" class="box-select w-100 input-large px-3 py-2"
+                            type="text" required>
+                            <option class="box-option"
+                                [selected]="category.id == categoryForm.get('categoryId')?.value "
+                                [ngValue]="category.id" *ngFor="let category of categories">
                                 {{category.name}}
                             </option>
                         </select>
                         <fa-icon class="position-absolute caret-select" [icon]="faAngleDown" />
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

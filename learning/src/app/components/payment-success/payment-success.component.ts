@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart/cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
-import { of, switchMap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Purchase } from 'src/app/models/purchase.model';
+import { ICart } from 'src/app/models/cart.model';
+import { OrderItem } from 'src/app/models/order-item.mode';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-payment-success',
@@ -16,11 +20,13 @@ export class PaymentSuccessComponent implements OnInit {
   stripe = Stripe(environment.stripePublicKey);
   error: boolean = false;
   errorStatus: string = '';
+  cart: ICart | null = null;
   constructor(
     private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private http: HttpClient
   ) {
     this.paymentIntentClientSecret = this.route.snapshot.queryParamMap.get(
       'payment_intent_client_secret'
@@ -32,14 +38,21 @@ export class PaymentSuccessComponent implements OnInit {
     );
     if (paymentIntent.status === 'succeeded') {
       this.cartService
-        .fulfillOrder(this.loginService.user.email)
-        .subscribe((data: IStatus) => {
-          if (data.success) {
-            if (this.cartService.cart) {
-              this.cartService.cart.courses = [];
+        .getCartByUser(this.loginService.user)
+        .subscribe((responseData) => {
+          this.cart = <any>responseData.body;
+          this.cartService.cart = <any>responseData.body;
+          this.fulfillOrder(this.loginService.user.email).subscribe(
+            (data: IStatus) => {
+              if (data.success) {
+                if (this.cartService.cart) {
+                  this.cartService.cart.courses = [];
+                  this.cart = null;
+                }
+                this.router.navigateByUrl('/learning');
+              }
             }
-            this.router.navigateByUrl('/learning');
-          }
+          );
         });
     } else {
       this.error = true;
@@ -48,6 +61,17 @@ export class PaymentSuccessComponent implements OnInit {
           ? 'Payment not succesful, please try again.'
           : 'Something went wrong.';
     }
+  }
+
+  fulfillOrder(email: string): Observable<any> {
+    if (this.cart) {
+      let orderItems = this.cart.courses.map((c) => new OrderItem(c));
+
+      return this.http.post<Purchase>(
+        environment.rooturl + '/checkout/purchase',
+        { email, orderItems }
+      );
+    } else return new Observable(undefined);
   }
 }
 

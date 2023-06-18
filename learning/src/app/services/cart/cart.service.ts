@@ -64,17 +64,6 @@ export class CartService {
     return this.http.post<PaymentInfo>(environment.rooturl + '/checkout', info);
   }
 
-  fulfillOrder(email: string): Observable<any> {
-    if (this.cart !== null) {
-      let orderItems = this.cart.courses.map((c) => new OrderItem(c));
-      console.log(orderItems);
-      return this.http.post<Purchase>(
-        environment.rooturl + '/checkout/purchase',
-        { email, orderItems }
-      );
-    } else return new Observable(undefined);
-  }
-
   isCourseInCart(course: ICourse) {
     return this.cart?.courses.findIndex((c) => c.id === course.id) !== -1;
   }

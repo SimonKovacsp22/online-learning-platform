@@ -5,6 +5,7 @@ import { DashboardService } from '../../services/dash/dashboard.service';
 import { CourseService } from '../../services/course/course.service';
 import { ICourse } from '../../models/course.model';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-course',
@@ -12,6 +13,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./create-course.component.css'],
 })
 export class CreateCourseComponent implements OnInit {
+  categoryForm: FormGroup;
   faAngleDown = faAngleDown;
   step: number | null = 1;
   title: string = 'Step 1 of 3';
@@ -25,14 +27,13 @@ export class CreateCourseComponent implements OnInit {
     `I haven't decided if I have time`,
   ];
   courseTitle: string = '';
-  selectedCategory: string = '';
-  categoryId: number | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private dashboardService: DashboardService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private formBuilder: FormBuilder
   ) {
     this.step = +this.route.snapshot.paramMap.get('step')!;
 
@@ -43,31 +44,33 @@ export class CreateCourseComponent implements OnInit {
       this.title = `Step ${this.step} of 3`;
       this.progress = this.step * 33.3333;
     }
+
+    this.categoryForm = this.formBuilder.group({
+      categoryId: 0,
+    });
   }
   ngOnInit(): void {
     this.dashboardService.getCategories().subscribe((data) => {
       this.categories = <any>data.body;
+      this.categoryForm.patchValue({
+        categoryId: this.categories[0].id,
+      });
     });
   }
 
   createNewCourse() {
-    if (this.selectedCategory !== '') {
-      const categoryId = this.categories.find(
-        (c) => c.name === this.selectedCategory
-      )?.id;
-      if (categoryId && this.courseTitle.length >= 15) {
-        this.courseService
-          .createCourse(this.courseTitle, categoryId)
-          .subscribe((data) => {
-            const { course } = <{ course: ICourse }>data.body;
-            if (course.id) {
-              console.log(course);
-              this.router.navigateByUrl(
-                '/teach/manage/' + course.id + '/option/basic'
-              );
-            }
-          });
-      }
+    const categoryId = this.categoryForm.get('categoryId')?.value;
+    if (categoryId && this.courseTitle.length >= 15) {
+      this.courseService
+        .createCourse(this.courseTitle, categoryId)
+        .subscribe((data) => {
+          const { course } = <{ course: ICourse }>data.body;
+          if (course.id) {
+            this.router.navigateByUrl(
+              '/teach/manage/' + course.id + '/option/basic'
+            );
+          }
+        });
     }
   }
 
@@ -94,9 +97,5 @@ export class CreateCourseComponent implements OnInit {
     if (radioButton) {
       radioButton.checked = true;
     }
-  }
-
-  handleCategorySelect(event: Event) {
-    this.selectedCategory = (event.target as HTMLSelectElement).value;
   }
 }

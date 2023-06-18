@@ -172,7 +172,7 @@ export class TeachManageComponent implements OnInit {
   private updateBasicForm() {
     this.courseForm.patchValue({
       title: this.course?.title,
-      subtitle: this.course?.subtitle,
+      subtitle: this.course?.subtitle != null ? this.course?.subtitle : '',
       language:
         this.course?.languages[0] && this.course.languages.length > 0
           ? this.course?.languages[0].name
@@ -183,11 +183,6 @@ export class TeachManageComponent implements OnInit {
           : 0,
       description: this.course?.description,
     });
-  }
-
-  handleCategoryChange(event: Event) {
-    const selectedValue = (event.target as HTMLSelectElement).value;
-    console.log(selectedValue);
   }
 
   onFileSelected(event: Event) {
@@ -210,7 +205,6 @@ export class TeachManageComponent implements OnInit {
 
     this.timeout = setTimeout(() => {
       this.description = event.html;
-      console.log('Description set:', this.description);
     }, 500); // Set the delay to 0.5 seconds (500 milliseconds)
   }
 
@@ -387,7 +381,6 @@ export class TeachManageComponent implements OnInit {
   handleLectureCreate(section: ISection) {
     this.showSuccessAlert();
     const idx = this.sections.findIndex((s) => s.id == section.id);
-    console.log(idx);
     if (idx !== -1) {
       this.sections[idx] = section;
     }
