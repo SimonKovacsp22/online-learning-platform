@@ -45,6 +45,7 @@ import { TeachManageSidebarComponent } from './components/teach-manage-sidebar/t
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
 import { ManageSectionComponent } from './components/manage-section/manage-section.component';
 import { ManageLectureComponent } from './components/manage-lecture/manage-lecture.component';
+import { AlertErrorComponent } from './components/alert-error/alert-error.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { ManageLectureComponent } from './components/manage-lecture/manage-lectu
     AlertSuccessComponent,
     ManageSectionComponent,
     ManageLectureComponent,
+    AlertErrorComponent,
   ],
   imports: [
     BrowserModule,
