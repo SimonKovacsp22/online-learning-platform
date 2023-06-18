@@ -1,4 +1,4 @@
-<section class="row mt-large justify-content-center">
+<section class="row mt-medium justify-content-center">
     <header class="col-10 mb-1 mb-md-4 d-flex flex-column flex-md-row justify-content-between">
         <h3 class="text-title-medium mb-3 mb-md-0">{{courses.length}} results for "{{searchTerm}}"</h3>
         <div class="position-relative w-50 w-md-none min-width-170">
@@ -12,5 +12,24 @@
     </header>
     <div class="col-10"><app-course-template *ngFor="let course of courses" [course]="course"></app-course-template>
     </div>
+    <div class="col-12 position-relative mt-4">
+        <div class="position-absolute d-flex gap-3 justify-content-center w-100">
+            <div>
+                <ngb-pagination [(page)]=" pageNumber" [pageSize]="pageSize" [collectionSize]="totalElements"
+                    [maxSize]="5" [boundaryLinks]="true" (pageChange)="listCourses()" st>
 
+                </ngb-pagination>
+            </div>
+            <div class="d-flex gap-3">
+                <span class="mr-2 mt-2 text-paragraph text-nowrap">Page Size</span>
+                <select class="box-select-pg box-select rounded-1 w-100 input-large px-3 py-2" #myPageSelect
+                    (change)="updatePageSize(myPageSelect.value)">
+                    <option class="box-option">2</option>
+                    <option class="box-option" selected="true">10</option>
+                    <option class="box-option">4</option>
+                    <option class="box-option">40</option>
+                </select>
+            </div>
+        </div>
+    </div>
 </section>

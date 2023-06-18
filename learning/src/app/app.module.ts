@@ -46,6 +46,7 @@ import { AlertSuccessComponent } from './components/alert-success/alert-success.
 import { ManageSectionComponent } from './components/manage-section/manage-section.component';
 import { ManageLectureComponent } from './components/manage-lecture/manage-lecture.component';
 import { AlertErrorComponent } from './components/alert-error/alert-error.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { AlertErrorComponent } from './components/alert-error/alert-error.compon
     ReactiveFormsModule,
     MyCourseMenuComponent,
     TabOverviewComponent,
+    NgbModule,
     QuillModule.forRoot(),
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',

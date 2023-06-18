@@ -1,3 +1,13 @@
 .min-width-170 {
     min-width: 170px;
 }
+
+.box-select-pg:hover {
+    background-color:#e9ecef;
+    
+}
+
+.box-select-pg {
+    border: 1px solid #dee2e6;
+    height: 38px;
+}

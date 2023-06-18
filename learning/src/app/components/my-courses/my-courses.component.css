@@ -31,6 +31,12 @@
 
 }
 
+.image-responsive {
+  object-fit: cover;
+}
+
+
+
 @keyframes scaleAnimation {
     0% {
       opacity: 0;

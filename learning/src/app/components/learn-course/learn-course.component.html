@@ -33,7 +33,7 @@
                             <p class="mb-0 text-super-caption">HELLO</p>
                         </div>
                         <div slot="body">
-                            <div (click)="onVideoSelect(video.sourceUrl)"
+                            <div (click)="onVideoSelect(video)"
                                 *ngFor="let video of section.videos;let videoIdx = index"
                                 class="d-flex align-items-start cursor-pointer px-3 py-2 video-hover">
                                 <input class="mt-5px me-2" type="checkbox" />

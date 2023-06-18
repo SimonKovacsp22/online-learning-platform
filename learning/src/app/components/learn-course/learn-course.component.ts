@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login/login.service';
 import { CourseService } from '../../services/course/course.service';
 import { ActivatedRoute } from '@angular/router';
 import { VideoPlayerComponent } from '../video-player/video-player.component';
+import { IVideo } from 'src/app/models/video.model';
 
 @Component({
   selector: 'app-learn-course',
@@ -17,6 +18,7 @@ export class LearnCourseComponent implements OnInit {
   courseId: number = 0;
   faClapperboard = faClapperboard;
   selectedVideoSources: { src: string; type: string }[] = [];
+  previouslySelectedLectureId: number | null = null;
 
   constructor(
     private loginService: LoginService,
@@ -41,16 +43,21 @@ export class LearnCourseComponent implements OnInit {
         this.selectedVideoSources = [
           { src: course.sections[0].videos[0].sourceUrl, type: 'video/mp4' },
         ];
+        this.previouslySelectedLectureId = course.sections[0].videos[0].id;
       });
   }
 
-  onVideoSelect(sourceUrl: string) {
-    // Create the new source object
-    const newSource = { src: sourceUrl, type: 'video/mp4' };
+  onVideoSelect(lecture: IVideo) {
+    const selectedLecture = lecture;
+    if (selectedLecture.id != this.previouslySelectedLectureId) {
+      // Create the new source object
+      const newSource = { src: lecture.sourceUrl, type: 'video/mp4' };
 
-    // Update the selectedVideoSources array
-    this.selectedVideoSources = [newSource];
+      // Update the selectedVideoSources array
+      this.selectedVideoSources = [newSource];
 
-    this.videoPlayer.updateVideoSource(this.selectedVideoSources);
+      this.videoPlayer.updateVideoSource(this.selectedVideoSources);
+    }
+    this.previouslySelectedLectureId = selectedLecture.id;
   }
 }
