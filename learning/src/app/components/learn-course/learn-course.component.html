@@ -35,7 +35,7 @@
                     </div>
                     <app-my-course-menu *ngFor="let section of sortedSections,let sectionIdx = index">
                         <div slot="title">
-                            <h6 class="mb-2 fw-bold text-section">Section{{section.rank}}:&nbsp;{{section.title}}</h6>
+                            <h6 class="mb-2 fw-bold text-section">Section{{sectionIdx+1}}:&nbsp;{{section.title}}</h6>
                             <p class="mb-0 text-super-caption">HELLO</p>
                         </div>
                         <div slot="body">

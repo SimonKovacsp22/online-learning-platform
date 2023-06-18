@@ -45,6 +45,9 @@ export class LearnCourseComponent implements OnInit {
       .subscribe((responseData) => {
         const { course } = <{ course: ICourse }>responseData.body;
         this.course = course;
+        this.sortedSections = this.sortVideosAndSectionsByRank(
+          this.course.sections
+        );
         this.selectedVideoSources = [
           { src: course.sections[0].videos[0].sourceUrl, type: 'video/mp4' },
         ];
@@ -64,5 +67,14 @@ export class LearnCourseComponent implements OnInit {
       this.videoPlayer.updateVideoSource(this.selectedVideoSources);
     }
     this.previouslySelectedLectureId = selectedLecture.id;
+  }
+
+  sortVideosAndSectionsByRank(sections: ISection[]): ISection[] {
+    const sectionsWithSortedVideos = sections.map((section) => ({
+      ...section,
+      videos: section.videos.slice().sort((a, b) => a.rank - b.rank),
+    }));
+
+    return sectionsWithSortedVideos.sort((a, b) => a.rank - b.rank);
   }
 }
