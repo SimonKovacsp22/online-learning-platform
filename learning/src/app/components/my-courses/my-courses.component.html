@@ -1,8 +1,8 @@
 <section *ngIf="courseService.myCourses !== null">
     <div class="bg-primary">
-        <div class="container-md">
+        <div class="container-lg">
             <div class="row justify-content-center">
-                <header class="col-10 mt-medium text-white mb-3">
+                <header class="col-12 col-xl-10 mt-medium text-white mb-3">
                     <h1 class="text-title-secondary fw-bold mb-5">My learning</h1>
                     <h6 class="text-subtitle-secondary fw-bold text-white">All courses</h6>
                 </header>
@@ -11,12 +11,12 @@
     </div>
     <div class="container-lg mt-5">
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-12 col-xl-10">
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 px-0 px-sm-3 image-hover-dark cursor-pointer mb-3"
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3  px-sm-3 image-hover-dark cursor-pointer mb-3"
                         [routerLink]="['/learning/my/', course.id]" *ngFor="let course of courseService.myCourses">
                         <div class="border-gray-400 mb-2 position-relative">
-                            <img src="{{course.imageUrl}}" class="w-100" />
+                            <img src="{{course.imageUrl}}" class="w-100 image-responsive" />
                             <div class="play-button"></div>
                         </div>
                         <h6 class="fw-bold mb-1">{{course.title}}</h6>

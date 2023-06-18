@@ -88,6 +88,7 @@ export class CourseDetailComponent {
   buyNow() {
     if (this.course) {
       let orderItem: OrderItem = new OrderItem(this.course);
+      this.addCourseToCart(this.course);
       this.cartService
         .createPaymentIntent({
           orderItems: [orderItem],

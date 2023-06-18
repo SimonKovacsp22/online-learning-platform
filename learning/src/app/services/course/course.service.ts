@@ -173,6 +173,16 @@ export class CourseService {
       }
     );
   };
+  publishCourse = (courseId: number) => {
+    return this.http.post<postOrPutCourseResponse>(
+      environment.rooturl + '/courses/publish/' + courseId,
+      {},
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  };
 
   getLanguages = () => {
     return this.http.get<getlanguageResponse>(

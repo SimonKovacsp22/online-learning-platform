@@ -27,8 +27,12 @@
             </button>
         </ng-template>
         <div slot="alert">
-            <app-alert-success [message]="successMessage" [show]="isAlertVisible"
-                (onClose)="handleCloseAlert($event)"></app-alert-success>
+            <app-alert-success [message]="successMessage" [show]="isAlertSuccessVisible"
+                (onClose)="handleCloseSuccessAlert($event)"></app-alert-success>
+            <app-alert-error [message]="errorMessage" [show]="isAlertErrorVisible"
+                (onClose)="handleCloseErrorAlert($event)">
+
+            </app-alert-error>
 
         </div>
     </app-nav-private>
@@ -36,7 +40,9 @@
         <div class="row justify-content-center">
             <div class="col-9 d-flex">
                 <!-- Sidebar -->
-                <app-teach-manage-sidebar></app-teach-manage-sidebar>
+                <app-teach-manage-sidebar (onUpdateStart)="handleCoursePublishUpdateStart()"
+                    (onUpdateFinish)="handleCoursePublishUpdateFinish($event)"
+                    [course]="course"></app-teach-manage-sidebar>
                 <!-- Landing Page -->
 
                 <div *ngIf="option === 'basic'" class="container-fluid ">

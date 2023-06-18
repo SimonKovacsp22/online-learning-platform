@@ -44,6 +44,11 @@ export class CoursesBySearchComponent implements OnInit {
     this.courses = data.courses.content;
     this.pageNumber = data.courses.number + 1;
     this.pageSize = data.courses.size;
-    this.totalElements = data.courses.numberOfElements;
+    this.totalElements = data.courses.totalElements;
   };
+
+  updatePageSize(pageSize: string) {
+    this.pageSize = +pageSize;
+    this.listCourses();
+  }
 }

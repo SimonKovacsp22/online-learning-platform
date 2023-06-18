@@ -45,6 +45,8 @@ import { TeachManageSidebarComponent } from './components/teach-manage-sidebar/t
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
 import { ManageSectionComponent } from './components/manage-section/manage-section.component';
 import { ManageLectureComponent } from './components/manage-lecture/manage-lecture.component';
+import { AlertErrorComponent } from './components/alert-error/alert-error.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,7 @@ import { ManageLectureComponent } from './components/manage-lecture/manage-lectu
     AlertSuccessComponent,
     ManageSectionComponent,
     ManageLectureComponent,
+    AlertErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import { ManageLectureComponent } from './components/manage-lecture/manage-lectu
     ReactiveFormsModule,
     MyCourseMenuComponent,
     TabOverviewComponent,
+    NgbModule,
     QuillModule.forRoot(),
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',

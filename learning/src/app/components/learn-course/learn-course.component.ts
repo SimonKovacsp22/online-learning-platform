@@ -9,6 +9,7 @@ import { CourseService } from '../../services/course/course.service';
 import { ActivatedRoute } from '@angular/router';
 import { VideoPlayerComponent } from '../video-player/video-player.component';
 import { ISection } from 'src/app/models/section.model';
+import { IVideo } from 'src/app/models/video.model';
 
 @Component({
   selector: 'app-learn-course',
@@ -47,29 +48,21 @@ export class LearnCourseComponent implements OnInit {
         this.selectedVideoSources = [
           { src: course.sections[0].videos[0].sourceUrl, type: 'video/mp4' },
         ];
-        this.sortSections(course.sections);
+        this.previouslySelectedLectureId = course.sections[0].videos[0].id;
       });
   }
 
-  onVideoSelect(sourceUrl: string, lectureId: number) {
-    if (this.previouslySelectedLectureId !== lectureId) {
-      const newSource = { src: sourceUrl, type: 'video/mp4' };
+  onVideoSelect(lecture: IVideo) {
+    const selectedLecture = lecture;
+    if (selectedLecture.id != this.previouslySelectedLectureId) {
+      // Create the new source object
+      const newSource = { src: lecture.sourceUrl, type: 'video/mp4' };
 
       // Update the selectedVideoSources array
       this.selectedVideoSources = [newSource];
 
       this.videoPlayer.updateVideoSource(this.selectedVideoSources);
-      this.previouslySelectedLectureId = lectureId;
     }
-  }
-
-  sortSections(sections: ISection[]) {
-    const sortedSections = sections.map((sec) => ({
-      ...sec,
-      videos: sec.videos.slice().sort((a, b) => a.rank - b.rank),
-    }));
-
-    sortedSections.sort((a, b) => a.rank - b.rank);
-    this.sortedSections = sortedSections;
+    this.previouslySelectedLectureId = selectedLecture.id;
   }
 }

@@ -19,7 +19,7 @@ import { ICourse } from '../../models/course.model';
 import { ILanguage } from '../../models/language.model';
 import { IWYWL, WYWL } from '../../models/wywl.model';
 import { environment } from '../../environments/environment';
-import { ISection, Section } from 'src/app/models/section.model';
+import { ISection } from 'src/app/models/section.model';
 import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -55,9 +55,12 @@ export class TeachManageComponent implements OnInit {
   sections: ISection[] = [];
   whatYouWillLearn: IWYWL[] = [];
   option: string | null = 'basic';
-  successMessage: string = 'Changes Saved Succefully.';
-  isAlertVisible: boolean = false;
-  timeoutId: any = null;
+  successMessage: string = 'Changes Applied Succefully.';
+  errorMessage: string = 'Something went wrong!';
+  isAlertSuccessVisible: boolean = false;
+  isAlertErrorVisible: boolean = false;
+  successTimeoutId: any = null;
+  errorTimeoutId: any = null;
   isLoading: boolean = false;
   isAddingSection: boolean = false;
   description: string = '';
@@ -250,6 +253,7 @@ export class TeachManageComponent implements OnInit {
         formData.append('file', this.courseForm.get('file')?.value);
         formData.append('categoryId', this.courseForm.get('category')?.value);
         formData.append('language', this.courseForm.get('language')?.value);
+        formData.append('categoryId', this.courseForm.get('category')?.value);
         if (this.courseId != null) {
           this.isLoading = true;
           this.courseService
@@ -259,7 +263,7 @@ export class TeachManageComponent implements OnInit {
               this.course = course;
               this.updateBasicForm();
               this.isLoading = false;
-              this.showAlert();
+              this.showSuccessAlert();
             });
         }
 
@@ -274,7 +278,7 @@ export class TeachManageComponent implements OnInit {
               const { course } = <any>data.body;
               this.course = course;
               this.updateBasicForm();
-              this.showAlert();
+              this.showSuccessAlert();
               this.isLoading = false;
             });
         }
@@ -293,28 +297,45 @@ export class TeachManageComponent implements OnInit {
               this.course = course;
               this.updateBasicForm();
               this.isLoading = false;
-              this.showAlert();
+              this.showSuccessAlert();
             });
         }
         break;
     }
   }
-  private showAlert() {
-    this.isAlertVisible = true;
-    this.timeoutId = setTimeout(() => {
-      if (this.isAlertVisible) {
-        this.isAlertVisible = false;
-        if (this.timeoutId) {
-          clearTimeout(this.timeoutId);
+  private showSuccessAlert() {
+    this.isAlertSuccessVisible = true;
+    this.successTimeoutId = setTimeout(() => {
+      if (this.isAlertSuccessVisible) {
+        this.isAlertSuccessVisible = false;
+        if (this.successTimeoutId) {
+          clearTimeout(this.successTimeoutId);
         }
       }
     }, 2500);
   }
 
-  handleCloseAlert(event: boolean) {
-    this.isAlertVisible = event;
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
+  private showErrorAlert() {
+    this.isAlertErrorVisible = true;
+    this.errorTimeoutId = setTimeout(() => {
+      if (this.isAlertErrorVisible) {
+        this.isAlertErrorVisible = false;
+        if (this.errorTimeoutId) {
+          clearTimeout(this.errorTimeoutId);
+        }
+      }
+    }, 2500);
+  }
+  handleCloseSuccessAlert(event: boolean) {
+    this.isAlertSuccessVisible = event;
+    if (this.successTimeoutId) {
+      clearTimeout(this.successTimeoutId);
+    }
+  }
+  handleCloseErrorAlert(event: boolean) {
+    this.isAlertErrorVisible = event;
+    if (this.errorTimeoutId) {
+      clearTimeout(this.errorTimeoutId);
     }
   }
 
@@ -351,7 +372,7 @@ export class TeachManageComponent implements OnInit {
             );
             this.generateCurriculumForm(this.sections);
           }
-          this.showAlert();
+          this.showSuccessAlert();
           this.isLoading = false;
         });
     }
@@ -359,12 +380,12 @@ export class TeachManageComponent implements OnInit {
   }
 
   handleSectionUpdate(sections: ISection[]) {
-    this.showAlert();
+    this.showSuccessAlert();
     this.sections = sections.sort((a, b) => a.rank - b.rank);
   }
 
   handleLectureCreate(section: ISection) {
-    this.showAlert();
+    this.showSuccessAlert();
     const idx = this.sections.findIndex((s) => s.id == section.id);
     console.log(idx);
     if (idx !== -1) {
@@ -374,5 +395,21 @@ export class TeachManageComponent implements OnInit {
 
   handleIsUpdating(isUpdating: boolean) {
     this.isLoading = isUpdating;
+  }
+
+  handleCoursePublishUpdateStart() {
+    this.isLoading = true;
+  }
+  handleCoursePublishUpdateFinish(course: ICourse) {
+    if (!course) {
+      this.isLoading = false;
+      this.showErrorAlert();
+      return;
+    }
+    if (this.course) {
+      this.course.draft = course.draft;
+      this.isLoading = false;
+      this.showSuccessAlert();
+    }
   }
 }

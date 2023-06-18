@@ -34,5 +34,10 @@
             </div>
         </div>
     </div>
-    <button class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark">Publish</button>
+    <button *ngIf="course?.draft;else removeButton" (click)="publishCourse()"
+        class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark">Publish</button>
+    <ng-template #removeButton>
+        <button class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark">Unpublish
+
+        </button></ng-template>
 </div>
