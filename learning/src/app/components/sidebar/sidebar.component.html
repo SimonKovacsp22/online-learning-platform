@@ -1,6 +1,6 @@
 <div class="offcanvas-header p-0 flex-column overflow-y-scroll">
     <!-- Avatar Accordion -->
-    <app-accordion class="w-100">
+    <app-accordion *ngIf="loginService.user.authStatus == 'AUTH'" class="w-100">
         <!-- Header -->
         <div slot="top" class="d-flex align-items-center">
             <div *ngIf="!loginService.user.avatar"
@@ -31,8 +31,12 @@
 
 </div>
 <div class="offcanvas-body p-0">
+    <ul class="list-unstyled pe-3 pb-3 border-bottom-gray-300 mt-2 mb-0"><app-search></app-search></ul>
+    <div class="px-3 pt-3">
+        <h6 class="fw-semibold">Categories</h6>
+    </div>
     <!-- Categories -->
-    <ul class="list-unstyled w-100 mb-0 text-nav border-bottom-gray-300 p-3">
+    <ul class="list-unstyled w-100 mb-0 text-nav border-bottom-gray-300 p-3 pt-0">
         <li [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
             class="py-2 d-flex justify-content-between category-hover cursor-pointer" *ngFor="let cat of categories">
             <a class=" color-gray-900 d-inline text-decoration-none hover-primary">{{cat.name}}</a>

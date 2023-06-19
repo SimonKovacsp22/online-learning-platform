@@ -1,18 +1,19 @@
 <div class="row mt-large box-shadow rounded-4">
-    <div class="col-6 padding-4rem bg-primary rounded-4 design-container position-relative z-1">
-        <header class="h-100 d-flex flex-column justify-content-center">
+    <div class="d-none d-sm-flex
+    col-sm-5 col-md-6 bg-primary rounded-4 design-container position-relative z-1">
+        <header class="h-100 d-flex flex-column justify-content-center position-relative">
             <h1 class="text-hero mb-4 color-gray-100 fw-bolder">Advanture<br /> starts here</h1>
             <h5 class="text-subhero mb-32 color-gray-100 fw-semibold">Create an Account to Join Our<br /> Community
             </h5>
+            <img class="position-absolute teal-left-position" src="../../assets/teal-leaft.svg" />
+            <img class="position-absolute red-left-position" src="../../assets/red-leaf.svg" />
         </header>
-        <img class="position-absolute teal-left-position" src="../../assets/teal-leaft.svg" />
-        <img class="position-absolute red-left-position" src="../../assets/red-leaf.svg" />
         <img class="position-absolute orange-left-position" src="../../assets/orange-leaf.svg" />
 
     </div>
-    <div class="login-container col-6 d-flex flex-column position-relative z-1">
+    <div class="login-container col-12 col-sm-7 col-md-6 d-flex flex-column position-relative z-1">
         <fa-icon [icon]="faOtter" class="position-absolute color-primary otter-icon icon-nav-size" />
-        <h2 class="text-title-tertiary pb-3 text-center">Hello ! Welcome back</h2>
+        <h2 class="d-none d-md-block text-title-tertiary mb-2 mb-lg-3 text-center">Hello ! Welcome back</h2>
         <form #loginForm="ngForm" (submit)="validateUser(loginForm)">
             <div class="form-group mb-24">
                 <label for="email" class="mb-2 text-nav">Email </label>
@@ -25,9 +26,9 @@
                 </div>
             </div>
             <div class="form-group" [ngClass]="{
-                'mb-36' : !isError,
-                'mb-21' : isError
-            }">
+                    'mb-36' : !isError,
+                    'mb-21' : isError
+                }">
                 <label for="password" class="mb-2 text-nav">Password</label>
                 <div class="d-flex p-12 shadow-button rounded-1 mb-2">
                     <fa-icon [icon]=" faLock" class="icon-input-size me-2 icon-primary "></fa-icon>
@@ -37,23 +38,24 @@
                 </div>
                 <p *ngIf="isError" class="text-caption text-danger line-height-16 mb-0">Invalid credentials!</p>
             </div>
-            <button type="submit" class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark"
+            <button type="submit"
+                class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark mb-3 mb-md-0"
                 [ngClass]="{
-                    'py-10': isLoading
-                }">{{!isLoading ?
+                        'py-10': isLoading
+                    }">{{!isLoading ?
                 'Login' : ''}}
                 <div *ngIf="isLoading" class="spinner-border spinner-25 text-light" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </button>
-            <p class="my-12 text-center">or</p>
+            <p class="d-none d-md-block my-12 text-center">or</p>
             <button class="btn-google shadow-button rounded-1 w-100">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google logo"
                     class="btn-google-icon">
                 <span class="btn-google-text">Sign in with Google</span>
             </button>
-            <p class="text-nav my-4 text-center">Don't have an account. <a [routerLink]="['/','register']"
-                    class="color-primary d-inline text-decoration-none">Create
+            <p class="d-none d-md-block text-nav my-4 text-center">Don't have an account. <a
+                    [routerLink]="['/','register']" class="color-primary d-inline text-decoration-none">Create
                     Account</a></p>
         </form>
     </div>

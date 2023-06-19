@@ -1,5 +1,4 @@
-<form (ngSubmit)="registerForm.valid && saveUser(registerForm)" class="row mt-large box-shadow rounded-4"
-    #registerForm="ngForm">
+<form (ngSubmit)="saveUser(registerForm)" class="row mt-large box-shadow rounded-4" #registerForm="ngForm">
     <header class="col-12 bg-primary register-header rounded-4 position-relative">
         <h2 class=" text-title mb-0 text-white">Lurnx<fa-icon [icon]="faOtter" class="icon-reg-size"></fa-icon></h2>
         <img class="position-absolute teal-leaf leaf" src="../../assets/teal-leaft.svg" />
@@ -21,6 +20,11 @@
                     id="first_name" class="input-no-focus flex-grow-1 border-0 text-nav" placeholder="Your Name"
                     required name="first_name">
             </div>
+            <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="text-danger">
+                <p class="text-caption mb-0 mt-1" *ngIf="firstName.errors['required']">
+                    First Name is required.
+                </p>
+            </div>
         </div>
         <!-- Last Name -->
         <div class="form-group mb-24">
@@ -30,6 +34,11 @@
                 <input [(ngModel)]="model.lastName" #lastName="ngModel" name="last_name" type="last_name" id="last_name"
                     class="input-no-focus flex-grow-1 border-0 text-nav" placeholder="Last Name" required
                     name="last_name">
+            </div>
+            <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="text-danger">
+                <p class="text-caption mb-0 mt-1" *ngIf="lastName.errors['required']">
+                    Last Name is required.
+                </p>
             </div>
         </div>
         <!-- Email -->
@@ -42,6 +51,15 @@
                     pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
                     placeholder="Email Address" required name="email">
             </div>
+            <div *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                <p class="text-caption mb-0 mt-1" *ngIf="email.errors['required']">
+                    Email is required.
+                </p>
+                <p class="text-caption mb-0 mt-1" *ngIf="email.errors['pattern']">
+                    Invalid email format.
+                </p>
+            </div>
+
         </div>
     </div>
     <!-- Right Side -->
@@ -56,15 +74,28 @@
                     class="input-no-focus flex-grow-1 border-0 text-nav" placeholder="Password" required
                     name="password">
             </div>
+            <div *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger">
+                <p class="text-caption mb-0 mt-1" *ngIf="password.errors['required']">
+                    Password is required.
+                </p>
+            </div>
         </div>
         <!--Repeat Password -->
         <div class="form-group mb-55">
             <label for="repeat_password" class="mb-2 text-nav">Repeat Password</label>
             <div class="d-flex p-12 shadow-button rounded-1">
                 <fa-icon [icon]=" faShield" class="icon-input-size me-2 icon-primary"></fa-icon>
-                <input name="repeat_password" type="password" id="repeat_password"
-                    class="input-no-focus flex-grow-1 border-0 text-nav" placeholder="Password" required
-                    name="repeat_password">
+                <input [(ngModel)]="model.repeatPassword" #repeatPassword="ngModel" name="repeat_password"
+                    type="password" id="repeat_password" class="input-no-focus flex-grow-1 border-0 text-nav"
+                    placeholder="Password" required name="repeat_password">
+            </div>
+            <div *ngIf="repeatPassword.errors && (repeatPassword.dirty || repeatPassword.touched)" class="text-danger">
+                <p class="text-caption mb-0 mt-1" *ngIf="repeatPassword.errors['required']">
+                    Password is required.
+                </p>
+                <p class="text-caption mb-0 mt-1" *ngIf="repeatPassword !== password">
+                    Passwords must match.
+                </p>
             </div>
         </div>
         <button type="submit" class="button-regular rounded-1 bg-primary text-white w-100 button-hover-primary-dark"

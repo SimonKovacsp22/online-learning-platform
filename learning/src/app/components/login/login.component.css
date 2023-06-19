@@ -23,20 +23,21 @@
   }
 
   .design-container {
+    display: flex;
+    justify-content: center;
     overflow: hidden;
-    padding-left: 9rem;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
   }
 
 .teal-left-position {
-  left: 280px;
-  bottom: 30px;
+  left: 245px;
+  bottom: 40px;
   }
 .red-left-position {
   transform: rotateY(180deg);
-  left: 150px;
-  bottom: 80px;
+  left: 110px;
+  bottom: 90px;
 
 }
 .orange-left-position {
@@ -57,4 +58,102 @@
 
   .mb-36 {
     margin-bottom: 36px;
+  }
+
+  @media (max-width:1200px) {
+    .teal-left-position {
+        bottom:91px;
+        left: 215px;
+        width: 100px;
+      }
+    .red-left-position {
+     width:70px;
+     bottom:120px;
+     left: 123px;
+    
+    }
+    .orange-left-position {
+      width: 150px;
+      }
+
+      .login-container {
+        padding: 3rem 5rem;
+      }
+  }
+
+  @media (max-width:992px) {
+    .login-container {
+      padding: 2rem 3rem;
+    }
+    .text-hero {
+      font-size: 3.5rem;
+      line-height:55px;
+    }
+    .text-subhero {
+      font-size: 1rem;
+      line-height: 22px;
+    }
+
+    .orange-left-position {
+     width: 120px;
+    }
+
+    .red-left-position {
+      bottom: 141px;
+      left: 97px;
+      width: 52px;
+    }
+    .teal-left-position {
+      bottom: 125px;
+      left: 166px;
+      width: 69px;
+    }
+
+    .otter-icon {
+      display: none;
+    }
+
+  }
+
+  @media (max-width:768px) {
+    .mt-large {
+      margin-top: 4rem;
+    }
+    .mb-24 {
+      margin-bottom: .75rem;
+    }
+    .mb-36 {
+      margin-bottom: 1.5rem;
+    }
+    
+
+    .text-hero {
+      font-size: 2.5rem;
+      line-height:40px;
+    }
+    .text-subhero {
+      font-size: .875rem;
+      line-height: 18px;
+    }
+    .red-left-position {
+      bottom: 92px;
+      left: 91px;
+      width: 44px;
+    }
+    .teal-left-position {
+      bottom: 77px;
+      left: 146px;
+      width: 60px;
+    }
+    .orange-left-position {
+      width: 90px;
+      top: -22px;
+      right: -18px;
+    }
+  }
+
+  @media (max-width:380px) {
+    .login-container {
+      padding: 2rem 1rem;
+    }
   }

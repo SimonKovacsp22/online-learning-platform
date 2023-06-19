@@ -25,6 +25,7 @@ export class User implements IUser {
   avatar = '';
   createDt = '';
   authStatus = '';
+  repeatPassword = '';
   progresses = [];
   constructor(
     id?: number,
@@ -35,6 +36,7 @@ export class User implements IUser {
     role?: string,
     authStatus?: string,
     pwd?: string,
+    repeatPassword?: string,
     progresses?: IProgress[]
   ) {
     this.id = id || 0;
@@ -45,5 +47,6 @@ export class User implements IUser {
     this.pwd = pwd || '';
     this.role = role || '';
     this.authStatus = authStatus || '';
+    this.repeatPassword = repeatPassword || '';
   }
 }

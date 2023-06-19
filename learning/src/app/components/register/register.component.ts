@@ -39,11 +39,17 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/']);
   }
   saveUser(registerForm: NgForm) {
+    if (registerForm.invalid) {
+      Object.keys(registerForm.controls).forEach((controlName) => {
+        const control = registerForm.control.get(controlName);
+        control?.markAsTouched();
+      });
+      return;
+    }
     this.model.role = 'user';
     this.isLoading = true;
-    this.dashboardService
-      .saveUser(this.model)
-      .subscribe((responseData: any) => {
+    this.dashboardService.saveUser(this.model).subscribe(
+      (responseData: any) => {
         if (responseData.body && responseData.body.id) {
           this.isLoading = false;
           registerForm.resetForm();
@@ -52,6 +58,11 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
           this.isError = true;
         }
-      });
+      },
+      (error: any) => {
+        this.isLoading = false;
+        console.error(error);
+      }
+    );
   }
 }
