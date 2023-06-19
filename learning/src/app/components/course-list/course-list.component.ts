@@ -18,6 +18,7 @@ export class CourseListComponent {
   categoryName = '';
   courses: ICourse[] = [];
   orderType = 'popular';
+  isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,10 +29,12 @@ export class CourseListComponent {
     this.route.params.subscribe((params) => {
       this.categoryId = parseInt(params['id']);
       this.categoryName = this.route.snapshot.queryParams['name'];
+      this.isLoading = true;
       this.dashboardService
         .getCoursesByCategory(this.categoryId)
         .subscribe((responseData) => {
           this.courses = <any>responseData.body;
+          this.isLoading = false;
         });
     });
   }

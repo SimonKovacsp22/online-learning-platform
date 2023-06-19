@@ -1,6 +1,6 @@
 <section class="row mt-medium justify-content-center">
     <!-- Left Side -->
-    <div *ngIf="course !== null" class="col-12 col-md-9  col-lg-7 col-xl-6 me-lg-4">
+    <div *ngIf="course !== null && !isLoading" class="col-12 col-md-9  col-lg-7 col-xl-6 me-lg-4">
         <header class="mb-4 mb-lg-5">
             <a [routerLink]="['/categories/', course.categories[0].id]"
                 class="mb-3 d-block fw-bold color-primary text-decoration-none">{{course.categories[0].name}}</a>
@@ -120,7 +120,7 @@
     </div>
     <!-- Right Side -->
     <div class="col-4 d-none d-lg-block">
-        <div *ngIf="course !== null" class="course-modal border-gray-400 modal-shadow">
+        <div *ngIf="course !== null && !isLoading" class="course-modal border-gray-400 modal-shadow">
             <img src="{{course.imageUrl}}" class="w-100 img-medium" />
             <div class="p-4" [ngClass]="{
                 'course-modal-fixed': isScrolled
@@ -179,6 +179,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div *ngIf="isLoading" class="col-12 d-flex flex-row justify-content-center mt-large pb-5">
+        <div class="spinner-border spinner-large color-primary" role="status">
+
         </div>
     </div>
 </section>

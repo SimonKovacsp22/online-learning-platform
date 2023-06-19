@@ -29,6 +29,7 @@ export class CourseDetailComponent {
   courseId = 0;
   isScrolled = false;
   course: ICourse | null = null;
+  isLoading: boolean = false;
   totalRating = 0;
   faCircleExclamation = faCircleExclamation;
   faGlobe = faGlobe;
@@ -50,6 +51,7 @@ export class CourseDetailComponent {
     private router: Router
   ) {
     this.route.params.subscribe((params) => {
+      this.isLoading = true;
       this.courseId = parseInt(params['id']);
 
       this.dashboardService
@@ -61,6 +63,7 @@ export class CourseDetailComponent {
               this.course.ratings
             );
           }
+          this.isLoading = false;
         });
     });
   }
@@ -68,11 +71,12 @@ export class CourseDetailComponent {
   @HostListener('window:scroll', [])
   onScroll = () => {
     const scrollPosition =
-      window.pageYOffset ||
+      window.scrollY ||
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
-    this.isScrolled = scrollPosition > 300;
+    console.log(scrollPosition);
+    this.isScrolled = scrollPosition > 235;
   };
 
   addCourseToCart(course: ICourse) {

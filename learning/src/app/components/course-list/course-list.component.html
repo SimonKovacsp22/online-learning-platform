@@ -16,7 +16,7 @@
 
     </div>
     <!-- Recent -->
-    <div class="col-12 mt-3 d-flex flex-row w-2050">
+    <div *ngIf="!isLoading" class="col-12 mt-3 d-flex flex-row w-2050">
         <div class="d-flex flex-nowrap overflow-x-auto w-100">
             <div *ngFor="let course of courses" [routerLink]="['/courses/', course.id]"
                 class="cursor-pointer image-hover-dark me-3 fixed-with-240 pb-2">
@@ -35,6 +35,11 @@
             </div>
         </div>
     </div>
+    <div *ngIf="isLoading" class="col-12 d-flex flex-row justify-content-center mt-large">
+        <div class="spinner-border spinner-large color-primary" role="status">
+
+        </div>
+    </div>
 
     <header class="col-12 mt-large">
         <h2 class="text-title-tertiary fw-700 mb-3">All {{categoryName}} courses</h2>
@@ -45,8 +50,12 @@
     </header>
 
     <!-- All Courses for category -->
-    <div class="col-12">
+    <div class="col-12" *ngIf="!isLoading">
         <app-course-template *ngFor="let course of courses" [course]="course"></app-course-template>
+    </div>
+    <div *ngIf="isLoading" class="col-12 d-flex flex-row justify-content-center mt-large pb-5">
+        <div class="spinner-border spinner-large color-primary" role="status">
 
+        </div>
     </div>
 </div>

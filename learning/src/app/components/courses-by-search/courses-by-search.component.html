@@ -10,7 +10,13 @@
             <fa-icon class="position-absolute caret-select" [icon]="faAngleDown" />
         </div>
     </header>
-    <div class="col-10"><app-course-template *ngFor="let course of courses" [course]="course"></app-course-template>
+    <div *ngIf="!isLoading" class="col-10"><app-course-template *ngFor="let course of courses"
+            [course]="course"></app-course-template>
+    </div>
+    <div *ngIf="isLoading" class="col-12 d-flex flex-row justify-content-center mt-medium pb-5">
+        <div class="spinner-border spinner-medium color-primary" role="status">
+
+        </div>
     </div>
     <div class="col-12 position-relative mt-4">
         <div class="position-absolute d-flex gap-3 justify-content-center w-100">

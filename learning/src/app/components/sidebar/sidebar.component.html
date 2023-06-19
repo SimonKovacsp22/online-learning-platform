@@ -36,11 +36,19 @@
         <h6 class="fw-semibold">Categories</h6>
     </div>
     <!-- Categories -->
-    <ul class="list-unstyled w-100 mb-0 text-nav border-bottom-gray-300 p-3 pt-0">
+    <ul *ngIf="!isLoading && categories[0].id"
+        class="list-unstyled w-100 mb-0 text-nav border-bottom-gray-300 p-3 pt-0">
         <li [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
             class="py-2 d-flex justify-content-between category-hover cursor-pointer" *ngFor="let cat of categories">
             <a class=" color-gray-900 d-inline text-decoration-none hover-primary">{{cat.name}}</a>
             <fa-icon class="category-icon super-caption" [icon]="faAngleRight" />
+        </li>
+    </ul>
+    <ul *ngIf="isLoading" class="list-unstyled mb-0 text-nav p-3 pt-0">
+        <li class="py-2 px-3 d-flex justify-content-center" *ngFor="let cat of categories">
+            <div class="spinner-border spinner-20 color-primary" role="status">
+
+            </div>
         </li>
     </ul>
     <div class="p-3">

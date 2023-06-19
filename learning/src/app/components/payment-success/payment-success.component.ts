@@ -21,6 +21,7 @@ export class PaymentSuccessComponent implements OnInit {
   error: boolean = false;
   errorStatus: string = '';
   cart: ICart | null = null;
+  isLoading: boolean = false;
   constructor(
     private cartService: CartService,
     private route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class PaymentSuccessComponent implements OnInit {
       this.paymentIntentClientSecret
     );
     if (paymentIntent.status === 'succeeded') {
+      this.isLoading = true;
       this.cartService
         .getCartByUser(this.loginService.user)
         .subscribe((responseData) => {
@@ -49,6 +51,7 @@ export class PaymentSuccessComponent implements OnInit {
                   this.cartService.cart.courses = [];
                   this.cart = null;
                 }
+                this.isLoading = false;
                 this.router.navigateByUrl('/learning');
               }
             }
@@ -56,6 +59,7 @@ export class PaymentSuccessComponent implements OnInit {
         });
     } else {
       this.error = true;
+      this.isLoading = false;
       this.errorStatus =
         paymentIntent.status === 'requires_payment_method'
           ? 'Payment not succesful, please try again.'

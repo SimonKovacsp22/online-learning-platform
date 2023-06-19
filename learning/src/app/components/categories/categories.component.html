@@ -3,12 +3,19 @@
     <a class=" color-gray-900 d-inline text-decoration-none">Categories</a>
     <div [ngClass]="{ 'd-none': !categoryModalVisible}" class="hover-modal-container-left position-absolute">
         <div class="hover-modal bg-white border-gray-300 rounded-2 py-2 pb-64 modal-shadow">
-            <ul class="list-unstyled mb-0 text-nav">
+            <ul *ngIf="!isLoading && categories[0].id" class="list-unstyled mb-0 text-nav">
                 <li [routerLink]="['/','categories', cat.id ]" [queryParams]="{ name: cat.name }"
                     class="py-2 px-3 d-flex justify-content-between category-hover cursor-pointer"
                     *ngFor="let cat of categories">
                     <a class=" color-gray-900 d-inline text-decoration-none hover-primary">{{cat.name}}</a>
                     <fa-icon class="category-icon super-caption" [icon]="faAngleRight" />
+                </li>
+            </ul>
+            <ul *ngIf="isLoading" class="list-unstyled mb-0 text-nav">
+                <li class="py-2 px-3 d-flex justify-content-center" *ngFor="let cat of categories">
+                    <div class="spinner-border spinner-20 color-primary" role="status">
+
+                    </div>
                 </li>
             </ul>
         </div>

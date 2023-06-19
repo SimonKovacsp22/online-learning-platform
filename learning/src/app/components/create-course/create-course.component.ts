@@ -5,7 +5,7 @@ import { DashboardService } from '../../services/dash/dashboard.service';
 import { CourseService } from '../../services/course/course.service';
 import { ICourse } from '../../models/course.model';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-course',
@@ -26,6 +26,7 @@ export class CreateCourseComponent implements OnInit {
     `I have lots of flexibility (5+hours)`,
     `I haven't decided if I have time`,
   ];
+  isLoading: boolean = false;
   courseTitle: string = '';
 
   constructor(
@@ -61,11 +62,13 @@ export class CreateCourseComponent implements OnInit {
   createNewCourse() {
     const categoryId = this.categoryForm.get('categoryId')?.value;
     if (categoryId && this.courseTitle.length >= 15) {
+      this.isLoading = true;
       this.courseService
         .createCourse(this.courseTitle, categoryId)
         .subscribe((data) => {
           const { course } = <{ course: ICourse }>data.body;
           if (course.id) {
+            this.isLoading = false;
             this.router.navigateByUrl(
               '/teach/manage/' + course.id + '/option/basic'
             );
@@ -74,7 +77,12 @@ export class CreateCourseComponent implements OnInit {
     }
   }
 
-  next() {
+  next(courseForm: NgForm) {
+    if (this.step === 1 && this.courseTitle.length < 15) {
+      const control = courseForm.control.get('courseTitle');
+      control?.markAsTouched();
+      return;
+    }
     if (this.step && this.step < 3) {
       this.step += 1;
       this.progress = this.step * 33.3333;
@@ -84,6 +92,10 @@ export class CreateCourseComponent implements OnInit {
   }
 
   prev() {
+    if (this.step === 1) {
+      this.router.navigateByUrl('/teach');
+      return;
+    }
     if (this.step && this.step > 1) {
       this.step -= 1;
       this.progress = this.step * 33.3333;

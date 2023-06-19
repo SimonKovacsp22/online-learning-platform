@@ -20,7 +20,8 @@
             </div>
         </div>
         <!-- Course -->
-        <div *ngIf="taughtCourses && taughtCourses.length > 0 ;else noCourses" class="row justify-content-center  mt-4">
+        <div *ngIf="taughtCourses && taughtCourses.length  > 0 && !isLoading ;else noCourses"
+            class="row justify-content-center  mt-4">
             <div *ngFor="let course of taughtCourses" class="col-10 mb-3">
                 <div class="d-flex height-9 border-gray-400 w-100">
                     <div class="width-11 h-100">
@@ -65,7 +66,7 @@
         </div>
         <!-- Placeholder for no courses -->
         <ng-template #noCourses>
-            <div class="row justify-content-center">
+            <div *ngIf="!isLoading" class="row justify-content-center">
                 <div class="col-12 col-lg-4 col-md-6 col-xl-4 d-sm-flex d-md-block d-lg-flex justify-content-end">
                     <img class="image-grayscale" src="https://s.udemycdn.com/instructor/dashboard/video-creation.jpg" />
 
@@ -80,6 +81,13 @@
                 </div>
 
             </div>
+            <div *ngIf="isLoading" class="row justify-content-center mt-large">
+                <div class="spinner-border spinner-large color-primary" role="status">
+
+                </div>
+            </div>
         </ng-template>
+
+
     </div>
 </section>

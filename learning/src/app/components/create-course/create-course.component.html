@@ -1,6 +1,8 @@
 <section class="position-relative vh-100">
     <!-- Navbar -->
-    <app-nav-private [title]="title"></app-nav-private>
+    <app-nav-private [title]="title">
+        <div slot="loader" *ngIf="isLoading" class="spinner-border spinner-25 text-light me-4" role="status"></div>
+    </app-nav-private>
 
     <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25%" aria-valuemin="0"
         aria-valuemax="100">
@@ -72,7 +74,7 @@
         <nav class="position-absolute bottom-bar d-flex justify-content-between">
             <button type="button" (click)="prev()"
                 class="button-nav button color-primary border border-1 border-primary rounded-1 button-hover-secondary-gray">Previous</button>
-            <button type="button" *ngIf="step && step < 3" (click)="next()"
+            <button type="button" *ngIf="step && step < 3" (click)="next(courseForm)"
                 class="button-nav button bg-primary text-white border border-1 border-primary rounded-1 button-hover-primary-dark">Continue</button>
             <button type="submit" *ngIf="step === 3" [disabled]="!courseForm.valid" [ngClass]="{
                 'button-disabled': !courseForm.valid

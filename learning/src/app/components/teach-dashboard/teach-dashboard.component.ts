@@ -16,12 +16,14 @@ export class TeachDashboardComponent {
   subscription!: Subscription;
   refreshSubject = new BehaviorSubject(undefined);
   faArrow = faArrowRightToBracket;
+  isLoading: boolean = false;
 
   constructor(
     private courseService: CourseService,
     private loginService: LoginService,
     private router: Router
   ) {
+    this.isLoading = true;
     this.subscription = this.refreshSubject
       .pipe(
         switchMap(() =>
@@ -31,6 +33,7 @@ export class TeachDashboardComponent {
       .subscribe((data) => {
         const { courses } = <{ courses: any[] }>data.body;
         this.taughtCourses = courses;
+        this.isLoading = false;
       });
   }
 

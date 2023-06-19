@@ -15,21 +15,22 @@ export class SidebarComponent implements OnInit {
   @Input() name = 'World';
   faXmark = faXmark;
   faAngleRight = faAngleRight;
-  categories: ICategory[] = [];
+  categories = new Array(12);
+  isLoading: boolean = false;
   constructor(
-    private router: Router,
     public activeOffcanvas: NgbActiveOffcanvas,
     public loginService: LoginService,
     private dashboardService: DashboardService
   ) {}
   ngOnInit() {
+    this.isLoading = true;
     this.dashboardService.getCategories().subscribe((responseData) => {
       this.categories = <any>responseData.body;
+      this.isLoading = false;
     });
   }
 
   logOut() {
-    this.loginService.logOut();
     this.activeOffcanvas.dismiss();
     this.loginService.logOut();
   }

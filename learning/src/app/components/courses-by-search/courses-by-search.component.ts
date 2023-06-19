@@ -17,6 +17,7 @@ export class CoursesBySearchComponent implements OnInit {
   totalElements: number = 0;
   prevSearchTerm: string = '';
   searchTerm: string = '';
+  isLoading: boolean = false;
   constructor(
     private courseService: CourseService,
     private route: ActivatedRoute
@@ -35,9 +36,13 @@ export class CoursesBySearchComponent implements OnInit {
       this.pageNumber = 1;
     }
     this.prevSearchTerm = searchTerm!;
+    this.isLoading = true;
     this.courseService
       .searchCoursesPaginate(this.pageNumber - 1, this.pageSize, searchTerm!)
-      .subscribe(this.processResultPaginate);
+      .subscribe((data) => {
+        this.processResultPaginate(data);
+        this.isLoading = false;
+      });
   }
 
   processResultPaginate = (data: any) => {
