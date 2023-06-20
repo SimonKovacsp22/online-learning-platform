@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  rooturl: 'http://20.123.97.59',
-  client: 'http://localhost:4200',
+  rooturl: 'http://20.166.178.46',
+  client: 'http://4.210.33.175',
   stripePublicKey:
     'pk_test_51LuZvELtdxkAfcggzz4LGX9g6RrN8i3iJkE3hnzhY1y19QhIJ21gVzkudXyRGN2FRRTgZRUPwG0U9QkimYcc00Qo00xIJvH685',
   sentences: [
