@@ -60,21 +60,9 @@ export class CheckoutComponent implements OnInit {
   async confirmPayment(event: Event) {
     event.preventDefault();
     this.setLoading(true);
-
-    const { error } = await this.stripe.confirmPayment({
-      elements: this.elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: environment.client + '/success',
-        receipt_email: this.loginService.user.email,
-      },
+    this.router.navigate(['/success'], {
+      queryParams: { payment_intent: 'succeeded' },
     });
-
-    if (error.type === 'card_error' || error.type === 'validation_error') {
-      this.showMessage(error.message);
-    } else {
-      this.showMessage('An unexpected error occurred.');
-    }
     this.setLoading(false);
   }
 

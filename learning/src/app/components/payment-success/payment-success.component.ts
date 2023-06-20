@@ -28,43 +28,27 @@ export class PaymentSuccessComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private http: HttpClient
-  ) {
-    this.paymentIntentClientSecret = this.route.snapshot.queryParamMap.get(
-      'payment_intent_client_secret'
-    );
-  }
+  ) {}
   async ngOnInit() {
-    const { paymentIntent } = await this.stripe.retrievePaymentIntent(
-      this.paymentIntentClientSecret
-    );
-    if (paymentIntent.status === 'succeeded') {
-      this.isLoading = true;
-      this.cartService
-        .getCartByUser(this.loginService.user)
-        .subscribe((responseData) => {
-          this.cart = <any>responseData.body;
-          this.cartService.cart = <any>responseData.body;
-          this.fulfillOrder(this.loginService.user.email).subscribe(
-            (data: IStatus) => {
-              if (data.success) {
-                if (this.cartService.cart) {
-                  this.cartService.cart.courses = [];
-                  this.cart = null;
-                }
-                this.isLoading = false;
-                this.router.navigateByUrl('/learning');
+    this.isLoading = true;
+    this.cartService
+      .getCartByUser(this.loginService.user)
+      .subscribe((responseData) => {
+        this.cart = <any>responseData.body;
+        this.cartService.cart = <any>responseData.body;
+        this.fulfillOrder(this.loginService.user.email).subscribe(
+          (data: IStatus) => {
+            if (data.success) {
+              if (this.cartService.cart) {
+                this.cartService.cart.courses = [];
+                this.cart = null;
               }
+              this.isLoading = false;
+              this.router.navigateByUrl('/learning');
             }
-          );
-        });
-    } else {
-      this.error = true;
-      this.isLoading = false;
-      this.errorStatus =
-        paymentIntent.status === 'requires_payment_method'
-          ? 'Payment not succesful, please try again.'
-          : 'Something went wrong.';
-    }
+          }
+        );
+      });
   }
 
   fulfillOrder(email: string): Observable<any> {

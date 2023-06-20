@@ -36,7 +36,9 @@
                     <app-my-course-menu *ngFor="let section of sortedSections,let sectionIdx = index">
                         <div slot="title">
                             <h6 class="mb-2 fw-bold text-section">Section{{sectionIdx+1}}:&nbsp;{{section.title}}</h6>
-                            <p class="mb-0 text-super-caption">HELLO</p>
+                            <p class="mb-0 text-super-caption color-secondary">
+                                0/{{section.videos.length}}|{{courseService.getSectionLength(section.videos,false,true)}}
+                            </p>
                         </div>
                         <div slot="body">
                             <div (click)="onVideoSelect(video)"
