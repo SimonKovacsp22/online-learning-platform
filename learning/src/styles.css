@@ -636,6 +636,9 @@ select {
 .fixed-width-6 {
     max-width: 6rem;
 }
+.min-w-50 {
+    min-width: 50rem;
+}
 
 @keyframes fadeAndScaleAnimation {
     0% {

@@ -38,7 +38,7 @@
     </app-nav-private>
     <div class="container-fluid mt-xxl">
         <div class="row justify-content-center">
-            <div class="col-9 d-flex">
+            <div class="col-12 d-flex flex-column flex-xl-row">
                 <!-- Sidebar -->
                 <app-teach-manage-sidebar (onUpdateStart)="handleCoursePublishUpdateStart()"
                     (onUpdateFinish)="handleCoursePublishUpdateFinish($event)"
@@ -47,7 +47,7 @@
 
                 <div *ngIf="option === 'basic'" class="container-fluid ">
                     <div class="row">
-                        <div class="col-12 px-4 fixed-width-1500">
+                        <div class="col-12 px-2 px-sm-4 fixed-width-1500">
                             <div class="paper-shadow">
                                 <header class="border-bottom-gray-400 px-6 py-40">
                                     <h3 class="mb-0 text-title-tertiary fw-bold">Course landing page</h3>
@@ -98,9 +98,9 @@
                                                     course.</p>
                                             </div>
                                             <div class="row mb-4">
-                                                <div class="col-4 fixed-width-350">
+                                                <div class="col-8 col-md-5 col-lg-4 fixed-width-350">
                                                     <label class="mb-1 text-nav fw-bold" for="language">Language</label>
-                                                    <div class="position-relative">
+                                                    <div class="position-relative max-w-17">
                                                         <!-- Language select -->
                                                         <select formControlName="language" name="language"
                                                             class="box-select w-100 input-large px-3 py-2" type="text">
@@ -116,10 +116,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- Category Select -->
-                                                <div class="col-4 fixed-width-300">
+                                                <div class="col-8 col-md-5 col-lg-4 fixed-width-300">
                                                     <label class="mb-1 text-nav fw-bold"
                                                         for="category">Categories</label>
-                                                    <div class="position-relative">
+                                                    <div class="position-relative max-w-17">
                                                         <select formControlName="category" name="category"
                                                             class="box-select w-100 input-large px-3 py-2 position-relative"
                                                             type="text">
@@ -138,7 +138,7 @@
                                             <div class="row">
                                                 <label class="mb-1 text-nav fw-bold" for="image-input">Course
                                                     image</label>
-                                                <div class="col-6">
+                                                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
 
                                                     <img *ngIf="imagePreview !== null ;else placeholderImage"
                                                         class="d-block border-gray-400 img-large-fixed-height"
@@ -149,7 +149,7 @@
                                                     </ng-template>
 
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-12 col-lg-6">
                                                     <p class="mb-1">Upload your course image here.</p>
                                                     <input type="file" (change)="onFileSelected($event)"
                                                         accept="image/*">
@@ -168,7 +168,7 @@
 
                 <div *ngIf="option === 'students'" class="container-fluid">
                     <div class="row">
-                        <div class="col-12 px-4 fixed-width-1500">
+                        <div class="col-12 px-2 px-sm-4 fixed-width-1500">
                             <div class="paper-shadow">
                                 <header class="border-bottom-gray-400 px-6 py-40">
                                     <h3 class="mb-0 text-title-tertiary fw-bold">Intended learners</h3>
@@ -212,7 +212,7 @@
                 <!-- Pricing -->
                 <div *ngIf="option === 'pricing'" class="container-fluid ">
                     <div class="row">
-                        <div class="col-12 px-4 fixed-width-1500">
+                        <div class="col-12 px-2 px-sm-4 fixed-width-1500">
                             <div class="paper-shadow">
                                 <header class="border-bottom-gray-400 px-6 py-40">
                                     <h3 class="mb-0 text-title-tertiary fw-bold">Pricing</h3>
@@ -261,7 +261,7 @@
                 <!-- Curriculum -->
                 <div *ngIf="option === 'curriculum'" class="container-fluid ">
                     <div class="row">
-                        <div class="col-12 px-4 fixed-width-1500">
+                        <div class="col-12 px-2 px-sm-4 fixed-width-1500">
                             <div class="paper-shadow">
                                 <header class="border-bottom-gray-400 px-6 py-40">
                                     <h3 class="mb-0 text-title-tertiary fw-bold">Curriculum</h3>
@@ -276,7 +276,8 @@
                                             content must be less than 2 hours.
                                         </p>
                                     </div>
-                                    <form [formGroup]="curriculumForm">
+                                   <div class="overflow-auto"> 
+                                    <form class="min-w-50" [formGroup]="curriculumForm">
                                         <app-manage-section [section]="section"
                                             (onSaveSection)="handleSectionUpdate($event)"
                                             (onSaveLecture)="handleLectureCreate($event)"
@@ -292,7 +293,7 @@
                                             <p class="mb-0">Section</p>
                                         </button>
                                         <ng-template #sectionTemplate>
-                                            <div class="border-gray-900 px-2 py-3">
+                                            <div class="min-w-50 border-gray-900 px-2 py-3">
                                                 <div class="d-flex align-items-center mb-3">
                                                     <h6 class="text-paragraph fw-bold mb-0 d-block title-min-width-7">
                                                         New Section:&nbsp;</h6>
@@ -325,6 +326,7 @@
                                             </div>
                                         </ng-template>
                                     </form>
+                                </div>
 
                                 </div>
 

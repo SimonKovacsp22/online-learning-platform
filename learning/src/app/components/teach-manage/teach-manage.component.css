@@ -50,6 +50,24 @@
     pointer-events: none;
 }
 
+.max-w-17 {
+    max-width: 17.1785rem;
+}
+@media (max-width:1200px) {
+    .mt-xxl {
+        margin-top: 4rem
+    }
+}
+
+@media (max-width:576px) {
+    .px-6 {
+        padding-inline: 1rem;
+    }
+    .py-40 {
+        padding-block: 1rem;
+    }
+}
+
 
 
 
