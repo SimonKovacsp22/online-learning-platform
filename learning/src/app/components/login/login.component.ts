@@ -34,17 +34,18 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.loginService
       .validateLoginDetails(this.loginService.user)
-      .subscribe((responseData) => {
-        if (responseData.status !== 200) {
+      .subscribe((data) => {
+        if (data.status !== 200) {
+          console.log(data);
           this.isError = true;
           this.isLoading = false;
           return;
         }
         window.sessionStorage.setItem(
           'Authorization',
-          responseData.headers.get('Authorization')!
+          data.headers.get('Authorization')!
         );
-        this.loginService.user = <any>responseData.body;
+        this.loginService.user = <any>data.body.user;
         this.loginService.user.authStatus = 'AUTH';
         window.sessionStorage.setItem(
           'userdetails',
